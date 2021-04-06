@@ -1,0 +1,16 @@
+[{
+  "name": "lora-test-node",
+  "nodeType": "lora-node",
+  "devEui": "AAAAAAAAAAAAAAAA",
+  "appKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "deviceModelName": "LoPy",
+  "latlng": [
+    56.7,
+    17.2
+  ],
+  "description": "Short description of device"
+}, {
+  "name": "My Zwave Gateway",
+  "nodeType": "zwave-gateway",
+  "secret": "0x123123123123"
+}]
