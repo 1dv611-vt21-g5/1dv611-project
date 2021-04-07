@@ -93,3 +93,5 @@ npm start
 The frontend can be viewed in a browser at the configured address, defaulted to http://localhost:9492/.
 
 To login in with OAuth, use the credientals of the first test user, which is `testuser1` as username and `password` as password.
+
+/Team
