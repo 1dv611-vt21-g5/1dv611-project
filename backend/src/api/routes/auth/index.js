@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-const router = require('express').Router();
-const controller = require('./controller');
+const router = require('express').Router()
+const controller = require('./controller')
 
-router.get('/info', controller.info);
-router.get('/code', controller.code);
+router.get('/info', controller.info)
+router.get('/code', controller.code)
 
-module.exports = router;
+module.exports = router
