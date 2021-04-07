@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const path = require('path');
-const common = require('./common');
+const path = require('path')
+const common = require('./common')
 
 module.exports = {
   cors: {
@@ -10,7 +10,7 @@ module.exports = {
   },
   express: {
     host: common.BACKEND_HOST,
-    port: common.BACKEND_PORT,
+    port: common.BACKEND_PORT
   },
   session: {
     path: path.normalize(path.join(__dirname, '../sessions')),
@@ -32,7 +32,7 @@ module.exports = {
     url: common.YGGIO_API_URL,
     account: {
       username: common.YGGIO_ACCOUNT_USERNAME,
-      password: common.YGGIO_ACCOUNT_PASSWORD,
+      password: common.YGGIO_ACCOUNT_PASSWORD
     },
     provider: {
       name: common.PROVIDER_NAME,
@@ -44,4 +44,4 @@ module.exports = {
       logoPath: path.join(__dirname, '../../asset/your-company-logo.png')
     }
   }
-};
+}

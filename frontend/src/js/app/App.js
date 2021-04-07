@@ -1,13 +1,13 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import { CookiesProvider } from 'react-cookie';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { CookiesProvider } from 'react-cookie'
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import logo from '../../img/logo.png';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import logo from '../../img/logo.png'
 
-import store from '../state/store';
-import MainView from '../views/main/MainView';
+import store from '../state/store'
+import MainView from '../views/main/MainView'
 
 const App = () => (
   <Provider store={store}>
@@ -21,6 +21,6 @@ const App = () => (
   </CookiesProvider>
     </div>
   </Provider>
-);
+)
 
-export default App;
+export default App

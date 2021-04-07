@@ -1,7 +1,7 @@
-import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import {createLogger} from 'redux-logger';
-import rootReducer from './root-reducer';
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import rootReducer from './root-reducer'
 
 //
 // NODE_ENV is always available
@@ -11,14 +11,14 @@ import rootReducer from './root-reducer';
 // console.log('REACT_APP_BIG_BAD_WOLF = ', process.env.REACT_APP_BIG_BAD_WOLF);
 //
 
-const middleware = [thunk];
+const middleware = [thunk]
 if (process.env.NODE_ENV === 'development') {
-  middleware.push(createLogger());
+  middleware.push(createLogger())
 }
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(...middleware),
-);
+  applyMiddleware(...middleware)
+)
 
-export default store;
+export default store

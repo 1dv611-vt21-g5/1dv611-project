@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button} from 'reactstrap';
+import React from 'react'
+import { Button } from 'reactstrap'
 
 export default (props) => (
   <Button
@@ -7,4 +7,4 @@ export default (props) => (
     onClick={props.onClick} >
     {props.children}
   </Button>
-);
+)

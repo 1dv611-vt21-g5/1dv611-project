@@ -1,12 +1,13 @@
-import React from 'react';
-import {Button} from 'reactstrap';
+import React from 'react'
+import { Button } from 'reactstrap'
 
-import {redir} from '../actions';
+import { redir } from '../actions'
 
 export default class Login extends React.Component {
   redirToYggio () {
-    redir();
+    redir()
   }
+
   render () {
     return (
       <div className="something">
@@ -16,6 +17,6 @@ export default class Login extends React.Component {
             Login
         </Button>
       </div>
-    );
+    )
   }
 };
