@@ -25,15 +25,15 @@ const YGGIO_API_URL = 'https://api.yggio-sandbox.sensative.net'
 
 // The name of the provider that is created
 // Can be set to anything
-const PROVIDER_NAME = ''
+const PROVIDER_NAME = 'Zapier'
 
 // Username of the user that creates the provider
 // Can be set to anything
-const YGGIO_ACCOUNT_USERNAME = ''
+const YGGIO_ACCOUNT_USERNAME = 'ak222ye@student.lnu.se'
 
 // Password of the user that creates the provider
 // Can be set to anything
-const YGGIO_ACCOUNT_PASSWORD = ''
+const YGGIO_ACCOUNT_PASSWORD = 'studentprojekt'
 
 module.exports = {
   BACKEND_HOST,
