@@ -21,19 +21,19 @@ const FRONTEND_PORT = '9492'
 // The URL of the REST API of the Yggio you want to use
 // Should be the same as in frontend/src/constants/index.js
 // https://api.yggio-sandbox.sensative.net is a suitable test server and is set as default
-const YGGIO_API_URL = 'https://api.yggio-sandbox.sensative.net'
+const YGGIO_API_URL = 'https://api.yggio-beta.sensative.net'
 
 // The name of the provider that is created
 // Can be set to anything
-const PROVIDER_NAME = ''
+const PROVIDER_NAME = 'Studentprojekt - Zapierintegration'
 
 // Username of the user that creates the provider
 // Can be set to anything
-const YGGIO_ACCOUNT_USERNAME = ''
+const YGGIO_ACCOUNT_USERNAME = 'ak222ye@student.lnu.se'
 
 // Password of the user that creates the provider
 // Can be set to anything
-const YGGIO_ACCOUNT_PASSWORD = ''
+const YGGIO_ACCOUNT_PASSWORD = 'studentprojekt'
 
 module.exports = {
   BACKEND_HOST,

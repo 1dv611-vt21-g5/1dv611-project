@@ -36,7 +36,7 @@ module.exports = {
     },
     provider: {
       name: common.PROVIDER_NAME,
-      info: 'Created by yggio-service-example',
+      info: 'Yggio integration for connecting to Zapier - Send your sensor data to Zapier and use it as a trigger for further actions',
       redirectUris: {
         browser: `${common.FRONTEND_URL}:${common.FRONTEND_PORT}/oauth`,
         app: 'your-app://login' // should be changed, if used

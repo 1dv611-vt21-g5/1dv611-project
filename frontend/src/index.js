@@ -5,6 +5,3 @@ import './css/one.css'
 import App from './js/app/App'
 
 ReactDOM.render(<App />, document.getElementById('app'))
-
-
-//FILIPPA TESTAR

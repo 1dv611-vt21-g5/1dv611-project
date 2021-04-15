@@ -7,12 +7,16 @@ const updateArray = (users, formattedUser) => {
   if (users.length === 0) {
     return [formattedUser]
   }
+
   const filtered = users.filter(user => user.username === formattedUser.username)
+
   const userExists = filtered.length !== 0
+
   if (!userExists) {
     users.push(formattedUser)
     return users
   }
+
   return users.map((user) => (
     user.username === formattedUser.username ? formattedUser : user
   ))

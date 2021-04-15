@@ -7,18 +7,15 @@ const {
   }
 } = require('yggio-connect')
 
-const {
-  yggio: { provider: { redirectUris } }
-} = require('../../../config')
+const { yggio: { provider: { redirectUris } } } = require('../../../config')
 
-const {
-  updateUser
-} = require('../../../components/db')
+const { updateUser } = require('../../../components/db')
 
 // Get your providerDetails from yggio after registering your
 // service in Yggio (in this example that is already done in src/index.js)
 const info = (req, res) => {
   const clientId = getDetails().provider.client_id
+
   return res.json({
     redirectUris,
     clientId
@@ -36,12 +33,16 @@ const code = async (req, res, next) => {
     const redirectUri = redirectUris[req.query.redirect_uri]
     const freshUser = await redeemCode(req.query.code, redirectUri)
     // updateUser(freshUser);
+
     return req.session.destroy(destroyErr => {
       if (destroyErr) return next(destroyErr)
+
       return req.sessionStore.regenerate(req, regenErr => {
         if (regenErr) return next(regenErr)
+
         req.session.user = freshUser
         const resUser = unsetProps(freshUser)
+
         return res.json(resUser)
       })
     })
