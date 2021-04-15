@@ -5,7 +5,6 @@ const users = require('../db/example-users')
 const nodes = require('../db/example-nodes')
 
 const createExampleUsers = async () => {
-  const token = await routes.login(users[0])
   console.log('Creating example users...')
   await Promise.all(users.map(async u => {
     try {

@@ -46,7 +46,7 @@ const setup = async () => {
 
   console.log('### ### ### ### YGGIO API - ready')
 
-  // await seedDb.createExampleUsers()
+  await seedDb.createExampleUsers()
   await seedDb.createExampleNodes()
 
   // // uncomment this code  to reset users when server starts
