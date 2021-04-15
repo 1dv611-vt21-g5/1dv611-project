@@ -18,6 +18,12 @@ The application does the following:
 
 Note that in order for the app to receive iotnode subscription messages, the app must be exposed to the Internet with a public IP address.
 
+## Info
+
+Yggio URL: https://yggio-beta.sensative.net/
+API URL: https://api.yggio-beta.sensative.net
+Swagger Docs: https://swagger.yggio-beta.sensative.net/
+
 ## Configurations
 
 Before running the app, configurations has to be made. The provided default values can be used but `PROVIDER_NAME`, `YGGIO_ACCOUNT_USERNAME` and `YGGIO_ACCOUNT_PASSWORD` need to be set.
@@ -27,36 +33,36 @@ The backend is configured in `backend/src/config/common.js`:
 ```js
 // The host of yggio-service-example backend
 // Will be localhost if backend is run locally
-const BACKEND_HOST = 'localhost';
+const BACKEND_HOST = 'localhost'
 
 // The port used by the yggio-service-example backend
 // Should be the same as in frontend/src/constants/index.js
-const BACKEND_PORT = '9999';
+const BACKEND_PORT = '9999'
 
 // The URL to the yggio-service-example frontend
 // Will be http://localhost if frontend is run locally
-const FRONTEND_URL = 'http://localhost';
+const FRONTEND_URL = 'http://localhost'
 
 // The port used by the yggio-service-example frontend
 // Should be the same as in frontend/.env
-const FRONTEND_PORT = '9492';
+const FRONTEND_PORT = '9492'
 
 // The URL of the REST API of the Yggio you want to use
 // Should be the same as in frontend/src/constants/index.js
 // https://api.yggio-sandbox.sensative.net is a suitable test server and is set as default
-const YGGIO_API_URL = 'https://api.yggio-sandbox.sensative.net';
+const YGGIO_API_URL = 'https://api.yggio-sandbox.sensative.net'
 
 // The name of the provider that is created
 // Can be set to anything
-const PROVIDER_NAME = '';
+const PROVIDER_NAME = ''
 
 // Username of the user that creates the provider
 // Can be set to anything
-const YGGIO_ACCOUNT_USERNAME = '';
+const YGGIO_ACCOUNT_USERNAME = ''
 
 // Password of the user that creates the provider
 // Can be set to anything
-const YGGIO_ACCOUNT_PASSWORD = '';
+const YGGIO_ACCOUNT_PASSWORD = ''
 ```
 
 The frontend is configured in `frontend/src/constants/index.js`:
@@ -64,8 +70,8 @@ The frontend is configured in `frontend/src/constants/index.js`:
 ```js
 export const statStr = {
   backendHost: 'http://localhost:9999',
-  portalHost: 'https://portal.yggio-sandbox.sensative.net'
-};
+  portalHost: 'https://portal.yggio-sandbox.sensative.net',
+}
 ```
 
 ## Running the app
@@ -93,5 +99,3 @@ npm start
 The frontend can be viewed in a browser at the configured address, defaulted to http://localhost:9492/.
 
 To login in with OAuth, use the credientals of the first test user, which is `testuser1` as username and `password` as password.
-
-/Team
