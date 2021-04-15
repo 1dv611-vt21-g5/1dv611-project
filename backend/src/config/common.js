@@ -25,7 +25,7 @@ const YGGIO_API_URL = 'https://api.yggio-sandbox.sensative.net'
 
 // The name of the provider that is created
 // Can be set to anything
-const PROVIDER_NAME = 'Zapier'
+const PROVIDER_NAME = 'Studentprojekt - Zapierintegration'
 
 // Username of the user that creates the provider
 // Can be set to anything
