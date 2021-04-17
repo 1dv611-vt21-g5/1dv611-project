@@ -16,7 +16,7 @@ const FRONTEND_URL = 'http://localhost'
 // The port used by the yggio-service-example frontend
 // Should be the same as in frontend/.env
 // Set to 9492 as default
-const FRONTEND_PORT = '9492'
+const FRONTEND_PORT = '3000'
 
 // The URL of the REST API of the Yggio you want to use
 // Should be the same as in frontend/src/constants/index.js
