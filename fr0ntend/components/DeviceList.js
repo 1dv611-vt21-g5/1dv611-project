@@ -1,8 +1,17 @@
 import React from 'react'
 
-import { subscribe, unsubscribe } from '../actions'
+import { subscribe, unsubscribe } from '../../frontend/src/js/actions'
 import SubscribeButton from './SubscribeButton'
 
+const DeviceList = ({devices}) => {
+  const sub = async (device) => {
+
+  }
+  return (
+
+  )
+}
+// TODO: finish and remove below
 export default class DeviceList extends React.Component {
   constructor (props) {
     super(props)
