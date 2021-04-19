@@ -1,6 +1,7 @@
 /**
  * Mongoose model Settings.
  *
+ * 
  * @version 1.0.0
  */
 
@@ -29,5 +30,5 @@ const settingSchema = new mongoose.Schema({
   // Create a model using the schema.
   const Setting = mongoose.model('Setting', settingSchema)
   
-  // Exports.
+  // Exports
   module.exports = Setting
