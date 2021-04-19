@@ -8,7 +8,7 @@ import useRequest from 'hooks/useRequest'
 const Devices = () => {
   const [devices, setDevices] = useState({})
 
-  const { data, error, loading } = useRequest('/api/devices')
+  const { data, error } = useRequest('/api/devices')
   console.log(data)
 
   if (error) return <div>Oopsie!</div>
