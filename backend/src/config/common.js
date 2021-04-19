@@ -35,6 +35,9 @@ const YGGIO_ACCOUNT_USERNAME = 'ak222ye@student.lnu.se'
 // Can be set to anything
 const YGGIO_ACCOUNT_PASSWORD = 'studentprojekt'
 
+// Connection string to MongoDB
+const DB_CONNECTION_STRING = 'connectionStringToBeSet'
+
 module.exports = {
   BACKEND_HOST,
   BACKEND_PORT,
@@ -43,5 +46,6 @@ module.exports = {
   YGGIO_API_URL,
   PROVIDER_NAME,
   YGGIO_ACCOUNT_USERNAME,
-  YGGIO_ACCOUNT_PASSWORD
+  YGGIO_ACCOUNT_PASSWORD,
+  DB_CONNECTION_STRING
 }

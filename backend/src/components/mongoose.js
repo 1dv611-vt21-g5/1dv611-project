@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const common = require('./config/common')
 
 /**
 * Establishes a connection to the database.
@@ -20,7 +21,7 @@ module.exports.connect = async () => {
   })
 
   // Connect to the server.
-  return mongoose.connect(process.env.DB_CONNECTION_STRING, {
+  return mongoose.connect(common.DB_CONNECTION_STRING, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
