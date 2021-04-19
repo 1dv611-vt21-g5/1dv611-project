@@ -27,7 +27,7 @@ const settingSchema = new mongoose.Schema({
   })
   
   // Create a model using the schema.
-  const Setting = mongoose.model('Setting', settingsSchema)
+  const Setting = mongoose.model('Setting', settingSchema)
   
   // Exports.
   module.exports = Setting
