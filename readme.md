@@ -21,7 +21,9 @@ Note that in order for the app to receive iotnode subscription messages, the app
 ## Info
 
 Yggio URL: https://yggio-beta.sensative.net/
+
 API URL: https://api.yggio-beta.sensative.net
+
 Swagger Docs: https://swagger.yggio-beta.sensative.net/
 
 ## Configurations
