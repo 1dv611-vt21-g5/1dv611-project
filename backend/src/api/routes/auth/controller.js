@@ -33,7 +33,7 @@ const code = async (req, res, next) => {
     const redirectUri = redirectUris[req.query.redirect_uri]
     const freshUser = await redeemCode(req.query.code, redirectUri)
     // updateUser(freshUser);
-
+    console.log(freshUser)
     return req.session.destroy(destroyErr => {
       if (destroyErr) return next(destroyErr)
 
