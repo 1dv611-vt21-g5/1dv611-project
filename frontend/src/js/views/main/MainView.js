@@ -15,11 +15,11 @@ class _MainView extends React.Component {
     return (
       <div style={padStyle}>
         <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route path='/oauth' component={WaitOauth} />
-          <Route path='/devices' component={Devices} />
-        </Switch>
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route path='/oauth' component={WaitOauth} />
+            <Route path='/devices' component={Devices} />
+          </Switch>
         </BrowserRouter>
       </div>
     )

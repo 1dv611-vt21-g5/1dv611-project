@@ -43,7 +43,7 @@ export default class WaitOauth extends React.Component {
 
   render () {
     return (
-      <div className="something">
+      <div className='something'>
         <p className={this.state.cls}> {this.state.message} </p>
       </div>
     )

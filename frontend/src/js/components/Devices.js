@@ -42,7 +42,7 @@ export default class Devices extends React.Component {
 
   render () {
     return (
-      <div className="deviceDiv">
+      <div className='deviceDiv'>
         <h1>My devices</h1>
         {this.displayDevices()}
       </div>

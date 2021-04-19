@@ -10,7 +10,7 @@ export default class Login extends React.Component {
 
   render () {
     return (
-      <div className="something">
+      <div className='something'>
         <Button
           color='success'
           onClick={this.redirToYggio} >
