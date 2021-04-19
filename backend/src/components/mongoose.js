@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const common = require('./config/common')
+const common = require('../config/common')
 
 /**
 * Establishes a connection to the database.
@@ -27,9 +27,3 @@ module.exports.connect = async () => {
     useUnifiedTopology: true
   })
 }
-
-// Connect to the database
-mongoose.connect().catch(error => {
-  console.error(error)
-  process.exit(1)
-})
