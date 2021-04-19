@@ -1,6 +1,7 @@
 /**
  * Mongoose model Settings.
  *
+ * 
  * @version 1.0.0
  */
 
@@ -9,7 +10,7 @@
 const mongoose = require('mongoose')
 
 // Create a schema.
-const settingsSchema = new mongoose.Schema({
+const settingSchema = new mongoose.Schema({
     node_id: {
       type: String,
       required: true
@@ -29,5 +30,5 @@ const settingsSchema = new mongoose.Schema({
   // Create a model using the schema.
   const Setting = mongoose.model('Setting', settingSchema)
   
-  // Exports.
+  // Exports
   module.exports = Setting
