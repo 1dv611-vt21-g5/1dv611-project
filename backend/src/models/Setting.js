@@ -9,7 +9,7 @@
 const mongoose = require('mongoose')
 
 // Create a schema.
-const settingsSchema = new mongoose.Schema({
+const settingSchema = new mongoose.Schema({
     node_id: {
       type: String,
       required: true
@@ -31,3 +31,4 @@ const settingsSchema = new mongoose.Schema({
   
   // Exports.
   module.exports = Setting
+  
