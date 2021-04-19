@@ -10,6 +10,7 @@ const commonConfig = require('./config/common')
 const seedDb = require('../tools/seed-db')
 const { resetUsers, saveProviderOauthSecret } = require('./components/db')
 const { secret } = require('../db/oauth-info.json')
+const mongoose = require('./components/mongoose')
 
 let server
 
@@ -78,5 +79,11 @@ const start = async () => {
     process.exit(1)
   }
 }
+
+// Connect to the database
+mongoose.connect().catch(error => {
+  console.error(error)
+  process.exit(1)
+})
 
 start()

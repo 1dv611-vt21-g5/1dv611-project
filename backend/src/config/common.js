@@ -36,7 +36,7 @@ const YGGIO_ACCOUNT_USERNAME = 'ak222ye@student.lnu.se'
 const YGGIO_ACCOUNT_PASSWORD = 'studentprojekt'
 
 // Connection string to MongoDB
-const DB_CONNECTION_STRING = 'connectionStringToBeSet'
+const DB_CONNECTION_STRING = 'mongodb+srv://dbUser:studentprojekt@cluster0.oyqrg.mongodb.net/zapierIntegrations?retryWrites=true&w=majority'
 
 module.exports = {
   BACKEND_HOST,
