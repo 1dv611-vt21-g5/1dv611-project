@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const common = require('./config/common')
+const common = require('../config/common')
 
 /**
 * Establishes a connection to the database.
