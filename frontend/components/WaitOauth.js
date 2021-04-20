@@ -1,6 +1,3 @@
-
-import React from 'react'
-import queryString from 'query-string'
 import { useCode } from '../actions'
 
 import { useState, useEffect } from 'react'
@@ -16,7 +13,6 @@ const WaitOauth = () => {
     cls: 'oauth_wait'
   })
   const [isLoading, setIsLoading] = useState(false)
-
   const { code } = router.query
 
   const fetchOAuth = async () => {

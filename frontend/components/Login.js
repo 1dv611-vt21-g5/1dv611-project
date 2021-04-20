@@ -3,20 +3,21 @@ import { Button } from 'reactstrap'
 
 import { redir } from '../actions'
 
-export default class Login extends React.Component {
-  redirToYggio () {
+const Login = () => {
+
+  const redirToYggio = () => {
     redir()
   }
 
-  render () {
-    return (
-      <div className="something">
-        <Button
-          color='success'
-          onClick={this.redirToYggio} >
-            Access devices
+  return (
+    <div className="something">
+      <Button
+        color='success'
+        onClick={redirToYggio} >
+        Login
         </Button>
-      </div>
-    )
-  }
-};
+    </div>
+  )
+}
+
+export default Login
