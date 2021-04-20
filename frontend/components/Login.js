@@ -14,7 +14,7 @@ export default class Login extends React.Component {
         <Button
           color='success'
           onClick={this.redirToYggio} >
-            Login
+            Access devices
         </Button>
       </div>
     )
