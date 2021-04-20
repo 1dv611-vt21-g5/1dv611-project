@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Page from 'components/Page'
-import Devices from 'components/Devices'
+import DeviceList from 'components/DeviceList'
 
 export default function Home() {
   return (
     <Page>
-      <Devices />
+      <DeviceList />
     </Page>
   )
 }
