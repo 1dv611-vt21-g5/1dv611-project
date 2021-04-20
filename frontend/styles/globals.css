@@ -1,9 +1,10 @@
-html,
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  margin: 0 0 100px;
 }
 
 a {
@@ -16,42 +17,57 @@ a {
 }
 
 .something {
-  border-radius: 23px;
-  background-color: blue;
-  width: 500px;
-  height: 300px;
-  box-shadow: 0 0 0 2px black, 0 0 0 6px white, 0 0 0 9px blue;
-  margin: auto;
+  border-radius: 0;
+  background-color: rgb(84, 84, 110);
+  padding:30px;
+  width: 300px;
+  margin:50px auto;
   display: flex;
   align-items: center;
+  color:white;
   justify-content: center;
 }
 
 .deviceUl {
   list-style: none;
   padding: 20px;
+  margin:auto;
+  max-width: 1000px;
 }
 
 .deviceLi {
   display: flex;
+  border-bottom:1px solid rgb(241, 241, 241);
+  margin:5px;
   justify-content: space-between;
+}
+
+.deviceDiv {
+  margin: 50px 0 100px 0;
+}
+
+.deviceDiv h1{
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 2.4em;
+  padding:20px;
 }
 
 .oauth_wait,
 .oauth_success,
 .oauth_fail {
-  text-shadow: 0px 0px 10px black;
-  font-weight: 900;
-  font-size: 22px;
-  color: yellow;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
 }
 
 .oauth_wait {
-  color: yellow;
+  color:white;
 }
 
 .oauth_success {
-  color: chartreuse;
+  color: rgb(129, 202, 55);
 }
 
 .oauth_fail {
@@ -63,24 +79,39 @@ a {
 }
 
 .App-logo {
-  /*animation: App-logo-spin infinite 1s linear;*/
-  height: 180px;
+  /*animation: App-logo-spin infinite 1s linear;
+  */
   padding-bottom: 15px;
+  float:left;
+  position: absolute;
+  top:-40px
 }
 
 .App-header {
   background-color: #eeeeef;
-  height: 150px;
   padding: 20px;
-  color: #74747d;
+  height: 120px;
 }
 
 .App-title {
   font-size: 1.5em;
+  padding-top:25px
 }
 
 .App-intro {
   font-size: large;
+}
+
+.App-footer {
+  background-color: #eeeeef;
+  padding: 40px;
+  color: #74747d;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  overflow:hidden;
 }
 
 @keyframes App-logo-spin {
