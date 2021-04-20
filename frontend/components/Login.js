@@ -11,10 +11,6 @@ const Login = () => {
 
   return (
     <div className="something">
-      <p>{state.name}, {state.age}</p>
-      <Button onClick={clickTest}>
-        Test
-      </Button>
       <Button
         color='success'
         onClick={redirToYggio} >
