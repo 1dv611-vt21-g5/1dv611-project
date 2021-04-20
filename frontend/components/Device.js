@@ -26,7 +26,7 @@ const SubscriptionButton = ({ item }) => {
   return subStatus.length >= 1
     ? (
       <SubscribeButton
-        colorScheme='red'
+        colorScheme='orange'
         device={item}
         method={unsub}>
         Unsubscribe

@@ -6,6 +6,9 @@ const Page = ({children}) => {
         <h1 className="App-title">Yggio service demo</h1>
       </header>
       {children}
+      <footer className="App-footer">
+        <p>A project in course 1dv611 at Linneaus university. </p>
+      </footer>
     </div>
   )
 }
