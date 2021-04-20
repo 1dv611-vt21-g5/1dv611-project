@@ -8,8 +8,7 @@ const WaitOauth = () => {
   const router = useRouter()
   const [message, setMessage] = useState({
     message: `
-        Please do hold.
-        Fancy your inner peace.
+        Please do hold...
       `,
     cls: 'oauth_wait'
   })
@@ -22,7 +21,7 @@ const WaitOauth = () => {
       await useCode(code)
       setIsLoading(false)
       setMessage({
-        message: 'OAuth login successful! redirecting to devices...',
+        message: 'OAuth login successful! Redirecting to devices...',
         cls: 'oauth_success'
       })
       setTimeout(() => {
@@ -31,7 +30,7 @@ const WaitOauth = () => {
     } catch (err) {
       console.log('Error:', err)
       setMessage({
-        message: 'OAuth login failed. redirecting to login...',
+        message: 'OAuth login failed. Redirecting to login...',
         cls: 'oauth_fail'
       })
       setTimeout(() => {
@@ -45,7 +44,7 @@ const WaitOauth = () => {
       fetchOAuth()
     } else {
       setMessage({
-        message: 'No code provided, go back home youuu!',
+        message: 'Could not authenticate.',
         cls: 'oauth_fail'
       })
     }
@@ -55,8 +54,7 @@ const WaitOauth = () => {
     if (isLoading) {
       setMessage({
         message: `
-        Please do hold.
-        Fancy your inner peace.
+        Please do hold...
       `,
         cls: 'oauth_wait'
       })
