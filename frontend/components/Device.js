@@ -4,6 +4,9 @@ import { mutate } from 'swr'
 import useRequest from 'hooks/useRequest'
 
 import { subscribe, unsubscribe } from 'actions'
+
+import { Text, Flex, Spacer } from '@chakra-ui/react'
+
 import SubscribeButton from './SubscribeButton'
 
 const SubscriptionButton = ({ item }) => {
@@ -45,10 +48,11 @@ const SubscriptionButton = ({ item }) => {
 const Device = ({ device }) => {
 
   return (
-    <li className="deviceLi">
-      <span>{device.name}</span>
+    <Flex borderWidth="1px" borderRadius="lg" p="1.5" alignItems="center" shadow="md">
+      <Text fontSize="l" fontWeight="semibold">{device.name}</Text>
+      <Spacer />
       <SubscriptionButton item={device} />
-    </li>
+    </Flex>
   )
 }
 

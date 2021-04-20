@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+import { Button } from '@chakra-ui/react'
 
 import { redir } from '../actions'
 
@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <div className="something">
       <Button
-        color='success'
+        colorScheme='purple'
         onClick={redirToYggio} >
         Login
         </Button>

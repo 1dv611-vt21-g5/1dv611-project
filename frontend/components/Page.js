@@ -1,9 +1,13 @@
-const Page = ({children}) => {
+import Head from 'next/head'
+
+const Page = ({ children }) => {
   return (
     <div className="App">
+      <Head>
+        <title>Ysocial - Connect Yggio and Zapier</title>
+      </Head>
       <header className="App-header">
         <img src="/img/logo.png" className="App-logo" alt="logo" />
-        <h1 className="App-title">Yggio service demo</h1>
       </header>
       {children}
       <footer className="App-footer">
