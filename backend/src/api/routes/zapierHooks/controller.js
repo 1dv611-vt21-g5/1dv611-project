@@ -1,8 +1,3 @@
-router.get('/', controller.getZapierHooks)
-router.post('/', controller.createZapierHook)
-router.get('/:id', controller.getZapierHook)
-router.put('/:id', controller.editZapierHook)
-router.delete('/:id', controller.deleteZapierHook)
 
 const getZapierHooks = (req, res, next) => {
   // TODO: implement getting ALL hooks
