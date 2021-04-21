@@ -7,7 +7,7 @@ const Page = ({ children }) => {
         <title>Ysocial - Connect Yggio and Zapier</title>
       </Head>
       <header className="App-header">
-        <img src="/img/logo.png" className="App-logo" alt="logo" />
+        <a title="home" href="/"><img src="/img/logo.png" className="App-logo" alt="logo" /></a>
       </header>
       {children}
       <footer className="App-footer">
