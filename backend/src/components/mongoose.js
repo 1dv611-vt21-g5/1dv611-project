@@ -1,3 +1,11 @@
+/**
+ * Mongoose configuration.
+ *
+ * @version 1.0.0
+ */
+
+'use strict'
+
 const mongoose = require('mongoose')
 const common = require('../config/common')
 

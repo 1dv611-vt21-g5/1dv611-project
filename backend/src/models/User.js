@@ -40,7 +40,6 @@ const userSchema = new mongoose.Schema({
 // If the API key is randomly generated it should be impossible to guess what
 // another users key is - but we can still check it via the database
 
-
 // Create a model using the schema.
 const User = mongoose.model('User', userSchema)
 
