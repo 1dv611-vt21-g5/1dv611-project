@@ -9,9 +9,10 @@ export default class SubscribeButton extends React.Component {
   render() {
     return (
       <Button
+        shadow="md"
         colorScheme={this.props.colorScheme || 'blue'}
         size='sm'
-        borderRadius="2px"
+        borderRadius="md"
         onClick={this.handleClick} >
         {this.props.children}
       </Button>

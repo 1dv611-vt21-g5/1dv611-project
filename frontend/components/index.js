@@ -1,5 +1,5 @@
 import Button from './TRButton'
-import Devices from './Devices'
+import Devices from './DeviceList'
 import Login from './Login'
 import WaitOauth from './WaitOauth'
 

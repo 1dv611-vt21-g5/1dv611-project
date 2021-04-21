@@ -1,78 +1,30 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
+import _ from 'lodash'
 
-import Device from 'components/Device'
+import { Heading, Container, Stack, Flex } from '@chakra-ui/react'
 
-import { subscribe, unsubscribe } from 'actions'
-import SubscribeButton from './SubscribeButton'
+import Device from './Device'
+import useRequest from 'hooks/useRequest'
 
-const DeviceList = ({ devices, setDevices }) => {
-  console.log('hello', devices)
+const Devices = () => {
+
+  const { data: devices, error } = useRequest('/api/devices')
+
+  if (error) return <div>Oopsie!</div>
+  if (!devices) return <div>Loading!</div>
+  console.log(devices)
   return (
-    <ul className="deviceUl">
-      {devices.map((device, index) => (
-        <Device key={index} device={device} />
-      ))}
-    </ul>
+    <Container maxW="container.xl">
+      <Flex my="2rem">
+        <Heading as="h1">My devices</Heading>
+      </Flex>
+      <Stack spacing="1rem">
+        {devices && devices.map((device, index) => (
+          <Device key={index} device={device} />
+        ))}
+      </Stack>
+    </Container>
   )
 }
 
-export default DeviceList
-
-// TODO: finish and remove below
-// export default class DeviceList extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = { devices: props.devices }
-//   }
-
-//   sub = async device => {
-//     await subscribe(device)
-//     device.subscribed = true
-//     this.setState({ devices: this.state.devices })
-//   }
-
-//   unsub = async device => {
-//     await unsubscribe(device)
-//     device.subscribed = false
-//     this.setState({ devices: this.state.devices })
-//   }
-
-//   SubscriptionButton = props => {
-//     return props.item.subscribed
-//       ? (
-//         <SubscribeButton
-//           color='danger'
-//           device={props.item}
-//           method={this.unsub}>
-//           Unsubscribe
-//         </SubscribeButton>
-//       )
-//       : (
-//         <SubscribeButton
-//           color='success'
-//           device={props.item}
-//           method={this.sub}>
-//           Subscribe
-//         </SubscribeButton>
-//       )
-//   }
-
-//   makeList = () => {
-//     return this.props.devices.map((item, idx) => {
-//       return (
-//         <li className="deviceLi" key={idx}>
-//           <span>{item.name}</span>
-//           <this.SubscriptionButton item={item} />
-//         </li>
-//       )
-//     })
-//   }
-
-//   render() {
-//     return (
-//       <ul className="deviceUl">
-//         {this.makeList()}
-//       </ul>
-//     )
-//   }
-// };
+export default Devices
