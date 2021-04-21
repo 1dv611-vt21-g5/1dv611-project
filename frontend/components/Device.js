@@ -16,6 +16,8 @@ const SubscriptionButton = ({ item }) => {
   const subURI = `/api/subscriptions?iotnode=${item._id}`
   const { data: subStatus, error } = useRequest(subURI)
 
+  // TODO: THIS should probably be a "Send data to Zapier button" - activating
+  // both a subscription (Channel) from Yggio, and also adding a webhook to Zapier
   const sub = async () => {
     await subscribe(item)
     mutate(subURI)
@@ -50,10 +52,19 @@ const SubscriptionButton = ({ item }) => {
 const Device = ({ device }) => {
   const [showData, setShowData] = useState(false)
 
+  // TODO: Add a UI to allow users to select which data is sent to Zapier?
+  // Some of the sensors have many data values and not all of them are relevant
+
   return (
-    <Flex borderWidth="1px" borderRadius="lg" p="1.5" alignItems="center" shadow="md">
-      <Flex flexDirection="column" alignItems="start">
+    <Flex flexDirection="column" borderWidth="1px" borderRadius="lg" p="1.5" shadow="md">
+      <Flex alignItems="center">
         <Text fontSize="l" fontWeight="semibold">{device.name}</Text>
+        <Spacer />
+        <Flex flexDirection="column" alignItems="start">
+          <SubscriptionButton item={device} />
+        </Flex>
+      </Flex>
+      <Flex flexDirection="column" alignItems="start">
         {device.value && (
           <Box mt="1rem">
             {showData ? (
@@ -67,8 +78,6 @@ const Device = ({ device }) => {
           </Box>
         )}
       </Flex>
-      <Spacer />
-      <SubscriptionButton item={device} />
     </Flex>
   )
 }
