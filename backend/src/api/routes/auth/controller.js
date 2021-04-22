@@ -28,21 +28,22 @@ const info = (req, res) => {
 // Remove accessToken and refreshToken before sending it back
 // uncomment updateUser and its associated function to save the user
 // to json in /db/users.json
-// {
-//   accessToken: 'bb68c638-6f41-41e1-a21b-a8519ee032a6',
-//   refreshToken: 'dea4afe5-1b68-4c02-8a03-6d430df1f250',
-//   expiresAt: '2021-05-21T22:36:29.050Z',
-//   scope: undefined,
-//   _id: '6076b42ec054220006cebbff',
-//   username: 'ak222ye@student.lnu.se',
-//   globalVisibility: true
-// }
+
 const code = async (req, res, next) => {
   try {
     const redirectUri = redirectUris[req.query.redirect_uri]
     const freshUser = await redeemCode(req.query.code, redirectUri)
     // updateUser(freshUser);
     console.log(freshUser)
+
+    // creates new user if none exists
+    await User.findOneAndUpdate({ username: freshUser.username }, {
+      username: freshUser.username,
+    }, {
+      upsert: true,
+      setDefaultsOnInsert: true
+    })
+
     return req.session.destroy(destroyErr => {
       if (destroyErr) return next(destroyErr)
 
