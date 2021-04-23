@@ -13,7 +13,7 @@ const Devices = () => {
 
   if (error) return <div>Oopsie!</div>
   if (!devices) return <Spinner />
-  console.log(devices)
+
   return (
     <Container maxW="container.xl">
       <Flex my="2rem">
