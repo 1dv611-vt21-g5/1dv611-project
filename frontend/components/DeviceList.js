@@ -9,11 +9,10 @@ import useRequest from 'hooks/useRequest'
 const Devices = () => {
 
   const { data: devices, error } = useRequest('/api/devices')
-  console.log(useRequest('/api/settings'))
 
   if (error) return <div>Oopsie!</div>
   if (!devices) return <div>Loading!</div>
-  console.log(devices)
+
   return (
     <Container maxW="container.xl">
       <Flex my="2rem">
