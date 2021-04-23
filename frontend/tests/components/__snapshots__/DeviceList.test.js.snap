@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loads and displays a list of devices 1`] = `
+<div>
+  <div
+    class="chakra-container css-tflc3m"
+  >
+    <div
+      class="css-1m6bwdk"
+    >
+      <h1
+        class="chakra-heading css-0"
+      >
+        My devices
+      </h1>
+    </div>
+    <div
+      class="chakra-stack css-sekf5y"
+    >
+      <div
+        class="css-1hkhsaz"
+      >
+        <div
+          class="css-70qvj9"
+        >
+          <p
+            class="chakra-text css-1oz30jp"
+          >
+            Z-Wave Strips Guard 700 Meeting Room
+          </p>
+          <div
+            class="css-17xejub"
+          />
+          <div
+            class="css-ohugnc"
+          >
+            <p>
+              Add loadspinner here!
+            </p>
+          </div>
+        </div>
+        <div
+          class="css-ohugnc"
+        >
+          <div
+            class="css-15g2oxy"
+          >
+            <div
+              class="css-759u60"
+            >
+              <svg
+                baseProfile="tiny"
+                class="chakra-icon css-1c13j1z"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                version="1.2"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.064 10.109l1.179-2.387c.074-.149.068-.327-.015-.471-.083-.145-.234-.238-.401-.249l-2.656-.172-.172-2.656c-.011-.167-.104-.317-.249-.401-.145-.084-.322-.09-.472-.015l-2.385 1.18-1.477-2.215c-.186-.278-.646-.278-.832 0l-1.477 2.215-2.385-1.18c-.151-.075-.327-.069-.472.015-.145.083-.238.234-.249.401l-.171 2.656-2.657.171c-.167.011-.318.104-.401.249-.084.145-.089.322-.015.472l1.179 2.386-2.214 1.477c-.139.093-.223.249-.223.416s.083.323.223.416l2.215 1.477-1.18 2.386c-.074.15-.068.327.015.472.083.144.234.238.401.248l2.656.171.171 2.657c.011.167.104.317.249.401.144.083.32.088.472.015l2.386-1.179 1.477 2.214c.093.139.249.223.416.223s.323-.083.416-.223l1.477-2.214 2.386 1.179c.15.073.327.068.472-.015s.238-.234.249-.401l.171-2.656 2.656-.172c.167-.011.317-.104.401-.249.083-.145.089-.322.015-.472l-1.179-2.385 2.214-1.478c.139-.093.223-.249.223-.416s-.083-.323-.223-.416l-2.214-1.475z"
+                />
+              </svg>
+              <p
+                class="chakra-text css-1lj023j"
+              >
+                This device has reported data, click to show!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1hkhsaz"
+      >
+        <div
+          class="css-70qvj9"
+        >
+          <p
+            class="chakra-text css-1oz30jp"
+          >
+            Z-Wave Strips Drip 700 Coffee
+          </p>
+          <div
+            class="css-17xejub"
+          />
+          <div
+            class="css-ohugnc"
+          >
+            <p>
+              Add loadspinner here!
+            </p>
+          </div>
+        </div>
+        <div
+          class="css-ohugnc"
+        >
+          <div
+            class="css-15g2oxy"
+          >
+            <div
+              class="css-759u60"
+            >
+              <svg
+                baseProfile="tiny"
+                class="chakra-icon css-1c13j1z"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                version="1.2"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.064 10.109l1.179-2.387c.074-.149.068-.327-.015-.471-.083-.145-.234-.238-.401-.249l-2.656-.172-.172-2.656c-.011-.167-.104-.317-.249-.401-.145-.084-.322-.09-.472-.015l-2.385 1.18-1.477-2.215c-.186-.278-.646-.278-.832 0l-1.477 2.215-2.385-1.18c-.151-.075-.327-.069-.472.015-.145.083-.238.234-.249.401l-.171 2.656-2.657.171c-.167.011-.318.104-.401.249-.084.145-.089.322-.015.472l1.179 2.386-2.214 1.477c-.139.093-.223.249-.223.416s.083.323.223.416l2.215 1.477-1.18 2.386c-.074.15-.068.327.015.472.083.144.234.238.401.248l2.656.171.171 2.657c.011.167.104.317.249.401.144.083.32.088.472.015l2.386-1.179 1.477 2.214c.093.139.249.223.416.223s.323-.083.416-.223l1.477-2.214 2.386 1.179c.15.073.327.068.472-.015s.238-.234.249-.401l.171-2.656 2.656-.172c.167-.011.317-.104.401-.249.083-.145.089-.322.015-.472l-1.179-2.385 2.214-1.478c.139-.093.223-.249.223-.416s-.083-.323-.223-.416l-2.214-1.475z"
+                />
+              </svg>
+              <p
+                class="chakra-text css-1lj023j"
+              >
+                This device has reported data, click to show!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1hkhsaz"
+      >
+        <div
+          class="css-70qvj9"
+        >
+          <p
+            class="chakra-text css-1oz30jp"
+          >
+            Z-Wave Flower Pot 1
+          </p>
+          <div
+            class="css-17xejub"
+          />
+          <div
+            class="css-ohugnc"
+          >
+            <p>
+              Add loadspinner here!
+            </p>
+          </div>
+        </div>
+        <div
+          class="css-ohugnc"
+        >
+          <div
+            class="css-15g2oxy"
+          >
+            <div
+              class="css-759u60"
+            >
+              <svg
+                baseProfile="tiny"
+                class="chakra-icon css-1c13j1z"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                version="1.2"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.064 10.109l1.179-2.387c.074-.149.068-.327-.015-.471-.083-.145-.234-.238-.401-.249l-2.656-.172-.172-2.656c-.011-.167-.104-.317-.249-.401-.145-.084-.322-.09-.472-.015l-2.385 1.18-1.477-2.215c-.186-.278-.646-.278-.832 0l-1.477 2.215-2.385-1.18c-.151-.075-.327-.069-.472.015-.145.083-.238.234-.249.401l-.171 2.656-2.657.171c-.167.011-.318.104-.401.249-.084.145-.089.322-.015.472l1.179 2.386-2.214 1.477c-.139.093-.223.249-.223.416s.083.323.223.416l2.215 1.477-1.18 2.386c-.074.15-.068.327.015.472.083.144.234.238.401.248l2.656.171.171 2.657c.011.167.104.317.249.401.144.083.32.088.472.015l2.386-1.179 1.477 2.214c.093.139.249.223.416.223s.323-.083.416-.223l1.477-2.214 2.386 1.179c.15.073.327.068.472-.015s.238-.234.249-.401l.171-2.656 2.656-.172c.167-.011.317-.104.401-.249.083-.145.089-.322.015-.472l-1.179-2.385 2.214-1.478c.139-.093.223-.249.223-.416s-.083-.323-.223-.416l-2.214-1.475z"
+                />
+              </svg>
+              <p
+                class="chakra-text css-1lj023j"
+              >
+                This device has reported data, click to show!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1hkhsaz"
+      >
+        <div
+          class="css-70qvj9"
+        >
+          <p
+            class="chakra-text css-1oz30jp"
+          >
+            LoRa_Strips_3_Raw
+          </p>
+          <div
+            class="css-17xejub"
+          />
+          <div
+            class="css-ohugnc"
+          >
+            <p>
+              Add loadspinner here!
+            </p>
+          </div>
+        </div>
+        <div
+          class="css-ohugnc"
+        >
+          <div
+            class="css-15g2oxy"
+          >
+            <div
+              class="css-759u60"
+            >
+              <svg
+                baseProfile="tiny"
+                class="chakra-icon css-1c13j1z"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                version="1.2"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.064 10.109l1.179-2.387c.074-.149.068-.327-.015-.471-.083-.145-.234-.238-.401-.249l-2.656-.172-.172-2.656c-.011-.167-.104-.317-.249-.401-.145-.084-.322-.09-.472-.015l-2.385 1.18-1.477-2.215c-.186-.278-.646-.278-.832 0l-1.477 2.215-2.385-1.18c-.151-.075-.327-.069-.472.015-.145.083-.238.234-.249.401l-.171 2.656-2.657.171c-.167.011-.318.104-.401.249-.084.145-.089.322-.015.472l1.179 2.386-2.214 1.477c-.139.093-.223.249-.223.416s.083.323.223.416l2.215 1.477-1.18 2.386c-.074.15-.068.327.015.472.083.144.234.238.401.248l2.656.171.171 2.657c.011.167.104.317.249.401.144.083.32.088.472.015l2.386-1.179 1.477 2.214c.093.139.249.223.416.223s.323-.083.416-.223l1.477-2.214 2.386 1.179c.15.073.327.068.472-.015s.238-.234.249-.401l.171-2.656 2.656-.172c.167-.011.317-.104.401-.249.083-.145.089-.322.015-.472l-1.179-2.385 2.214-1.478c.139-.093.223-.249.223-.416s-.083-.323-.223-.416l-2.214-1.475z"
+                />
+              </svg>
+              <p
+                class="chakra-text css-1lj023j"
+              >
+                This device has reported data, click to show!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

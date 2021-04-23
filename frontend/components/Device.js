@@ -3,7 +3,7 @@ import { mutate } from 'swr'
 
 import useRequest from 'hooks/useRequest'
 
-import { subscribe, unsubscribe } from 'actions'
+import { subscribe, unsubscribe } from 'actions/subscriptions'
 
 import { Text, Flex, Spacer, Icon, Box } from '@chakra-ui/react'
 import { TiStarburst } from 'react-icons/ti'
