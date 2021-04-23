@@ -5,6 +5,7 @@ const getSettings = (req, res, next) => { //getting ALL settings
     // res.status(200).send() // Not yet implemented
     console.log('getsettings')
     const result = {"controller": "settings"}
+    console.log("hello from settings controller")
     res.status(200).json(result)
   }
   

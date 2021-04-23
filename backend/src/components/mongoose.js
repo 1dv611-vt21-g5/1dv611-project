@@ -32,6 +32,7 @@ module.exports.connect = async () => {
   return mongoose.connect(common.DB_CONNECTION_STRING, {
     useCreateIndex: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
 }
