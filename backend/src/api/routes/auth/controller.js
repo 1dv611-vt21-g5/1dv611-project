@@ -14,6 +14,7 @@ const { updateUser } = require('../../../components/db')
 // Get your providerDetails from yggio after registering your
 // service in Yggio (in this example that is already done in src/index.js)
 const info = (req, res) => {
+  
   const clientId = getDetails().provider.client_id
 
   return res.json({
