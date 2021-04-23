@@ -1,23 +1,24 @@
 'use strict'
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
+const mongoose = require('./mongoose')
 const config = require('../config')
+const common = require('../config/common')
 
 const apply = app => {
   // set up the session, required by OAuth2 framework
   // uncomment FileStore to and its associated sessionConfig if you
   // want to store the sessionStore visit https://www.npmjs.com/package/express-session
   // to see other supported data stores
-  const session = require('express-session')
 
   const sessionConfig = config.session
-  // const FileStore = require('session-file-store')(session);
-  // const sessionConfig = Object.assign({}, config.session, {
-  //   store: new FileStore({
-  //     path: config.session.path,
-  //     logFn: function () {}
-  //   })
-  // });
-  const sessionMiddleware = session(sessionConfig)
+  const sessionMiddleware = session({
+    ...sessionConfig,
+    store: MongoStore.create({
+      mongoUrl: common.DB_CONNECTION_STRING
+    })
+  })
 
   // Logging for requests
   const morgan = require('morgan')

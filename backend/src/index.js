@@ -21,6 +21,13 @@ const initExpress = () => {
   const app = require('express')()
   server = http.createServer(app)
   const expressConfig = require('./components/express-config')
+
+  // Connect to the database
+  mongoose.connect().catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
+
   expressConfig.apply(app)
   return new Promise(resolve => {
     server.listen(config.express.port, config.express.host, () => {
@@ -80,10 +87,6 @@ const start = async () => {
   }
 }
 
-// Connect to the database
-mongoose.connect().catch(error => {
-  console.error(error)
-  process.exit(1)
-})
+
 
 start()

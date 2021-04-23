@@ -74,9 +74,7 @@ a {
   color: red;
 }
 
-.App {
-  text-align: center;
-}
+
 
 .App-logo {
   /*animation: App-logo-spin infinite 1s linear;
@@ -106,12 +104,8 @@ a {
 .App-footer {
   background-color: #eeeeef;
   padding: 40px;
+  margin-top:20px;
   color: #74747d;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 100px;
-  width: 100%;
   overflow:hidden;
 }
 

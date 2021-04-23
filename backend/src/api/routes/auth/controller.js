@@ -1,4 +1,4 @@
-'use strict'
+const User = require('../../../models/User')
 
 const {
   provider: {
@@ -29,12 +29,22 @@ const info = (req, res) => {
 // Remove accessToken and refreshToken before sending it back
 // uncomment updateUser and its associated function to save the user
 // to json in /db/users.json
+
 const code = async (req, res, next) => {
   try {
     const redirectUri = redirectUris[req.query.redirect_uri]
     const freshUser = await redeemCode(req.query.code, redirectUri)
     // updateUser(freshUser);
     console.log(freshUser)
+
+    // creates new user if none exists
+    await User.findOneAndUpdate({ username: freshUser.username }, {
+      username: freshUser.username,
+    }, {
+      upsert: true,
+      setDefaultsOnInsert: true
+    })
+
     return req.session.destroy(destroyErr => {
       if (destroyErr) return next(destroyErr)
 
