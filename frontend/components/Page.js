@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Navbar from '../components/navbar/Navbar'
 
 const Page = ({ children }) => {
   return (
@@ -8,7 +9,9 @@ const Page = ({ children }) => {
       </Head>
       <header className="App-header">
         <img src="/img/logo.png" className="App-logo" alt="logo" />
+        <Navbar />
       </header>
+  
       {children}
       <footer className="App-footer">
         <p>A project in course 1dv611 at Linneaus university. </p>
