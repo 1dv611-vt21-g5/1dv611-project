@@ -7,3 +7,10 @@ it('Render snapshot correctly', () => {
   const { container } = render(<DataBox data={data} />)
   expect(container).toMatchSnapshot()
 })
+
+it('Renders a different snapshot correctly', () => {
+  const data = { person: 'Adam', age: 31 }
+  const { container } = render(<DataBox data={data} />)
+
+  expect(container).toMatchSnapshot()
+})
