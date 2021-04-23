@@ -10,11 +10,17 @@ const settings = {
   cName: 'navLinks'
 }
 
-const login = {
+const logout = {
   title: 'Logout',
   url: '/logout',
   cName: 'navLinks'
 }
 
+const about = {
+  title: 'About',
+  url: '/about',
+  cName: 'navLinks'
+}
+
 // Exports.
-export const MenuItems = [settings, login]
+export const MenuItems = [settings, logout, about]
