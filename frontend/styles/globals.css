@@ -19,9 +19,9 @@ a {
 .something {
   border-radius: 0;
   background-color: rgb(84, 84, 110);
-  padding:30px;
-  width: 300px;
-  margin:50px auto;
+  padding:1.875rem;
+  width: 18.75rem;
+  margin:3.125rem auto;
   display: flex;
   align-items: center;
   color:white;
@@ -30,35 +30,35 @@ a {
 
 .deviceUl {
   list-style: none;
-  padding: 20px;
+  padding: 1.25rem;
   margin:auto;
-  max-width: 1000px;
+  max-width: 62.5rem;
 }
 
 .deviceLi {
   display: flex;
-  border-bottom:1px solid rgb(241, 241, 241);
-  margin:5px;
+  border-bottom:0.0625rem solid rgb(241, 241, 241);
+  margin:0.3125rem;
   justify-content: space-between;
 }
 
 .deviceDiv {
-  margin: 50px 0 100px 0;
+  margin: 3.125rem 0 6.25rem 0;
 }
 
 .deviceDiv h1{
   text-align: left;
-  max-width: 1000px;
+  max-width: 62.5rem;
   margin: 0 auto;
   font-size: 2.4em;
-  padding:20px;
+  padding:1.25rem;
 }
 
 .oauth_wait,
 .oauth_success,
 .oauth_fail {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   color: rgb(255, 255, 255);
 }
 
@@ -79,21 +79,22 @@ a {
 .App-logo {
   /*animation: App-logo-spin infinite 1s linear;
   */
-  padding-bottom: 15px;
+  padding-bottom: 0.9375rem;
   float:left;
   position: absolute;
-  top:-40px
+  top:-2.5rem;
 }
 
 .App-header {
-  background-color: #eeeeef;
-  padding: 20px;
-  height: 120px;
+  /* background-color: #eeeeef; */
+  background: linear-gradient(90deg, rgb(172, 42, 113) 0%, rgb(213, 197, 231) 100%);
+  padding: 1.25rem;
+  height: 7.5rem;
 }
 
 .App-title {
   font-size: 1.5em;
-  padding-top:25px
+  padding-top:1.5625rem;
 }
 
 .App-intro {
@@ -116,3 +117,24 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.navbarItems {
+  height: 5.3125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:
+  1.2rem;
+}
+
+.navLinks {
+  color: rgb(3, 3, 3);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.navLinks:hover {
+  color: #fff;
+}
+

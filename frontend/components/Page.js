@@ -1,6 +1,13 @@
 import Head from 'next/head'
+import Navbar from '../components/navbar/Navbar'
 
 const Page = ({ children }) => {
+  let navbar = ''
+
+  if (children.type.name === 'Devices') {
+    navbar = <Navbar />
+  }
+
   return (
     <div className="App">
       <Head>
@@ -8,6 +15,7 @@ const Page = ({ children }) => {
       </Head>
       <header className="App-header">
         <a title="home" href="/"><img src="/img/logo.png" className="App-logo" alt="logo" /></a>
+        {navbar}
       </header>
       {children}
       <footer className="App-footer">
