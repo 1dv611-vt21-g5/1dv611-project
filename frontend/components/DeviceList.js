@@ -11,13 +11,10 @@ const Devices = () => {
   const { data: devices, error } = useRequest('/api/devices')
 
   if (error) return <div>Oopsie!</div>
-<<<<<<< HEAD
   if (!devices) return <div>Loading!</div>
 
-=======
   if (!devices) return <Spinner />
   console.log(devices)
->>>>>>> e952177d0323f514fbc8b8e1f8416cf5dc9829ec
   return (
     <Container maxW="container.xl">
       <Flex my="2rem">
