@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render snapshot correctly 1`] = `
+<div>
+  <div
+    class="css-4g6ai3"
+  >
+    <div
+      class="css-k008qs"
+    >
+      <p
+        class="chakra-text css-si10h"
+      >
+        person
+        :
+      </p>
+      <p
+        class="chakra-text css-1g3fzyo"
+      >
+        "johannes"
+      </p>
+    </div>
+    <div
+      class="css-k008qs"
+    >
+      <p
+        class="chakra-text css-si10h"
+      >
+        age
+        :
+      </p>
+      <p
+        class="chakra-text css-1g3fzyo"
+      >
+        28
+      </p>
+    </div>
+  </div>
+</div>
+`;
