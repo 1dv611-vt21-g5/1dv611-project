@@ -14,9 +14,9 @@ const logout = require('./logout')
 router.use('/auth', authController)
 router.use('/devices', auth.isUserAuthenticated, devices)
 router.use('/notifications', notifications)
-router.use('/settings',auth.isUserAuthenticated, settings)
+router.use('/settings', auth.isUserAuthenticated, settings)
 router.use('/subscriptions', auth.isUserAuthenticated, subscriptions)
-router.use('/zapier', auth.isUserAuthenticated, zapierHooks) // TODO: This should be restricted by API key i think?? 
+router.use('/zapier', auth.hasValidApiKey, zapierHooks)
 router.use('/logout', logout)
 
 module.exports = router

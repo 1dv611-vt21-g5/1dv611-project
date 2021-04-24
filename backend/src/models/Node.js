@@ -8,6 +8,10 @@
 
 const mongoose = require('mongoose')
 
+// TODO: Tror det är viktigt att vi alltid omtolkar alla IoT-devices output
+// och skickar tillbaka ett uniformt objekt med sensorns namn osv - det blir 
+// lättare i Zapier då
+
 // Create a schema.
 const nodeSchema = new mongoose.Schema({
   nodeType: {
