@@ -14,7 +14,7 @@ const { updateUser } = require('../../../components/db')
 // Get your providerDetails from yggio after registering your
 // service in Yggio (in this example that is already done in src/index.js)
 const info = (req, res) => {
-  
+
   const clientId = getDetails().provider.client_id
 
   return res.json({
@@ -62,6 +62,23 @@ const code = async (req, res, next) => {
   }
 }
 
+// used by Zapier to confirm that a new user is valid
+const testApiKey = async (req, res, next) => {
+  try {
+    const userApiKey = req.query.key || req.header('X-API-KEY')
+
+    const user = await User.findOne({ api_key_zapier: userApiKey })
+
+    if (user) {
+      return res.json(user)
+    } else {
+      return res.status(401).send({ message: 'Invalid/No API key.' })
+    }
+  } catch (e) {
+    res.status(401).send({ message: 'Invalid/No API key.' })
+  }
+}
+
 // create a copy of freshUser and format, removing access/refreshToken
 const unsetProps = user => {
   const resUser = Object.assign({}, user)
@@ -73,5 +90,6 @@ const unsetProps = user => {
 
 module.exports = {
   code,
-  info
+  info,
+  testApiKey
 }
