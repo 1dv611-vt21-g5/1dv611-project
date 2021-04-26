@@ -2,11 +2,11 @@ import Head from 'next/head'
 import Navbar from '../components/navbar/Navbar'
 
 const Page = ({ children }) => {
-  let navbar = ''
+  let navbar = <Navbar />
 
-  if (children.type.name === 'Devices') {
-    navbar = <Navbar />
-  }
+  // if (children.type.name === 'Devices') {
+  //   navbar = <Navbar />
+  // }
 
   return (
     <div className="App">

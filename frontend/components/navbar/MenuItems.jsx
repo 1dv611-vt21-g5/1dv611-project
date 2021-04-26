@@ -4,15 +4,9 @@
  * @version 1.0.0
  */
 
-const settings = {
-  title: 'Settings',
-  url: '/settings',
-  cName: 'navLinks'
-}
-
-const logout = {
-  title: 'Logout',
-  url: '/logout',
+const devices = {
+  title: 'Devices',
+  url: '/devices',
   cName: 'navLinks'
 }
 
@@ -22,5 +16,11 @@ const about = {
   cName: 'navLinks'
 }
 
+const logout = {
+  title: 'Logout',
+  url: '/logout',
+  cName: 'navLinks'
+}
+
 // Exports.
-export const MenuItems = [settings, logout, about]
+export const MenuItems = [devices, about, logout]
