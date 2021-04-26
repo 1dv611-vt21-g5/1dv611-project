@@ -35,7 +35,7 @@ const SubscriptionButton = ({ item }) => {
   return subStatus.length >= 1
     ? (
       <SubscribeButton
-        colorScheme='orange'
+        colorScheme='unsubscribe'
         device={item}
         method={unsub}>
         Unsubscribe
@@ -43,7 +43,7 @@ const SubscriptionButton = ({ item }) => {
     )
     : (
       <SubscribeButton
-        colorScheme='green'
+        colorScheme="subscribe"
         device={item}
         method={sub}>
         Subscribe
@@ -58,17 +58,17 @@ const Device = ({ device }) => {
   // Some of the sensors have many data values and not all of them are relevant
 
   return (
-    <Flex flexDirection="column" borderWidth="1px" borderRadius="lg" p="1.5" shadow="md">
+    <Flex bg="lime.white" flexDirection="column" borderWidth="0px" borderRadius="md" p="1.5" shadow="sm">
       <Flex alignItems="center">
-        <Text fontSize="l" fontWeight="semibold">{device.name}</Text>
+        <Text p={3} fontSize="l" fontWeight="semibold">{device.name}</Text>
         <Spacer />
         <Flex flexDirection="column" alignItems="start">
-          <SubscriptionButton item={device} />
+          <SubscriptionButton pr={3} item={device} />
         </Flex>
       </Flex>
       <Flex flexDirection="column" alignItems="start">
         {device.value && (
-          <Box mt="1rem">
+          <Box pb={3} pl={3} >
             {showData ? (
               <DataBox setShowData={setShowData} data={device.value} />
             ) : (

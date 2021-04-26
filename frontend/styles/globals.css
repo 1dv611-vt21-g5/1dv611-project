@@ -1,10 +1,19 @@
+ /*
+brandGreen = "#74ad96"
+brandOrange = "#e89b3f"
+  */
+
+
 html {
   position: relative;
-  min-height: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body {
   padding: 0;
-  margin: 0 0 100px;
+  margin: 0;
+  height: 100%;
 }
 
 a {
@@ -82,14 +91,17 @@ a {
   padding-bottom: 0.9375rem;
   float:left;
   position: absolute;
-  top:-2.5rem;
+  top: -0.8rem;
+  left:2.5rem;
+  width: 9rem;
 }
 
 .App-header {
-  /* background-color: #eeeeef; */
-  background: linear-gradient(90deg, rgb(172, 42, 113) 0%, rgb(213, 197, 231) 100%);
   padding: 1.25rem;
+  background-color: white;
   height: 7.5rem;
+  border-bottom: 1px solid rgb(236, 236, 236);
+  box-shadow: 2px 2px 5px rgb(236, 236, 236);
 }
 
 .App-title {
@@ -102,7 +114,6 @@ a {
 }
 
 .App-footer {
-  background-color: #eeeeef;
   padding: 40px;
   margin-top:20px;
   color: #74747d;
@@ -121,20 +132,23 @@ a {
 .navbarItems {
   height: 5.3125rem;
   display: flex;
-  justify-content: center;
+  justify-content: right;
+  margin-right:.5rem;
   align-items: center;
-  font-size:
-  1.2rem;
+  
 }
 
 .navLinks {
-  color: rgb(3, 3, 3);
+  color: rgb(119, 119, 119);
   text-decoration: none;
-  padding: 0.5rem 1rem;
   font-weight: bold;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
 }
 
 .navLinks:hover {
-  color: #fff;
+  color: black;
 }
 

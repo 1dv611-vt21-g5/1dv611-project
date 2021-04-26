@@ -12,7 +12,8 @@ export default class SubscribeButton extends React.Component {
         shadow="md"
         colorScheme={this.props.colorScheme || 'blue'}
         size='sm'
-        borderRadius="md"
+        m="1rem"
+        borderRadius="sm"
         onClick={this.handleClick} >
         {this.props.children}
       </Button>
