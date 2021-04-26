@@ -16,7 +16,7 @@ const Devices = () => {
   if (!devices) return <Spinner />
 
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.lg">
       <Flex my="2rem">
         <Heading as="h1">My devices</Heading>
       </Flex>
