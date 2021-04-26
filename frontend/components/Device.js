@@ -28,6 +28,8 @@ const SubscriptionButton = ({ item }) => {
     mutate(subURI)
   }
 
+  console.log(subStatus)
+
   if (!subStatus) return <p>Add loadspinner here!</p>
 
   return subStatus.length >= 1

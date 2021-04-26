@@ -12,6 +12,9 @@ const mongoose = require('mongoose')
 // och skickar tillbaka ett uniformt objekt med sensorns namn osv - det blir 
 // lättare i Zapier då
 
+// TODO: behövs även en route för "data som finns just nu" s.k. Perform List
+// https://platform.zapier.com/docs/faq
+
 // Create a schema.
 const nodeSchema = new mongoose.Schema({
   nodeType: {

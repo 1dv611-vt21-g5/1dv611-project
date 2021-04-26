@@ -14,10 +14,10 @@ module.exports = {
   },
   session: {
     path: path.normalize(path.join(__dirname, '../sessions')),
-    secret: 'random-secret-session-key',
+    secret: 'random-secret-session-key', // TODO: fix
     saveUninitialized: true,
     resave: true,
-    name: 'your_session_name',
+    name: 'your_session_name', // TODO: fix
     cookie: {
       secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 30 // one month

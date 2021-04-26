@@ -10,6 +10,7 @@ const { subscription } = require('../../../config')
 const subscribe = (req, res, next) => {
   const { user } = req.session
   const { name, nodeId, protocol } = req.body
+  // TODO: change protocolData to the right URL
   const protocolData = subscription.http
   provider.subscribe(user, nodeId, protocol, protocolData, name)
     .then(() => res.sendStatus(200))
