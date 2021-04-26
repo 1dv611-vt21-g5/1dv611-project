@@ -1,12 +1,6 @@
 const ZapierHook = require('../../../models/ZapierHook')
 const User = require('../../../models/User')
 
-const getZapierHooks = (req, res, next) => {
-  // TODO: implement getting ALL hooks
-
-  res.status(501).send() // Not yet implemented
-}
-
 // NOTE: varje user bör nog bara ha en webhook åt gången, skicka all data via den
 // sen kan man filtrera och sortera i Zapier via https://zapier.com/help/create/customize/add-branching-logic-to-zaps-with-paths
 const createZapierHook = async (req, res, next) => {
@@ -24,17 +18,6 @@ const createZapierHook = async (req, res, next) => {
   }
 }
 
-const getZapierHook = (req, res, next) => {
-  // TODO: implement fetching individual hook
-
-  res.status(501).send() // Not yet implemented
-}
-
-const editZapierHook = (req, res, next) => {
-  // TODO: implement editing a hook
-  res.status(501).send() // Not yet implemented
-}
-
 const deleteZapierHook = async (req, res, next) => {
   try {
     console.log(req.body)
@@ -50,9 +33,6 @@ const deleteZapierHook = async (req, res, next) => {
 }
 
 module.exports = {
-  getZapierHooks,
   createZapierHook,
-  getZapierHook,
-  editZapierHook,
   deleteZapierHook
 }

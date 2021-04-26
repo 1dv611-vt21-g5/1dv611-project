@@ -4,13 +4,29 @@ const DataBox = ({ setShowData, data }) => {
   return (
     <Box cursor='pointer' onClick={() => setShowData(false)}>
       {Object.entries(data).map(([key, value]) => (
-        <Flex key={key}>
-          <Text fontSize='xs' mr='0.5rem' fontWeight='bold'>{key}:</Text>
-          <Text fontSize='xs' textAlign='left' maxW='40rem' isTruncated>{JSON.stringify(value)}</Text>
-        </Flex>
+        <DataItem key={key} dataKey={key} value={value} />
       ))}
     </Box>
   )
+}
+
+const DataItem = ({ dataKey, value }) => {
+  return (
+    <Flex>
+      <Text fontSize='xs' mr='0.5rem' fontWeight='bold'>{dataKey}:</Text>
+      <Text fontSize='xs' textAlign='left' maxW='40rem' isTruncated>{parseData(value)}</Text>
+    </Flex>
+  )
+}
+
+const parseData = (data) => {
+  if (typeof data === 'object' && data !== null) {
+    if (Object.keys(data)?.length > 1) {
+      return JSON.stringify(data)
+    }
+  }
+
+  return JSON.stringify(data['value'])
 }
 
 // Exports.

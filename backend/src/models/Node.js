@@ -12,19 +12,45 @@ const mongoose = require('mongoose')
 // och skickar tillbaka ett uniformt objekt med sensorns namn osv - det blir 
 // lättare i Zapier då
 
+// TODO: behövs även en route för "data som finns just nu" s.k. Perform List
+// https://platform.zapier.com/docs/faq
+
 // Create a schema.
 const nodeSchema = new mongoose.Schema({
-  nodeType: {
+  // devices yggio id
+  yggioId: {
     type: String,
     required: true
   },
+  // plaintext name
   name: {
     type: String,
-    required: false
-  },
-  values: { // Not applicable for devices of type "zwave-device"
-    type: Array,
     required: true
+  },
+  // id of subscription from yggio (channel)
+  subscriptionId: {
+    type: String,
+    required: true
+  },
+  // user id
+  owner: {
+    type: mongoose.Types.ObjectId,
+    required: true
+  },
+  dataValues: {
+    type: Map,
+    of: String
+  },
+  // min interval in minutes (if any)
+  minInterval: {
+    type: Number
+  },
+  maxInterval: {
+    type: Number
+  },
+  // latest time this device sent data
+  lastSend: {
+    type: Date
   }
 }, {
   timestamps: true
