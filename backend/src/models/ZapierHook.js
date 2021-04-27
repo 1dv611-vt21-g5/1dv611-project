@@ -15,7 +15,7 @@ const zapierHookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  targetUrl: {
+  target_url: {
     type: String,
     required: true
   }

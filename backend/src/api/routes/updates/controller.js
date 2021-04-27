@@ -39,7 +39,6 @@ const receiveData = async (req, res, next) => {
 
       console.log(deviceData)
 
-
       // 5. Parse data - See comment in models/Node for what this is doing
       console.log("trying to parse")
       const data = {}
@@ -50,10 +49,12 @@ const receiveData = async (req, res, next) => {
 
       console.log('final data log', data)
 
-
       // 6. Send it to Zapier
-      const zapierHook = await ZapierHook.find({ owner: node.owner })
-      await axios.post(zapierHook.targetUrl, {
+      const zapierHook = await ZapierHook.findOne({owner: node.owner})
+      //const zapierHook = await ZapierHook.find({owner: node.owner}) // Many possible webhooks?
+      console.log(zapierHook.target_url)
+
+      await axios.post(zapierHook.target_url, {
         deviceName: node.name,
         data
       })
