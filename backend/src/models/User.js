@@ -13,12 +13,22 @@ const { nanoid } = require('nanoid')
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   api_key_zapier: {
     type: String,
     required: false,
     default: () => nanoid() // randomly generate on creation
+  },
+  yggioAccessToken: {
+    type: String
+  },
+  yggioRefreshToken: {
+    type: String
+  },
+  yggioExpiresAt: {
+    type: Date
   }
 }, {
   timestamps: false

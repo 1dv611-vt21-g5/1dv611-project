@@ -4,8 +4,9 @@ import { statStr } from '../constants'
 // TODO: fix these
 export const subscribe = async device => {
   const payload = {
-    name: 'My channel',
+    name: device.name,
     nodeId: device._id,
+    data: device?.value,
     protocol: 'http'
   }
 
