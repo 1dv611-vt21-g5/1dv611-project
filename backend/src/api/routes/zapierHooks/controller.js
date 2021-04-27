@@ -9,7 +9,7 @@ const createZapierHook = async (req, res, next) => {
     const { hookUrl, userApiKey } = req.body
     const user = await User.findOne({ api_key_zapier: userApiKey })
 
-    const newHook = new ZapierHook({ owner: user._id, target_url: hookUrl })
+    const newHook = new ZapierHook({ owner: user.yggioId, target_url: hookUrl })
     await newHook.save()
 
     res.json(newHook)

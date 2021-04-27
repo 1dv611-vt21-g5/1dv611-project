@@ -23,7 +23,6 @@ const receiveData = async (req, res, next) => {
 
     // 3. Iterate through all found nodes
     await Promise.all(nodes.map(async (node) => {
-      console.log(node.owner)
       // 4a. Grab the users info from db and use that to authenticate a device request
       // NOTE: A user needs to be logged in for this to work, so maybe we need to remove the logout button
       const { username,
@@ -40,8 +39,10 @@ const receiveData = async (req, res, next) => {
       }, deviceId)
 
       console.log(deviceData)
+      
 
       // 5. Parse data - See comment in models/Node for what this is doing
+      console.log("trying to parse")
       const data = {}
       for (const property in node.dataValues) {
         console.log(property.path)
@@ -55,11 +56,10 @@ const receiveData = async (req, res, next) => {
       await axios.post(zapierHook.targetUrl, {
         deviceName: node.name,
         data
-
       })
     }))
 
-    // 7. Tell yggio everything worked
+    // Everything worked
     return res.status(200).send()
   } catch (e) {
     res.status(400).send()

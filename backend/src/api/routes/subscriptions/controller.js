@@ -41,7 +41,7 @@ const subscribe = async (req, res, next) => {
       dataValues: {
         // TODO: add these dynamically from frontend later
         data: {
-          path: ['values']
+          path: ['value']
         }
       },
       minInterval: undefined, // TODO: add from frontend later
