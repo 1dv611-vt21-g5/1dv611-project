@@ -8,6 +8,8 @@ const { routes: { getNode } } = require('yggio-connect')
 
 const receiveData = async (req, res, next) => {
   try {
+    // 0. Check who sent the request. Comprade req.params with req.body?
+
     // 1. request comes in, we grab yggio device id
     const { deviceId } = req.params
 
@@ -15,8 +17,8 @@ const receiveData = async (req, res, next) => {
     const nodes = await Node.find({ yggioId: deviceId })
 
     // 4 alt. Grab the data from the update itself
-    // const { diff, event } = req.body
-    // console.log(diff, event)
+     const { diff, event } = req.body
+     console.log(diff, event)
 
     // 3. Iterate through all found nodes
     await Promise.all(nodes.map(async (node) => {
@@ -26,6 +28,7 @@ const receiveData = async (req, res, next) => {
         yggioAccessToken: accessToken,
         yggioRefreshToken: refreshToken,
         yggioExpiresAt: expiresAt } = await User.findById(node.owner)
+
       // 4b. Fetch the latest device data from Yggio
       const deviceData = await getNode({
         username,
@@ -48,7 +51,7 @@ const receiveData = async (req, res, next) => {
       })
     }))
 
-    // 7. Tell yggio everything worked (maybe not needed)
+    // 7. Tell yggio everything worked
     return res.status(200).send()
   } catch (e) {
     res.status(400).send()
