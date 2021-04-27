@@ -40,7 +40,7 @@ const nodeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  // user id
+  // user id TODO: is this needed?
   owner: {
     type: mongoose.Types.ObjectId,
     required: true
