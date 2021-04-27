@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
     default: () => nanoid() // randomly generate on creation
   },
   yggioId: {
-    type: mongoose.Types.ObjectId
+    type: String
+    //type: mongoose.Types.ObjectId TODO: change to key id
   },
   yggioAccessToken: {
     type: String

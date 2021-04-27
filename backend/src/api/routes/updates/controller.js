@@ -29,9 +29,7 @@ const receiveData = async (req, res, next) => {
       const { username,
         yggioAccessToken: accessToken,
         yggioRefreshToken: refreshToken,
-        yggioExpiresAt: expiresAt } = await User.findById(node.owner)
-
-      console.log(username)
+        yggioExpiresAt: expiresAt } = await User.findOne({yggioId: node.owner})
 
       // 4b. Fetch the latest device data from Yggio
       const deviceData = await getNode({
@@ -46,9 +44,10 @@ const receiveData = async (req, res, next) => {
       // 5. Parse data - See comment in models/Node for what this is doing
       const data = {}
       for (const property in node.dataValues) {
+        console.log(property.path)
         data[property] = getNestedValue(deviceData, property.path)
       }
-
+      
       console.log(data)
 
       // 6. Send it to Zapier
@@ -67,6 +66,7 @@ const receiveData = async (req, res, next) => {
   }
 }
 
+// TODO : COMMENT WHAT THIS FUNCTION IS DOING
 const getNestedValue = (object, pathsArray) => {
   if (pathsArray.length === 1) {
     return object[pathsArray[0]]
