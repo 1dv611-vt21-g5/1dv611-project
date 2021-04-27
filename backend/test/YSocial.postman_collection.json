@@ -1,0 +1,35 @@
+{
+	"info": {
+		"_postman_id": "99c48cb8-94a2-49e2-9243-3370b21018b4",
+		"name": "YSocial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test updates route",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"iotnode\": \"5ee221e49c329100064c9783\",\n\t\"diff\": {\n\t\t\"startUpCount\": {\n                \"value\": 7\n            }\n\t},\n\t\"event\": {\n\t\t\"startUpCount\": {\n                \"value\": 7\n            }\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9999/api/updates/5ee221e49c329100064c9783",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api",
+						"updates",
+						"5ee221e49c329100064c9783"
+					]
+				},
+				"description": "iotnode = is the iotnode entity that has been updated.\n\ndiff = contains the attributes that was changed in the update.\n\nevent = contains the attributes that triggered the update.\n\n\nhttps://docs.ygg.io/publisher/#publisher\n\n\nTesting on \"LoRa Strips Presence\" with id 5ee221e49c329100064c9783"
+			},
+			"response": []
+		}
+	]
+}
