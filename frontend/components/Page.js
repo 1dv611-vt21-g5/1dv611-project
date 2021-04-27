@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Navbar from '../components/navbar/Navbar'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Spacer } from '@chakra-ui/react'
 
 const Page = ({ children }) => {
 
@@ -14,10 +14,11 @@ const Page = ({ children }) => {
         <Head>
           <title>Ysocial - Connect Yggio and Zapier</title>
         </Head>
-        <header className="App-header">
+        <Flex className="App-header">
           <a title="home" href="/"><img src="/img/logo.png" className="App-logo" alt="logo" /></a>
+          <Spacer />
           <Navbar />
-        </header>
+        </Flex>
         {children}
         <footer className="App-footer">
           <p>A project in course 1dv611 at Linneaus university. </p>
