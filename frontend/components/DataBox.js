@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 
-const DataBox = ({ setShowData, data }) => {
+const DataBox = ({ data }) => {
   return (
     <Box cursor='pointer' onClick={() => setShowData(false)}>
       {Object.entries(data).map(([key, value]) => (
@@ -24,9 +24,11 @@ const parseData = (data) => {
     if (Object.keys(data)?.length > 1) {
       return JSON.stringify(data)
     }
+
+    return JSON.stringify(data['value'])
   }
 
-  return JSON.stringify(data['value'])
+  return JSON.stringify(data)
 }
 
 // Exports.

@@ -38,12 +38,17 @@ const code = async (req, res, next) => {
     console.log(freshUser)
 
     // creates new user if none exists
-    await User.findOneAndUpdate({ username: freshUser.username }, {
+    const user = await User.findOneAndUpdate({ username: freshUser.username }, {
       username: freshUser.username,
+      yggioAccessToken: freshUser.accessToken,
+      yggioRefreshToken: freshUser.refreshToken,
+      yggioExpiresAt: freshUser.expiresAt
     }, {
       upsert: true,
       setDefaultsOnInsert: true
     })
+
+    await user.save() // kanske?
 
     return req.session.destroy(destroyErr => {
       if (destroyErr) return next(destroyErr)

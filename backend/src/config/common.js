@@ -9,6 +9,8 @@ const BACKEND_HOST = 'localhost'
 // Set to 9999 as default
 const BACKEND_PORT = '9999'
 
+const BACKEND_URI = 'localhost:9999'
+
 // The URL to the yggio-service-example frontend
 // Will be http://localhost if frontend is run locally
 const FRONTEND_URL = 'http://localhost'
@@ -41,6 +43,7 @@ const DB_CONNECTION_STRING = 'mongodb+srv://dbUser:studentprojekt@cluster0.oyqrg
 module.exports = {
   BACKEND_HOST,
   BACKEND_PORT,
+  BACKEND_URI,
   FRONTEND_URL,
   FRONTEND_PORT,
   YGGIO_API_URL,
