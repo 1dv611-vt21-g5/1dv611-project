@@ -18,7 +18,7 @@ const receiveData = async (req, res, next) => {
     console.log(nodes)
 
     // 4 alt. Grab the data from the update itself
-     // const { diff, event } = req.body
+    // const { diff, event } = req.body
     // console.log(diff, event)
 
     // 3. Iterate through all found nodes
@@ -31,7 +31,7 @@ const receiveData = async (req, res, next) => {
         yggioRefreshToken: refreshToken,
         yggioExpiresAt: expiresAt } = await User.findById(node.owner)
 
-        console.log(username)
+      console.log(username)
 
       // 4b. Fetch the latest device data from Yggio
       const deviceData = await getNode({
@@ -48,7 +48,7 @@ const receiveData = async (req, res, next) => {
       for (const property in node.dataValues) {
         data[property] = getNestedValue(deviceData, property.path)
       }
-      
+
       console.log(data)
 
       // 6. Send it to Zapier
@@ -74,10 +74,11 @@ const getNestedValue = (object, pathsArray) => {
 
   const innerObject = object[pathsArray[0]]
   const innerArray = [...pathsArray.slice(1)] // returns prev array with first item removed
-  getNestedValue(innerObject, innerArray)
+  return getNestedValue(innerObject, innerArray)
 }
 
 
 module.exports = {
-  receiveData
+  receiveData,
+  getNestedValue
 }

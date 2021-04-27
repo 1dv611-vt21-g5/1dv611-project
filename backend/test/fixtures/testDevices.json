@@ -1,0 +1,140 @@
+[
+  {
+    "_id": "5f579b486fd953000607d72a",
+    "nodeType": "SimpleDevice",
+    "__v": 0,
+    "category": "uncategorized",
+    "createdAt": "2020-09-08T14:55:04.585Z",
+    "description": "",
+    "deviceModelName": "N/A",
+    "latlng": [],
+    "name": "Z-Wave Strips Guard 700 Meeting Room",
+    "rabbitRouting": {
+      "value": [
+        "rest-api-socket",
+        "publisher"
+      ]
+    },
+    "reportedAt": "2021-04-23T12:52:53.836Z",
+    "translatedFrom": "5f579b066fd953000607d6f2",
+    "updatedAt": "2021-04-23T12:52:53.877Z",
+    "value": {
+      "doorIsOpen": true
+    },
+    "version": 17
+  },
+  {
+    "_id": "5f68a7756a1b64000613378c",
+    "nodeType": "SimpleDevice",
+    "__v": 0,
+    "category": "uncategorized",
+    "createdAt": "2020-09-21T13:15:33.354Z",
+    "description": "",
+    "deviceModelName": "N/A",
+    "latlng": [],
+    "name": "Z-Wave Strips Drip 700 Coffee",
+    "rabbitRouting": {
+      "value": [
+        "publisher"
+      ]
+    },
+    "reportedAt": "2021-04-23T07:25:54.954Z",
+    "translatedFrom": "5f68a72b6a1b64000613370a",
+    "updatedAt": "2021-04-23T07:25:54.977Z",
+    "value": {
+      "moisture": -0.4,
+      "temperature": 25.9,
+      "temperatureUnit": "celsius"
+    },
+    "version": 17
+  },
+  {
+    "_id": "5ee105a69c329100064b7412",
+    "nodeType": "SimpleDevice",
+    "__v": 0,
+    "category": "uncategorized",
+    "createdAt": "2020-06-10T16:09:10.395Z",
+    "description": "Ambient light, Water Leakage & Temperature: Sensor for detection of ambient light, water leakage (flood sensor) including temperature sensor. The product will be packaged in different kits together with the mounting devices to support the ambient light use case or the water leakage use case.",
+    "deviceModelName": "N/A",
+    "latlng": [],
+    "name": "Z-Wave Flower Pot 1",
+    "rabbitRouting": {
+      "value": []
+    },
+    "reportedAt": "2020-09-18T10:14:27.335Z",
+    "translatedFrom": "5ee0fc1a9c329100064b691b",
+    "updatedAt": "2020-09-18T10:14:27.377Z",
+    "value": {
+      "luminance": 1,
+      "moisture": 0,
+      "temperature": 20.9,
+      "temperatureUnit": "celsius"
+    },
+    "version": 17
+  },
+  {
+    "_id": "5e329774ed6e0e0006e5a650",
+    "nodeType": "lora-node",
+    "__v": 0,
+    "appKey": "CEC3EE9802881242E47F8B153E4ABFE3",
+    "category": "uncategorized",
+    "createdAt": "2020-01-30T08:44:36.379Z",
+    "description": "5907247\n\nConfiguration: 0103000000100B0000025822000000D6",
+    "devEui": "70B3D52C00018A6B",
+    "deviceModelName": "sensative-strips-lora",
+    "latlng": [],
+    "name": "LoRa_Strips_3_Raw",
+    "rabbitRouting": {
+      "value": [
+        "publisher"
+      ]
+    },
+    "updatedAt": "2021-04-23T18:13:14.469Z",
+    "version": 17,
+    "reportedAt": "2021-04-23T18:13:14.459Z",
+    "value": {
+      "adr": true,
+      "applicationID": "1",
+      "applicationName": "Yggio-beta",
+      "data": "FFFF015C0200F70400F706200700A1",
+      "devEUI": "70b3d52c00018a6b",
+      "deviceName": "LoRa_Strips_3",
+      "fCnt": 1201,
+      "fPort": 1,
+      "rxInfo": [
+        {
+          "gatewayID": "647fdafffe007c07",
+          "uplinkID": "d2cc21b3-0cfd-442a-bf58-7dcad91c1f9a",
+          "name": "Tektelic-2-Kontoret",
+          "rssi": -67,
+          "loRaSNR": 10,
+          "location": {
+            "latitude": 55.71664693117129,
+            "longitude": 13.225067184237844,
+            "altitude": 0
+          }
+        },
+        {
+          "gatewayID": "3133303738001b00",
+          "uplinkID": "4d662528-8230-4ed8-a7f1-64eb5f04eb63",
+          "name": "",
+          "time": "2021-04-23T18:13:14.21988Z",
+          "rssi": -93,
+          "loRaSNR": 9.5,
+          "location": null
+        }
+      ],
+      "txInfo": {
+        "dr": 5,
+        "frequency": 867900000
+      }
+    },
+    "downlink": [],
+    "connector": {
+      "_id": "5ed6240f6f47bd2c1d5a657a",
+      "name": "Yggio Beta LoRa-connector (chirpstack)",
+      "nodeType": "lora-app-server-connector",
+      "description": ""
+    }
+  }
+]
