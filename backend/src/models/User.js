@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: () => nanoid() // randomly generate on creation
   },
+  yggioId: {
+    type: mongoose.Types.ObjectId
+  },
   yggioAccessToken: {
     type: String
   },
