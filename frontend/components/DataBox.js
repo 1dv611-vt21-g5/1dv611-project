@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 
-const DataBox = ({ data }) => {
+const DataBox = ({ setShowData, data }) => {
   return (
     <Box cursor='pointer' onClick={() => setShowData(false)}>
       {Object.entries(data).map(([key, value]) => (
