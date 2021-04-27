@@ -21,7 +21,12 @@ const subscribe = async (req, res, next) => {
     const subscriptionName = `${nodeId}/${user._id}`
 
     // create the sub at Yggio
-    const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
+    //const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
+ 
+    // For development and testing
+    const sub = {
+      _id : "6080dbc105b64d15d3f832e7"
+    }
 
     // create a corresponding Node here
     const node = new Node({
@@ -38,6 +43,8 @@ const subscribe = async (req, res, next) => {
       minInterval: undefined, // TODO: add from frontend later
       maxInterval: undefined // TODO: add from frontend later
     })
+
+    console.log(node)
 
     await node.save()
 

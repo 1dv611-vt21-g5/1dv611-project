@@ -5,6 +5,8 @@ process.title = 'yggio-service-example'
 const _ = require('lodash')
 const yggioConnect = require('yggio-connect')
 
+require('dotenv').config()
+
 const config = require('./config')
 const commonConfig = require('./config/common')
 const seedDb = require('../tools/seed-db')
