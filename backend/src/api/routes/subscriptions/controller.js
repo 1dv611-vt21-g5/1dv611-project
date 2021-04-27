@@ -16,18 +16,19 @@ const subscribe = async (req, res, next) => {
     const { name, nodeId, protocol, data } = req.body
 
     // where we want yggio to send updates
-    const protocolData = `${common.BACKEND_URI}/api/updates/${nodeId}`
+    const protocolData = { url: `${common.BACKEND_URI}/api/updates/${nodeId}` }
     // just a name for the subscription, probably not important
     const subscriptionName = `${nodeId}/${user._id}`
 
     // create the sub at Yggio
     // TODO: fix to get correct return values 
-    //const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
- 
-    // For development and testing
-    const sub = {
-      _id : "6080dbc105b64d15d3f3434"
-    }
+    const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
+
+    // console.log(sub)
+    // // For development and testing
+    // const sub = {
+    //   _id: "6080dbc105b64d15d3f3434"
+    // }
 
     console.log(user._id)
 
