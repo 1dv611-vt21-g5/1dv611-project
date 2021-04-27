@@ -40,6 +40,7 @@ const code = async (req, res, next) => {
     // creates new user if none exists
     const user = await User.findOneAndUpdate({ username: freshUser.username }, {
       username: freshUser.username,
+      yggioId: freshUser._id,
       yggioAccessToken: freshUser.accessToken,
       yggioRefreshToken: freshUser.refreshToken,
       yggioExpiresAt: freshUser.expiresAt
