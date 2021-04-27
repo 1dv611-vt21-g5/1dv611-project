@@ -15,20 +15,22 @@ const subscribe = async (req, res, next) => {
     const { user } = req.session
     const { name, nodeId, protocol, data } = req.body
 
-    // TODO: change protocolData to the right URL (backendUrl + /api/nodes/:device-id)
+    // where we want yggio to send updates
     const protocolData = `${common.BACKEND_URI}/api/updates/${nodeId}`
+    // just a name for the subscription, probably not important
     const subscriptionName = `${nodeId}/${user._id}`
 
+    // create the sub at Yggio
     const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
-    // TODO: after sub create Node object in db
 
+    // create a corresponding Node here
     const node = new Node({
       yggioId: nodeId,
       name: name,
       subscriptionId: sub._id,
       owner: user._id,
       dataValues: {
-        // TODO: add these dynamically later
+        // TODO: add these dynamically from frontend later
         data: {
           path: ['values']
         }
@@ -46,6 +48,7 @@ const subscribe = async (req, res, next) => {
 }
 
 const unsubscribe = async (req, res, next) => {
+  // TODO: implement
   const { user } = req.session
   const { nodeId } = req.query
   res.sendStatus(404)
