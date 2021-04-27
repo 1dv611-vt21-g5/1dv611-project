@@ -21,19 +21,22 @@ const subscribe = async (req, res, next) => {
     const subscriptionName = `${nodeId}/${user._id}`
 
     // create the sub at Yggio
+    // TODO: fix to get correct return values 
     //const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
  
     // For development and testing
     const sub = {
-      _id : "6080dbc105b64d15d3f832e7"
+      _id : "6080dbc105b64d15d3f3434"
     }
+
+    console.log(user._id)
 
     // create a corresponding Node here
     const node = new Node({
       yggioId: nodeId,
       name: name,
       subscriptionId: sub._id,
-      owner: user._id,
+      owner: user._id, // TODO : not same as in db
       dataValues: {
         // TODO: add these dynamically from frontend later
         data: {
