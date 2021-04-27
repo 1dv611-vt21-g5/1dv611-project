@@ -30,7 +30,7 @@ const subscribe = async (req, res, next) => {
     //   _id: "6080dbc105b64d15d3f3434"
     // }
 
-    console.log(user._id)
+    //console.log(user._id)
 
     // create a corresponding Node here
     const node = new Node({
