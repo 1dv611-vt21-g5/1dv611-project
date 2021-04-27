@@ -15,7 +15,6 @@ const receiveData = async (req, res, next) => {
 
     // 2. we find all Nodes with this id
     const nodes = await Node.find({ yggioId: deviceId })
-    console.log(nodes)
 
     // 4 alt. Grab the data from the update itself
     // const { diff, event } = req.body
@@ -28,7 +27,7 @@ const receiveData = async (req, res, next) => {
       const { username,
         yggioAccessToken: accessToken,
         yggioRefreshToken: refreshToken,
-        yggioExpiresAt: expiresAt } = await User.findOne({yggioId: node.owner})
+        yggioExpiresAt: expiresAt } = await User.findOne({ yggioId: node.owner })
 
       // 4b. Fetch the latest device data from Yggio
       const deviceData = await getNode({
@@ -39,17 +38,18 @@ const receiveData = async (req, res, next) => {
       }, deviceId)
 
       console.log(deviceData)
-      
+
 
       // 5. Parse data - See comment in models/Node for what this is doing
       console.log("trying to parse")
       const data = {}
-      for (const property in node.dataValues) {
-        console.log(property.path)
-        data[property] = getNestedValue(deviceData, property.path)
-      }
-      
-      console.log(data)
+
+      node.dataValues.forEach((value, key) => { // JS Maps verkar ha key och value bakofram??
+        data[key] = getNestedValue(deviceData, value.path)
+      })
+
+      console.log('final data log', data)
+
 
       // 6. Send it to Zapier
       const zapierHook = await ZapierHook.find({ owner: node.owner })
