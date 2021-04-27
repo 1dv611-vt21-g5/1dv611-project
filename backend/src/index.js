@@ -14,8 +14,6 @@ const { resetUsers, saveProviderOauthSecret } = require('./components/db')
 const { secret } = require('../db/oauth-info.json')
 const mongoose = require('./components/mongoose')
 
-
-console.log(process.env.BACKEND_PORT);
 let server
 
 // Setup exress
