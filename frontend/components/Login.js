@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <div className="something">
       <Button
-        colorScheme='purple'
+        colorScheme='subscribe'
         onClick={redirToYggio} >
         Login
         </Button>

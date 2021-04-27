@@ -27,14 +27,16 @@ a {
 
 .something {
   border-radius: 0;
-  background-color: rgb(84, 84, 110);
+  background-color: white;
   padding:1.875rem;
   width: 18.75rem;
   margin:3.125rem auto;
   display: flex;
   align-items: center;
-  color:white;
+  color:black;
   justify-content: center;
+  box-shadow: 2px 2px 5px rgb(236, 236, 236);
+  border-radius: 5px;
 }
 
 .deviceUl {
