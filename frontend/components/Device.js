@@ -1,13 +1,9 @@
 import { useState } from 'react'
 import { mutate } from 'swr'
-
 import useRequest from 'hooks/useRequest'
-
 import { subscribe, unsubscribe } from 'actions/subscriptions'
-
 import { Text, Flex, Spacer, Icon, Box } from '@chakra-ui/react'
 import { TiStarburst } from 'react-icons/ti'
-
 import SubscribeButton from './SubscribeButton'
 import DataBox from './DataBox'
 
@@ -40,7 +36,7 @@ const SubscriptionButton = ({ item }) => {
         method={unsub}>
         Unsubscribe
       </SubscribeButton>
-    )
+      )
     : (
       <SubscribeButton
         colorScheme="subscribe"
@@ -48,7 +44,7 @@ const SubscriptionButton = ({ item }) => {
         method={sub}>
         Subscribe
       </SubscribeButton>
-    )
+      )
 }
 
 const Device = ({ device }) => {
@@ -69,14 +65,16 @@ const Device = ({ device }) => {
       <Flex flexDirection="column" alignItems="start">
         {device.value && (
           <Box pb={3} pl={3} >
-            {showData ? (
-              <DataBox setShowData={setShowData} data={device.value} />
-            ) : (
-              <Flex alignItems="center" cursor="pointer">
-                <Icon as={TiStarburst} mr="0.1rem" color="yellow.400" />
-                <Text onClick={() => setShowData(true)} fontSize="xs">This device has reported data, click to show!</Text>
-              </Flex>
-            )}
+            {showData
+              ? (
+                <DataBox setShowData={setShowData} data={device.value} />
+                )
+              : (
+                <Flex alignItems="center" cursor="pointer">
+                  <Icon as={TiStarburst} mr="0.1rem" color="yellow.400" />
+                  <Text onClick={() => setShowData(true)} fontSize="xs">This device has reported data, click to show!</Text>
+                </Flex>
+                )}
           </Box>
         )}
       </Flex>
@@ -84,4 +82,5 @@ const Device = ({ device }) => {
   )
 }
 
+// Exports.
 export default Device

@@ -6,4 +6,5 @@ const controller = require('./controller')
 router.post('/', controller.createZapierHook)
 router.delete('/', controller.deleteZapierHook)
 
+// Exports.
 module.exports = router

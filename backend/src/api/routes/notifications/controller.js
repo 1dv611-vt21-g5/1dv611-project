@@ -5,6 +5,7 @@ const notification = (req, res, next) => {
   res.sendStatus(200)
 }
 
+// Exports.
 module.exports = {
   notification
 }

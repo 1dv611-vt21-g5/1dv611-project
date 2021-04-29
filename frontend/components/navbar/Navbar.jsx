@@ -1,4 +1,3 @@
-import { Flex, Spacer } from '@chakra-ui/react'
 /**
  * The Navbar component.
  *
@@ -24,7 +23,7 @@ const Navbar = () => {
       setLogout(true)
     } else if (item.title === 'About') {
       setAboutP(true)
-    }else if (item.title === 'Devices') {
+    } else if (item.title === 'Devices') {
       setDevicesP(true)
     }
   }
@@ -48,19 +47,21 @@ const Navbar = () => {
   }
 
   return (
-    
     <nav className='navbarItems'>
       {MenuItems.map((item, index) => {
         console.log(index)
         return (
           <ul key={index}>
-            {item.title === "Logout" ? ( // TODO, align to right
-              //<Flex my="2rem">
-                <button title={item.title} className={item.cName} href={item.url} onClick={() => handleClick(item)}>{item.title}</button>
-             // </Flex>
-            ):(
+            {item.title === 'Logout'
+              ? (
+              // TODO, align to right
+              // <Flex my="2rem">
               <button title={item.title} className={item.cName} href={item.url} onClick={() => handleClick(item)}>{item.title}</button>
-            )}
+              // </Flex>
+                )
+              : (
+              <button title={item.title} className={item.cName} href={item.url} onClick={() => handleClick(item)}>{item.title}</button>
+                )}
           </ul>
         )
       })}
@@ -71,5 +72,5 @@ const Navbar = () => {
   )
 }
 
-// Exports
+// Exports.
 export default Navbar

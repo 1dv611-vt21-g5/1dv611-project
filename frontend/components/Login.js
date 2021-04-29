@@ -1,10 +1,8 @@
 import React from 'react'
 import { Button } from '@chakra-ui/react'
-
 import { redir } from '../actions'
 
 const Login = () => {
-
   const redirToYggio = () => {
     redir()
   }
@@ -20,4 +18,5 @@ const Login = () => {
   )
 }
 
+// Exports.
 export default Login

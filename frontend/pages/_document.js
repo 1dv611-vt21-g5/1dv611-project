@@ -6,7 +6,7 @@ class MyDocument extends Document {
     return { ...initialProps }
   }
 
-  render() {
+  render () {
     return (
       <Html>
         <Head>
@@ -22,4 +22,5 @@ class MyDocument extends Document {
   }
 }
 
+// Exports.
 export default MyDocument

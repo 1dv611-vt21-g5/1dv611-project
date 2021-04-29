@@ -3,6 +3,7 @@
 const path = require('path')
 const common = require('./common')
 
+// Exports.
 module.exports = {
   cors: {
     credentials: true,

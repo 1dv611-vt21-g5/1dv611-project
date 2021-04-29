@@ -1,4 +1,5 @@
 'use strict'
+
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
@@ -47,6 +48,7 @@ const apply = app => {
   })
 }
 
+// Exports.
 module.exports = {
   apply
 }

@@ -3,7 +3,6 @@ import Navbar from '../components/navbar/Navbar'
 import { Box, Flex, Spacer } from '@chakra-ui/react'
 
 const Page = ({ children }) => {
-
   // if (children.type.name === 'Devices') {
   //   navbar = <Navbar />
   // }
@@ -28,4 +27,5 @@ const Page = ({ children }) => {
   )
 }
 
+// Exports.
 export default Page

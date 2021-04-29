@@ -1,5 +1,7 @@
 'use strict'
 
+// This is going to be moved to .env
+
 // The host of yggio-service-example backend
 // Will be localhost if backend is run locally
 const BACKEND_HOST = 'localhost'
@@ -40,6 +42,7 @@ const YGGIO_ACCOUNT_PASSWORD = 'studentprojekt'
 // Connection string to MongoDB
 const DB_CONNECTION_STRING = 'mongodb+srv://dbUser:studentprojekt@cluster0.oyqrg.mongodb.net/ZapierIntegrations?retryWrites=true&w=majority'
 
+// Exports.
 module.exports = {
   BACKEND_HOST,
   BACKEND_PORT,
