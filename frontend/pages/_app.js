@@ -1,11 +1,9 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { CookiesProvider } from 'react-cookie'
-
 import theme from 'styles/theme'
-
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
+function MyApp ({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
       <CookiesProvider>
@@ -15,4 +13,5 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
+// Exports.
 export default MyApp

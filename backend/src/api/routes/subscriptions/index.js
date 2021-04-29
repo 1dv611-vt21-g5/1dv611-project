@@ -7,4 +7,5 @@ router.post('/', controller.subscribe)
 router.delete('/', controller.unsubscribe)
 router.get('/', controller.getSubscriptions)
 
+// Exports.
 module.exports = router

@@ -9,4 +9,5 @@ router.get('/:id', controller.getSetting)
 router.put('/:id', controller.editSetting)
 router.delete('/:id', controller.deleteSetting)
 
+// Exports.
 module.exports = router

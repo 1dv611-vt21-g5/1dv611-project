@@ -2,9 +2,7 @@ import React from 'react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { render, waitFor, screen, waitForElementToBeRemoved } from '@testing-library/react'
-
 import { statStr } from '../../constants'
-
 import DeviceList from '../../components/DeviceList'
 import testDevices from '../fixtures/testDevices.json'
 

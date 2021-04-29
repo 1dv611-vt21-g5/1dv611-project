@@ -3,7 +3,6 @@ brandGreen = "#74ad96"
 brandOrange = "#e89b3f"
   */
 
-
 html {
   position: relative;
   height: 100%;
@@ -84,8 +83,6 @@ a {
 .oauth_fail {
   color: red;
 }
-
-
 
 .App-logo {
   /*animation: App-logo-spin infinite 1s linear;
