@@ -9,7 +9,7 @@ const BACKEND_HOST = 'localhost'
 // Set to 9999 as default
 const BACKEND_PORT = '9999'
 
-const BACKEND_URI = 'localhost:9999'
+const BACKEND_URI = 'https://23e8d645cc4d.ngrok.io'
 
 // The URL to the yggio-service-example frontend
 // Will be http://localhost if frontend is run locally

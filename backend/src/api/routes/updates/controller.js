@@ -20,6 +20,10 @@ const receiveData = async (req, res, next) => {
     // const { diff, event } = req.body
     // console.log(diff, event)
 
+    // TODO: the payload from yggio is enough!!
+    // it contains iotnode, diff, event - we can find the values on iotnode (it is the whole object)
+    console.log(req.body)
+
     // 3. Iterate through all found nodes
     await Promise.all(nodes.map(async (node) => {
       // 4a. Grab the users info from db and use that to authenticate a device request
@@ -50,7 +54,7 @@ const receiveData = async (req, res, next) => {
       console.log('final data log', data)
 
       // 6. Send it to Zapier
-      const zapierHook = await ZapierHook.findOne({owner: node.owner})
+      const zapierHook = await ZapierHook.findOne({ owner: node.owner })
       //const zapierHook = await ZapierHook.find({owner: node.owner}) // Many possible webhooks?
       console.log(zapierHook.target_url)
 
