@@ -1,4 +1,5 @@
 'use strict'
+
 const User = require('../../models/User')
 
 const isUserAuthenticated = (req, res, next) => {
@@ -29,6 +30,7 @@ const hasValidApiKey = async (req, res, next) => {
   }
 }
 
+// Exports.
 module.exports = {
   isUserAuthenticated,
   hasValidApiKey

@@ -7,4 +7,5 @@ router.get('/info', controller.info)
 router.get('/code', controller.code)
 router.get('/apikey', controller.testApiKey)
 
+// Exports.
 module.exports = router

@@ -1,3 +1,5 @@
+'use strict'
+
 const axios = require('axios')
 
 const Node = require('../../../models/Node')
@@ -28,7 +30,8 @@ const receiveData = async (req, res, next) => {
     await Promise.all(nodes.map(async (node) => {
       // 4a. Grab the users info from db and use that to authenticate a device request
       // NOTE: A user needs to be logged in for this to work, so maybe we need to remove the logout button
-      const { username,
+      const {
+        username,
         yggioAccessToken: accessToken,
         yggioRefreshToken: refreshToken,
         yggioExpiresAt: expiresAt } = await User.findOne({ yggioId: node.owner })
@@ -44,7 +47,7 @@ const receiveData = async (req, res, next) => {
       console.log(deviceData)
 
       // 5. Parse data - See comment in models/Node for what this is doing
-      console.log("trying to parse")
+      console.log('trying to parse')
       const data = {}
 
       node.dataValues.forEach((value, key) => { // JS Maps verkar ha key och value bakofram??
@@ -73,7 +76,7 @@ const receiveData = async (req, res, next) => {
 
 /**
  * Iterates through a nested object step-by-step to return a value
- * 
+ *
  * @param {*} object - A nested object to parse, f.e. { a: { b: { c: 25 }}}
  * @param {*} pathsArray - An array of field names to step through, f.e. ['a', 'b', 'c']
  * @returns - The value of the final key in pathsArray, f.e. 25
@@ -88,7 +91,7 @@ const getNestedValue = (object, pathsArray) => {
   return getNestedValue(innerObject, innerArray)
 }
 
-
+// Exports.
 module.exports = {
   receiveData,
   getNestedValue

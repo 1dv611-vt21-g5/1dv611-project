@@ -1,8 +1,6 @@
 import { useCode } from '../actions'
-
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-
 
 const WaitOauth = () => {
   const router = useRouter()
@@ -69,4 +67,5 @@ const WaitOauth = () => {
   )
 }
 
+// Exports.
 export default WaitOauth

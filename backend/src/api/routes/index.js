@@ -2,7 +2,6 @@
 
 const router = require('express').Router()
 const auth = require('../middleware/auth')
-
 const authController = require('./auth')
 const devices = require('./devices')
 const notifications = require('./notifications')
@@ -21,4 +20,5 @@ router.use('/zapier', auth.hasValidApiKey, zapierHooks)
 router.use('/updates', updates)
 router.use('/logout', logout)
 
+// Exports.
 module.exports = router

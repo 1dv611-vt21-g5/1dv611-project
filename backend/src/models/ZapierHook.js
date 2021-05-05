@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 // Create a schema.
 const zapierHookSchema = new mongoose.Schema({
   owner: {
-    //type: mongoose.Types.ObjectId,
+    // type: mongoose.Types.ObjectId,
     type: String,
     required: true
   },

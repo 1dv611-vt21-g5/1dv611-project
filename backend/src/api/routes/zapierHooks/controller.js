@@ -1,3 +1,5 @@
+'use strict'
+
 const ZapierHook = require('../../../models/ZapierHook')
 const User = require('../../../models/User')
 
@@ -36,6 +38,7 @@ const deleteZapierHook = async (req, res, next) => {
   }
 }
 
+// Exports.
 module.exports = {
   createZapierHook,
   deleteZapierHook

@@ -12,6 +12,7 @@ const fetch = (req, res, next) => {
     .catch(next)
 }
 
+// Exports.
 module.exports = {
   fetch
 }

@@ -30,5 +30,5 @@ const settingSchema = new mongoose.Schema({
 // Create a model using the schema.
 const Setting = mongoose.model('Setting', settingSchema)
 
-// Exports
+// Exports.
 module.exports = Setting

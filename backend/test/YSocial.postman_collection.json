@@ -7,15 +7,24 @@
 	"item": [
 		{
 			"name": "Test updates route",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"iotnode\": \"5ee221e49c329100064c9783\",\n\t\"diff\": {\n\t\t\"startUpCount\": {\n                \"value\": 7\n            }\n\t},\n\t\"event\": {\n\t\t\"startUpCount\": {\n                \"value\": 7\n            }\n\t}\n}"
+					"raw": "{\n\t\"iotnode\": \"5ee221e49c329100064c9783\",\n\t\"diff\": {\n\t\t\"data\": \"FFFF09010A09\"\n\t},\n\t\"event\": {\n\t    \"data\" : \"FFFF09010A09\"\n\t}\n}"
 				},
 				"url": {
-					"raw": "http://localhost:9999/api/updates/5ee221e49c329100064c9783",
+					"raw": "http://localhost:9999/api/updates/5e32967fed6e0e0006e5a64f",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -24,10 +33,44 @@
 					"path": [
 						"api",
 						"updates",
-						"5ee221e49c329100064c9783"
+						"5e32967fed6e0e0006e5a64f"
 					]
 				},
-				"description": "iotnode = is the iotnode entity that has been updated.\n\ndiff = contains the attributes that was changed in the update.\n\nevent = contains the attributes that triggered the update.\n\n\nhttps://docs.ygg.io/publisher/#publisher\n\n\nTesting on \"LoRa Strips Presence\" with id 5ee221e49c329100064c9783"
+				"description": "iotnode = is the iotnode entity that has been updated.\n\ndiff = contains the attributes that was changed in the update.\n\nevent = contains the attributes that triggered the update.\n\n\nhttps://docs.ygg.io/publisher/#publisher\n\n\nTesting on \"LoRa_Strips_2_Raw\" with id 5e32967fed6e0e0006e5a64f"
+			},
+			"response": []
+		},
+		{
+			"name": "Test updates route 2",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"iotnode\": \"5fd2371db1fe2a0006b78ae0\",\n\t\"diff\": {\n\t\t\"data\": \"FFFF09010A09\"\n\t},\n\t\"event\": {\n\t    \"data\" : \"FFFF09010A09\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9999/api/updates/5fd2371db1fe2a0006b78ae0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api",
+						"updates",
+						"5fd2371db1fe2a0006b78ae0"
+					]
+				}
 			},
 			"response": []
 		}

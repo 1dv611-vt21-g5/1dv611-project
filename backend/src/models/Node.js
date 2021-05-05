@@ -22,7 +22,6 @@ const dataValueSchema = new mongoose.Schema({
 // adds a derived depth field to the schema
 dataValueSchema.virtual('depth').get(() => this.path.length)
 
-
 // Create a schema.
 const nodeSchema = new mongoose.Schema({
   // devices yggio id
@@ -47,7 +46,7 @@ const nodeSchema = new mongoose.Schema({
   },
   // OBS! This field is here to represent "how to reach the data" on a given IoT node
   // Some devices we want more than one value (temperature AND humidity) and it can be deeply nested
-  // for example: 
+  // for example:
   // {
   //   blabla: "bla",
   //   blabla: "blebb",

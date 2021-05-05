@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   yggioId: {
     type: String
-    //type: mongoose.Types.ObjectId TODO: change to key id
+    // type: mongoose.Types.ObjectId TODO: change to key id
   },
   yggioAccessToken: {
     type: String
@@ -38,10 +38,8 @@ const userSchema = new mongoose.Schema({
   timestamps: false
 })
 
-
 // TODO:  add endpoints
 // for removing current key and creating a new API key (invalidating)
-
 
 // Create a model using the schema.
 const User = mongoose.model('User', userSchema)

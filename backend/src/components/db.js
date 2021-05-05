@@ -45,6 +45,7 @@ const saveProviderOauthSecret = secret => {
   fs.writeFileSync(file, JSON.stringify({ secret }, null, 2))
 }
 
+// Exports.
 module.exports = {
   updateUser,
   resetUsers,
