@@ -11,6 +11,10 @@ const createZapierHook = async (req, res, next) => {
     const { hookUrl, userApiKey } = req.body
     const user = await User.findOne({ api_key_zapier: userApiKey })
 
+    // removes any existing zapier hook
+    await ZapierHook.findOneAndDelete({ owner: user.yggioId })
+
+
     const newHook = new ZapierHook({ owner: user.yggioId, target_url: hookUrl })
     await newHook.save()
 
@@ -23,10 +27,10 @@ const createZapierHook = async (req, res, next) => {
 const deleteZapierHook = async (req, res, next) => {
   try {
     console.log(req.body)
-    const { hookUrl, userApiKey } = req.body
+    const { userApiKey } = req.body
     const user = await User.findOne({ api_key_zapier: userApiKey })
 
-    const deletedHook = await ZapierHook.findOneAndDelete({ owner: user._id, target_url: hookUrl })
+    const deletedHook = await ZapierHook.findOneAndDelete({ owner: user.yggioId })
 
     res.json(deletedHook)
   } catch (e) {

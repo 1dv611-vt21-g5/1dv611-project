@@ -74,7 +74,7 @@ const testApiKey = async (req, res, next) => {
   try {
     const userApiKey = req.query.key || req.header('X-API-KEY')
 
-    const user = await User.exists({ api_key_zapier: userApiKey })
+    const user = await User.findOne({ api_key_zapier: userApiKey })
 
     if (user) {
       return res.json(user)
