@@ -22,10 +22,17 @@ const subscribe = async (req, res, next) => {
     // just a name for the subscription, probably not important
     const subscriptionName = `${nodeId}/${user._id}`
 
+    const subscriptionExists = await Node.findOne({ owner: user._id, name: name })
+
+    if (subscriptionExists) {
+      console.log('You already has a subscription on this device!')
+      return
+    }
     // create the sub at Yggio
     // TODO: fix to get correct return values 
     const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
     console.log(sub)
+
     // // For development and testing
     // const sub = {
     //   _id: "6080dbc105b64d15d3f3434"
