@@ -17,10 +17,7 @@ const mongoose = require('mongoose')
 
 const dataValueSchema = new mongoose.Schema({
   path: [String]
-}, { toJSON: { virtuals: true } })
-
-// adds a derived depth field to the schema
-dataValueSchema.virtual('depth').get(() => this.path.length)
+})
 
 // Create a schema.
 const nodeSchema = new mongoose.Schema({

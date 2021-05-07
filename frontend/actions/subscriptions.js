@@ -16,7 +16,7 @@ export const subscribe = async device => {
 
 export const unsubscribe = device => {
   // TODO: fix these
-  return axios.delete(statStr.backendHost + '/api/subscriptions/' + device._id)
+  return axios.delete(statStr.backendHost + '/api/subscriptions/' + device._id, { withCredentials: true })
 }
 
 export const getSubscriptions = async iotnode => {
