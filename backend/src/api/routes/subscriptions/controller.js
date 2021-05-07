@@ -1,5 +1,7 @@
 'use strict'
 
+const axios = require('axios')
+
 const Node = require('../../../models/Node')
 const common = require('../../../config/common')
 
@@ -23,14 +25,11 @@ const subscribe = async (req, res, next) => {
     // create the sub at Yggio
     // TODO: fix to get correct return values 
     const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
-
-    // console.log(sub)
+    console.log(sub)
     // // For development and testing
     // const sub = {
     //   _id: "6080dbc105b64d15d3f3434"
     // }
-
-    // console.log(user._id)
 
     // create a corresponding Node here
     const node = new Node({
@@ -47,11 +46,8 @@ const subscribe = async (req, res, next) => {
       minInterval: undefined, // TODO: add from frontend later
       maxInterval: undefined // TODO: add from frontend later
     })
-
     console.log(node)
-
     await node.save()
-
     return res.status(200).send()
   } catch (e) {
     res.status(400).send()
@@ -59,13 +55,33 @@ const subscribe = async (req, res, next) => {
 }
 
 const unsubscribe = async (req, res, next) => {
-  // TODO: implement
-  const { user } = req.session
-  const { nodeId } = req.query
-  res.sendStatus(404)
-  // provider.subscribe(user, nodeId)
-  // .then(() => res.sendStatus(200))
-  // .catch(next);
+  // 1. Delete from Yggio channels (with iot ID or subscription ID?)
+  try {    
+    const { user } = req.session
+    const { subid } = req.query
+    const url = common.YGGIO_API_URL + "/api/channels/" + subid
+    const token = "085cba70-1e33-4fff-a185-69865f564e2c" // FOR DEV, change each time logged in
+   // const token = user.AccessToken
+
+    await axios.delete(url, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error.response.data);
+    })
+
+    // 2. Delete from Ysocial database
+    await Node.deleteMany({subscriptionId: subid, owner: user._id})
+
+    return res.status(200).send()
+  } catch (error) {
+    res.sendStatus(404).send()
+  }
+  
+
 }
 
 const getSubscriptions = async (req, res, next) => {
