@@ -77,9 +77,9 @@ const receiveData = async (req, res, next) => {
 /**
  * Iterates through a nested object step-by-step to return a value
  *
- * @param {*} object - A nested object to parse, f.e. { a: { b: { c: 25 }}}
- * @param {*} pathsArray - An array of field names to step through, f.e. ['a', 'b', 'c']
- * @returns - The value of the final key in pathsArray, f.e. 25
+ * @param {object} object A nested object to parse, f.e. `{ a: { b: { c: 25 }}}`
+ * @param {string[]} pathsArray An array of field names to step through, f.e. `['a', 'b', 'c']`
+ * @returns The value of the final key in pathsArray, f.e. `25`
  */
 const getNestedValue = (object, pathsArray) => {
   if (pathsArray.length === 1) {

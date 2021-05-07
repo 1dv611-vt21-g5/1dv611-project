@@ -36,7 +36,7 @@ const code = async (req, res, next) => {
     const redirectUri = redirectUris[req.query.redirect_uri]
     const freshUser = await redeemCode(req.query.code, redirectUri)
     // updateUser(freshUser);
-    console.log(freshUser)
+    // console.log(freshUser)
 
     // creates new user if none exists
     const user = await User.findOneAndUpdate({ username: freshUser.username }, {

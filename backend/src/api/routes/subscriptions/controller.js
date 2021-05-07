@@ -63,40 +63,49 @@ const subscribe = async (req, res, next) => {
 
 const unsubscribe = async (req, res, next) => {
   // 1. Delete from Yggio channels (with iot ID or subscription ID?)
-  try {    
+  try {
+    const { nodeId } = req.params
     const { user } = req.session
-    const { subid } = req.query
-    const url = common.YGGIO_API_URL + "/api/channels/" + subid
-    const token = "085cba70-1e33-4fff-a185-69865f564e2c" // FOR DEV, change each time logged in
-   // const token = user.AccessToken
 
-    await axios.delete(url, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(function (response) {
-      console.log(response);
-    }).catch(function (error) {
-      console.log(error.response.data);
-    })
+    const node = await Node.findOne({ owner: user._id, yggioId: nodeId })
+    console.log(node)
 
-    // 2. Delete from Ysocial database
-    await Node.deleteMany({subscriptionId: subid, owner: user._id})
+    const url = common.YGGIO_API_URL + "/api/channels/" + node.subscriptionId
+
+    try {
+      const response = await axios.delete(url, {
+        auth: { bearer: user.accessToken }
+      })
+      console.log(response.body)
+    } catch (e) {
+      console.log(e.message)
+    }
+
+    await Node.findByIdAndDelete(node._id)
+
+    // // 2. Delete from Ysocial database
+    // await Node.deleteMany({ yggioId: yggioId, owner: user._id })
 
     return res.status(200).send()
   } catch (error) {
-    res.sendStatus(404).send()
+    res.sendStatus(400).send()
   }
-  
+
 
 }
 
 const getSubscriptions = async (req, res, next) => {
   try {
     const { user } = req.session
-    const subs = await getChannels(user, req.query.iotnode)
 
-    res.json(subs)
+    const sub = await Node.findOne({ owner: user._id, yggioId: req.query.iotnode })
+
+    if (sub) {
+      return res.json({ subscribed: true, data: sub })
+    } else {
+      return res.json({ subscribed: false })
+    }
+
   } catch (e) {
     res.status(400).send()
   }

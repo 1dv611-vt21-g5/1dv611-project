@@ -1,34 +1,33 @@
 import { useState } from 'react'
-import { mutate } from 'swr'
+
 import useRequest from 'hooks/useRequest'
 import { subscribe, unsubscribe } from 'actions/subscriptions'
-import { Text, Flex, Spacer, Icon, Box } from '@chakra-ui/react'
+import { Text, Flex, Spacer, Icon, Box, Spinner } from '@chakra-ui/react'
 import { TiStarburst } from 'react-icons/ti'
 import SubscribeButton from './SubscribeButton'
 import DataBox from './DataBox'
 
 const SubscriptionButton = ({ item }) => {
-  // TODO: This actually only checks if anyone is subscribed, not if we are in particular - fix!
   const subURI = `/api/subscriptions?iotnode=${item._id}`
-  const { data: subStatus, error } = useRequest(subURI)
+  const { data: subStatus, mutate, isValidating } = useRequest(subURI)
 
   // TODO: THIS should probably be a "Send data to Zapier button" - activating
   // both a subscription (Channel) from Yggio, and also adding a webhook to Zapier
   const sub = async () => {
     await subscribe(item)
-    mutate(subURI)
+    mutate(subURI, { subscribed: true })
   }
 
   const unsub = async () => {
-    await subscribe(item)
-    mutate(subURI)
+    await unsubscribe(item)
+    mutate(subURI, { subscribed: false })
   }
 
   console.log(subStatus)
 
-  if (!subStatus) return <p>Add loadspinner here!</p>
+  if (!subStatus) return <Spinner />
 
-  return subStatus.length >= 1
+  return subStatus?.subscribed
     ? (
       <SubscribeButton
         colorScheme='unsubscribe'
@@ -36,7 +35,7 @@ const SubscriptionButton = ({ item }) => {
         method={unsub}>
         Unsubscribe
       </SubscribeButton>
-      )
+    )
     : (
       <SubscribeButton
         colorScheme="subscribe"
@@ -44,7 +43,7 @@ const SubscriptionButton = ({ item }) => {
         method={sub}>
         Subscribe
       </SubscribeButton>
-      )
+    )
 }
 
 const Device = ({ device }) => {
@@ -68,13 +67,13 @@ const Device = ({ device }) => {
             {showData
               ? (
                 <DataBox setShowData={setShowData} data={device.value} />
-                )
+              )
               : (
                 <Flex alignItems="center" cursor="pointer">
                   <Icon as={TiStarburst} mr="0.1rem" color="yellow.400" />
                   <Text onClick={() => setShowData(true)} fontSize="xs">This device has reported data, click to show!</Text>
                 </Flex>
-                )}
+              )}
           </Box>
         )}
       </Flex>
