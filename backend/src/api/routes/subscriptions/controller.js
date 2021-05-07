@@ -72,6 +72,7 @@ const unsubscribe = async (req, res, next) => {
 
     const url = common.YGGIO_API_URL + "/api/channels/" + node.subscriptionId
 
+    // TODO: this fails due to permissions @ Yggio - intended?
     try {
       const response = await axios.delete(url, {
         auth: { bearer: user.accessToken }
