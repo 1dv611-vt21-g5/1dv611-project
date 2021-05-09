@@ -24,7 +24,7 @@ afterAll(() => server.close())
 it('loads and displays Loading spinner', async () => {
   // här renderar vi komponenten och väntar INTE på att vår fejkade request ska bli färdig, så den står och laddar
   render(<DeviceList />)
-  const loadingText = screen.getByText('Loading...')
+  const loadingText = screen.getByText('Loading!')
   expect(loadingText).not.toBeUndefined()
 })
 
