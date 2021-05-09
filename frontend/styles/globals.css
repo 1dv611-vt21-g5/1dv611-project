@@ -151,3 +151,25 @@ a {
   color: black;
 }
 
+.variable-value {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.variable-row:hover {
+  background: #ffba6036;
+}
+
+.variable-value:hover {
+  cursor: pointer;
+  background: #ffba60ce;
+  border-radius: 8px;
+}
+
+.string-value {
+  font-weight: 600;
+}
+
+.string-value:hover {
+  cursor: pointer!important;
+}

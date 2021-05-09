@@ -23,8 +23,6 @@ const SubscriptionButton = ({ item }) => {
     mutate(subURI, { subscribed: false })
   }
 
-  console.log(subStatus)
-
   if (!subStatus) return <Spinner />
 
   return subStatus?.subscribed

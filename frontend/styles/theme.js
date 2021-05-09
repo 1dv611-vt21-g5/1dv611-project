@@ -6,7 +6,8 @@ const brandOrange = '#e89b3f'
 const theme = extendTheme({
   fonts: {
     heading: 'Inter',
-    body: 'Inter'
+    body: 'Inter',
+    mono: 'Inconsolata, monospace'
   },
   colors: {
     lime: {

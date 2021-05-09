@@ -3,7 +3,7 @@
 exports[`loads and displays a list of devices 1`] = `
 <div>
   <div
-    class="chakra-container css-tflc3m"
+    class="chakra-container css-f91va8"
   >
     <div
       class="css-1m6bwdk"
@@ -18,13 +18,13 @@ exports[`loads and displays a list of devices 1`] = `
       class="chakra-stack css-sekf5y"
     >
       <div
-        class="css-1hkhsaz"
+        class="css-1xo2hgd"
       >
         <div
           class="css-70qvj9"
         >
           <p
-            class="chakra-text css-1oz30jp"
+            class="chakra-text css-mjxv9u"
           >
             Z-Wave Strips Guard 700 Meeting Room
           </p>
@@ -34,16 +34,19 @@ exports[`loads and displays a list of devices 1`] = `
           <div
             class="css-ohugnc"
           >
-            <p>
-              Add loadspinner here!
-            </p>
+            <button
+              class="chakra-button css-glp8s5"
+              type="button"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
         <div
           class="css-ohugnc"
         >
           <div
-            class="css-15g2oxy"
+            class="css-1lp8z4k"
           >
             <div
               class="css-759u60"
@@ -75,13 +78,13 @@ exports[`loads and displays a list of devices 1`] = `
         </div>
       </div>
       <div
-        class="css-1hkhsaz"
+        class="css-1xo2hgd"
       >
         <div
           class="css-70qvj9"
         >
           <p
-            class="chakra-text css-1oz30jp"
+            class="chakra-text css-mjxv9u"
           >
             Z-Wave Strips Drip 700 Coffee
           </p>
@@ -91,16 +94,19 @@ exports[`loads and displays a list of devices 1`] = `
           <div
             class="css-ohugnc"
           >
-            <p>
-              Add loadspinner here!
-            </p>
+            <button
+              class="chakra-button css-glp8s5"
+              type="button"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
         <div
           class="css-ohugnc"
         >
           <div
-            class="css-15g2oxy"
+            class="css-1lp8z4k"
           >
             <div
               class="css-759u60"
@@ -132,13 +138,13 @@ exports[`loads and displays a list of devices 1`] = `
         </div>
       </div>
       <div
-        class="css-1hkhsaz"
+        class="css-1xo2hgd"
       >
         <div
           class="css-70qvj9"
         >
           <p
-            class="chakra-text css-1oz30jp"
+            class="chakra-text css-mjxv9u"
           >
             Z-Wave Flower Pot 1
           </p>
@@ -148,16 +154,19 @@ exports[`loads and displays a list of devices 1`] = `
           <div
             class="css-ohugnc"
           >
-            <p>
-              Add loadspinner here!
-            </p>
+            <button
+              class="chakra-button css-glp8s5"
+              type="button"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
         <div
           class="css-ohugnc"
         >
           <div
-            class="css-15g2oxy"
+            class="css-1lp8z4k"
           >
             <div
               class="css-759u60"
@@ -189,13 +198,13 @@ exports[`loads and displays a list of devices 1`] = `
         </div>
       </div>
       <div
-        class="css-1hkhsaz"
+        class="css-1xo2hgd"
       >
         <div
           class="css-70qvj9"
         >
           <p
-            class="chakra-text css-1oz30jp"
+            class="chakra-text css-mjxv9u"
           >
             LoRa_Strips_3_Raw
           </p>
@@ -205,16 +214,19 @@ exports[`loads and displays a list of devices 1`] = `
           <div
             class="css-ohugnc"
           >
-            <p>
-              Add loadspinner here!
-            </p>
+            <button
+              class="chakra-button css-glp8s5"
+              type="button"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
         <div
           class="css-ohugnc"
         >
           <div
-            class="css-15g2oxy"
+            class="css-1lp8z4k"
           >
             <div
               class="css-759u60"
