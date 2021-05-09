@@ -42,14 +42,16 @@ const dataSample = {
  */
 const DataPoint = ({ data, handleRemove, handleEdit }) => {
   return (
-    <Flex alignItems="center" fontFamily="mono" pl="0.25rem" pr="0.1rem" textColor="white" bg="orange.400" rounded="lg">
+    <Flex shadow="md" alignItems="center" fontWeight="500" fontFamily="mono" pl="0.25rem" pr="0.1rem" textColor="white" bg="orange.400" rounded="lg">
       <Tooltip placement="bottom" hasArrow label={`Click to adjust the display name [${data.path.join('/')}]`}>
         <Editable onSubmit={(e) => handleEdit(e, data)} defaultValue={data.name}>
           <EditablePreview />
           <EditableInput />
         </Editable>
       </Tooltip>
-      <IconButton onClick={() => handleRemove(data)} ml="0.25rem" fontSize="10px" aria-label="Remove Datapoint" colorScheme="orange" size="xs" icon={<ImCross />} />
+      <Tooltip hasArrow label="Click to remove">
+        <IconButton shadow="sm" onClick={() => handleRemove(data)} ml="0.25rem" fontSize="10px" aria-label="Remove Datapoint" colorScheme="orange" size="xs" icon={<ImCross />} />
+      </Tooltip>
     </Flex>
   )
 }
@@ -111,7 +113,7 @@ const JsonPathPicker = ({ jsonData, /* chosenDataPoints, setChosenDataPoints */ 
   return (
     <Flex flexDir="column" p="1rem" maxWidth="fit-content" bg="white" rounded="lg">
       <Heading as="h4" size="md" mb="0.2rem">Data Points</Heading>
-      <Heading as="h5" size="sm" color="gray.600">Click to select which data you want to send to Zapier</Heading>
+      <Heading as="h5" size="sm" color="gray.600">Click to select which data you wish to send to Zapier</Heading>
       <Divider mt="0.5rem" mb="1rem" />
       <ReactJson
         theme={'bright:inverted'}
