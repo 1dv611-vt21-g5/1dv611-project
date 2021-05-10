@@ -9,6 +9,7 @@ import { MenuItems } from './MenuItems'
 const { logout } = require('actions/logout')
 const { about } = require('actions/about')
 const { devices } = require('actions/devices')
+const { user } = require('actions/user')
 
 /**
   *
@@ -16,6 +17,7 @@ const { devices } = require('actions/devices')
 const Navbar = () => {
   const [loggedOut, setLogout] = useState(false)
   const [aboutP, setAboutP] = useState(false)
+  const [userP, setUserP] = useState(false)
   const [devicesP, setDevicesP] = useState(false)
 
   const handleClick = (item) => {
@@ -23,6 +25,8 @@ const Navbar = () => {
       setLogout(true)
     } else if (item.title === 'About') {
       setAboutP(true)
+    } else if (item.title === 'User') {
+      setUserP(true)
     } else if (item.title === 'Devices') {
       setDevicesP(true)
     }
@@ -37,6 +41,12 @@ const Navbar = () => {
   const aboutPage = () => {
     if (aboutP) {
       about()
+    }
+  }
+
+  const userPage = () => {
+    if (userP) {
+      user()
     }
   }
 
@@ -67,6 +77,8 @@ const Navbar = () => {
       })}
          {wantsToLogout()}
          {aboutPage()}
+         {userPage()}
+         {devicesPage()}
          {devicesPage()}
     </nav>
   )

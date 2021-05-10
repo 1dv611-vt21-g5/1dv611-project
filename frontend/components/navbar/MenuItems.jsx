@@ -16,6 +16,12 @@ const about = {
   cName: 'navLinks'
 }
 
+const user = {
+  title: 'User',
+  url: '/user',
+  cName: 'navLinks'
+}
+
 const logout = {
   title: 'Logout',
   url: '/logout',
@@ -23,4 +29,4 @@ const logout = {
 }
 
 // Exports.
-export const MenuItems = [devices, about, logout]
+export const MenuItems = [devices, about, user, logout]
