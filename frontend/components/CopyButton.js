@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react'
 
 export default class CopyButton extends React.Component {
   copyCodeToClipboard = () => {
-    // Is there a better solution?
+    //TODO Is there a better solution?
     const el = document.createElement('textarea');
     el.value = this.props.apikey;
     document.body.appendChild(el);
