@@ -1,15 +1,20 @@
 import _ from 'lodash'
 import useRequest from 'hooks/useRequest'
-import { Heading, Text, Container, Stack, Box, Link, Flex } from '@chakra-ui/react'
+import { Heading, Text, Container, Stack, Box, Spinner, Flex } from '@chakra-ui/react'
 import CopyButton from './CopyButton'
 import ResetApiKeyButton from './ResetApiKeyButton'
 import { resetAPIkey } from 'actions/user'
 
 const User = () => {
   const { data: savedUser, error } = useRequest('/api/user')
-
+ 
   const reset = async () => {
     await resetAPIkey()
+  }
+
+  if (!savedUser && !error) { return <Spinner />}
+  if (error) { 
+      return <Heading size="md" as="h2">Something went wrong</Heading>
   }
 
   return (
