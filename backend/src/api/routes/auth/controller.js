@@ -52,21 +52,21 @@ const code = async (req, res, next) => {
 
     await user.save() // kanske?
 
-    return req.session.destroy(destroyErr => {
-      if (destroyErr) return next(destroyErr)
+    return req.sessionStore.regenerate(req, regenErr => {
+      if (regenErr) return next(regenErr)
 
-      return req.sessionStore.regenerate(req, regenErr => {
-        if (regenErr) return next(regenErr)
+      req.session.user = freshUser
+      const resUser = unsetProps(freshUser)
 
-        req.session.user = freshUser
-        const resUser = unsetProps(freshUser)
-
-        return res.json(resUser)
-      })
+      return res.json(resUser)
     })
-  } catch (e) {
-    next(e)
-  }
+
+    // return req.session.destroy(destroyErr => {
+    //   if (destroyErr) return next(destroyErr)
+    //   })
+    // } catch (e) {
+    //   next(e)
+    // }
 }
 
 // used by Zapier to confirm that a new user is valid
