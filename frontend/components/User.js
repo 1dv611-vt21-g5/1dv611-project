@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import useRequest from 'hooks/useRequest'
 import { Heading, Text, Container, Stack, Code, Box, Link, Flex } from '@chakra-ui/react'
+import CopyButton from './CopyButton'
 
 const User = () => {
 
@@ -17,8 +18,12 @@ const User = () => {
           <Text color="lime.grey">{savedUser.username}</Text>
           <Heading size="md" as="h2">API key</Heading>
           <Text color="lime.grey">This is your API-key for authentication on Zappier:</Text>
-          <Code color="teal.500"> {savedUser.api_key_zapier} // MAKE A COPY BUTTON</Code> 
+          <Text color="teal.500"> {savedUser.api_key_zapier}</Text> 
         </Stack>
+
+        <CopyButton colorScheme='subscribe' apikey={savedUser.api_key_zapier}>
+        </CopyButton>
+        
       </Box>
     </Container>
   )
