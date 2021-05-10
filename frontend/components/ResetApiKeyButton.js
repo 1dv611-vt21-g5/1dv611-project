@@ -4,7 +4,6 @@ import { Button } from '@chakra-ui/react'
 export default class ResetApiKeyButton extends React.Component {
     handleClick = () => {
     this.props.method()
-    console.log("Is it reset?")
   }
 
   render () {

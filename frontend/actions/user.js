@@ -6,5 +6,11 @@ export const user = async () => {
 }
 
 export const resetAPIkey = async () => {
-  return axios.put(statStr.backendHost + '/api/user/', { withCredentials: true })
+  return await axios.put(statStr.backendHost + '/api/user', { withCredentials: true })
+  .then(response => {
+    console.log("Status: ", response.status);
+    console.log("Data: ", response.data);
+  }).catch(error => {
+    console.error('Something went wrong!', error);
+  })
 }

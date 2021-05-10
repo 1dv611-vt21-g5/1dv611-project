@@ -17,8 +17,8 @@ const getUser = async (req, res, next) => {
 
 const resetApiKey = async (req, res, next) => {
     try {
+      console.log("resetting apikey")
       const { user } = req.session
-      
       await User.findOneAndUpdate({ yggioId: user._id }, {
         api_key_zapier: nanoid()
       })
