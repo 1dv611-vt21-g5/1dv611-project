@@ -8,8 +8,8 @@ const getUser = async (req, res, next) => {
     console.log("getting user")
     const { user } = req.session
     const savedUser = await User.findOne({ yggioId: user._id })
-    console.log(savedUser)
     res.status(200).json(savedUser)
+
   } catch (error) {
     res.status(400).send()
   }

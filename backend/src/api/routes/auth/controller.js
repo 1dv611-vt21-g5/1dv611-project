@@ -64,9 +64,9 @@ const code = async (req, res, next) => {
     // return req.session.destroy(destroyErr => {
     //   if (destroyErr) return next(destroyErr)
     //   })
-    // } catch (e) {
-    //   next(e)
-    // }
+    } catch (e) {
+       next(e)
+     }
 }
 
 // used by Zapier to confirm that a new user is valid
