@@ -113,7 +113,7 @@ const JsonPathPicker = ({ jsonData, /* chosenDataPoints, setChosenDataPoints */ 
   return (
     <Flex flexDir="column" p="1rem" maxWidth="fit-content" bg="white" rounded="lg">
       <Heading as="h4" size="md" mb="0.2rem">Data Points</Heading>
-      <Heading as="h5" size="sm" color="gray.600">Click to select which data you wish to send to Zapier</Heading>
+      <Heading as="h5" size="sm" color="gray.600">Click to select which data points you wish to send to Zapier</Heading>
       <Divider mt="0.5rem" mb="1rem" />
       <ReactJson
         theme={'bright:inverted'}
