@@ -1,11 +1,16 @@
 import _ from 'lodash'
 import useRequest from 'hooks/useRequest'
-import { Heading, Text, Container, Stack, Code, Box, Link, Flex } from '@chakra-ui/react'
+import { Heading, Text, Container, Stack, Box, Link, Flex } from '@chakra-ui/react'
 import CopyButton from './CopyButton'
+import ResetApiKeyButton from './ResetApiKeyButton'
+import { resetAPIkey } from 'actions/user'
 
 const User = () => {
-
   const { data: savedUser, error } = useRequest('/api/user')
+
+  const reset = async () => {
+    await resetAPIkey()
+  }
 
   return (
     <Container maxW="container.lg">
@@ -23,6 +28,13 @@ const User = () => {
 
         <CopyButton colorScheme='subscribe' apikey={savedUser.api_key_zapier}>
         </CopyButton>
+
+        <Stack mt='1rem' spacing="1rem">
+          <Heading size="md" as="h2">Reset API-key</Heading>
+          <Text color="lime.grey">If you wish to reset your API-KEY, make sure to update the API-KEY aswell.</Text>
+        </Stack>
+
+        <ResetApiKeyButton method={reset} colorScheme='subscribe'></ResetApiKeyButton>
         
       </Box>
     </Container>
