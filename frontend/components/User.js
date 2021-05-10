@@ -5,6 +5,8 @@ import CopyButton from './CopyButton'
 import ResetApiKeyButton from './ResetApiKeyButton'
 import { resetAPIkey } from 'actions/user'
 
+
+
 const User = () => {
   const { data: savedUser, error } = useRequest('/api/user')
  
@@ -26,8 +28,8 @@ const User = () => {
         <Stack spacing="1rem">
           <Heading size="md" as="h2">Username</Heading>
           <Text color="lime.grey">{savedUser.username}</Text>
-          <Heading size="md" as="h2">API key</Heading>
-          <Text color="lime.grey">This is your API-key for authentication on Zappier:</Text>
+          <Heading size="md" as="h2">API-key</Heading>
+          <Text color="lime.grey">This is your API-key for authentication on Zapier:</Text>
           <Text color="teal.500"> {savedUser.api_key_zapier}</Text> 
         </Stack>
 
@@ -36,7 +38,7 @@ const User = () => {
 
         <Stack mt='1rem' spacing="1rem">
           <Heading size="md" as="h2">Reset API-key</Heading>
-          <Text color="lime.grey">If you wish to reset your API-KEY, make sure to update the API-KEY aswell.</Text>
+          <Text color="lime.grey">If you wish to reset your API-KEY, make sure to update the API-KEY on Zapier aswell.</Text>
         </Stack>
 
         <ResetApiKeyButton method={reset} colorScheme='subscribe'></ResetApiKeyButton>
