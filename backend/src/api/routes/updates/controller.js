@@ -10,8 +10,6 @@ const { routes: { getNode } } = require('yggio-connect')
 
 const receiveData = async (req, res, next) => {
   try {
-    // 0. Check who sent the request. Comprade req.params with req.body?
-
     // 1. request comes in, we grab yggio device id
     const { deviceId } = req.params
 
@@ -19,53 +17,11 @@ const receiveData = async (req, res, next) => {
     const nodes = await Node.find({ yggioId: deviceId })
 
     // 4 alt. Grab the data from the update itself
-    // const { diff, event } = req.body
-    // console.log(diff, event)
-
     // TODO: the payload from yggio is enough!!
     // it contains iotnode, diff, event - we can find the values on iotnode (it is the whole object)
     console.log(req.body)
 
-    // 3. Iterate through all found nodes
-    await Promise.all(nodes.map(async (node) => {
-      // 4a. Grab the users info from db and use that to authenticate a device request
-      // NOTE: A user needs to be logged in for this to work, so maybe we need to remove the logout button
-      const {
-        username,
-        yggioAccessToken: accessToken,
-        yggioRefreshToken: refreshToken,
-        yggioExpiresAt: expiresAt } = await User.findOne({ yggioId: node.owner })
-
-      // 4b. Fetch the latest device data from Yggio
-      const deviceData = await getNode({
-        username,
-        accessToken,
-        refreshToken,
-        expiresAt
-      }, deviceId)
-
-      console.log(deviceData)
-
-      // 5. Parse data - See comment in models/Node for what this is doing
-      console.log('trying to parse')
-      const data = {}
-
-      node.dataValues.forEach((value, key) => { // JS Maps verkar ha key och value bakofram??
-        data[key] = getNestedValue(deviceData, value.path)
-      })
-
-      console.log('final data log', data)
-
-      // 6. Send it to Zapier
-      const zapierHook = await ZapierHook.findOne({ owner: node.owner })
-      //const zapierHook = await ZapierHook.find({owner: node.owner}) // Many possible webhooks?
-      console.log(zapierHook.target_url)
-
-      await axios.post(zapierHook.target_url, {
-        deviceName: node.name,
-        data
-      })
-    }))
+    matchNewDataWithNode(nodes, deviceId)
 
     // Everything worked
     return res.status(200).send()
@@ -85,14 +41,69 @@ const getNestedValue = (object, pathsArray) => {
   if (pathsArray.length === 1) {
     return object[pathsArray[0]]
   }
-
   const innerObject = object[pathsArray[0]]
   const innerArray = [...pathsArray.slice(1)] // returns prev array with first item removed
   return getNestedValue(innerObject, innerArray)
 }
 
+
+/**
+ * Iterates through a all node objects
+ *
+ * @param {object[]} nodes An array of node objects
+ * @param {string} deviceId ID of node device from request
+ * @returns {void}
+ */
+const matchNewDataWithNode = async (nodes, deviceId) => {
+  // 3. Iterate through all found nodes
+  await Promise.all(nodes.map(async (node) => {
+    // 4a. Grab the users info from db and use that to authenticate a device request
+    // NOTE: A user needs to be logged in for this to work, so maybe we need to remove the logout button
+    const {
+      username,
+      yggioAccessToken: accessToken,
+      yggioRefreshToken: refreshToken,
+      yggioExpiresAt: expiresAt } = await User.findOne({ yggioId: node.owner })
+
+    // 4b. Fetch the latest device data from Yggio
+    const deviceData = await getNode({
+      username,
+      accessToken,
+      refreshToken,
+      expiresAt
+    }, deviceId)
+
+    // 5. Parse data - See comment in models/Node for what this is doing
+    const data = {}
+    node.dataValues.forEach((value, key) => { // JS Maps verkar ha key och value bakofram??
+      data[key] = getNestedValue(deviceData, value.path)
+    })
+
+    sendToZapier(node, data)
+  }))
+}
+
+/**
+ * Gets zapier hook and sends to Zapier
+ *
+ * @param {object} node The node device 
+ * @param {object} data New data to send to Zapier
+ * @returns {void}
+ */
+const sendToZapier = async (node, data) => {
+     const zapierHook = await ZapierHook.findOne({ owner: node.owner })
+     //const zapierHook = await ZapierHook.find({owner: node.owner}) // Many possible webhooks?
+     console.log(zapierHook.target_url)
+     await axios.post(zapierHook.target_url, {
+       deviceName: node.name,
+       data
+     }) 
+}
+
 // Exports.
 module.exports = {
   receiveData,
-  getNestedValue
+  getNestedValue,
+  matchNewDataWithNode,
+  sendToZapier
 }
