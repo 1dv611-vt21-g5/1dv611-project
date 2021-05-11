@@ -9,6 +9,7 @@ import {
   Button,
   useDisclosure
 } from '@chakra-ui/react'
+import { SubscriptionButton } from './SubscriptionButton'
 
 export const ModalWindow = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -63,7 +64,7 @@ export const ModalWindow = (props) => {
       {hasData
         ? (
           <div>
-            <Button onClick={onOpen}>Send to Zapier</Button>
+            <Button onClick={onOpen}>Zapier</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay>
                 <ModalContent>
@@ -75,8 +76,8 @@ export const ModalWindow = (props) => {
                     ))}
                   </ModalBody>
                   <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>Close</Button>
-                    <Button variant="ghost">Subscribe</Button>
+                    {/* <Button colorScheme="blue" mr={3} onClick={onClose}>Close</Button> */}
+                    <SubscriptionButton pr={3} item={props} />
                   </ModalFooter>
                 </ModalContent>
               </ModalOverlay>
