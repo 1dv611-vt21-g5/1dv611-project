@@ -12,6 +12,15 @@ const {
 
 const { subscription } = require('../../../config')
 
+
+/**
+ * Subscribe to a device.
+ * 
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @return {Object}
+ */
 const subscribe = async (req, res, next) => {
   try {
     const { user } = req.session
@@ -57,10 +66,18 @@ const subscribe = async (req, res, next) => {
     await node.save()
     return res.status(200).send()
   } catch (e) {
-    res.status(400).send()
+    return res.status(400).send()
   }
 }
 
+/**
+ * Unsubscribe a device.
+ * 
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @return {Object}
+ */
 const unsubscribe = async (req, res, next) => {
   // 1. Delete from Yggio channels (with iot ID or subscription ID?)
   try {
@@ -89,16 +106,22 @@ const unsubscribe = async (req, res, next) => {
 
     return res.status(200).send()
   } catch (error) {
-    res.sendStatus(400).send()
+    return res.sendStatus(400).send()
   }
-
-
 }
 
+
+/**
+ * Get subscription of user.
+ * 
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @return {Object}
+ */
 const getSubscriptions = async (req, res, next) => {
   try {
     const { user } = req.session
-
     const sub = await Node.findOne({ owner: user._id, yggioId: req.query.iotnode })
 
     if (sub) {
@@ -108,7 +131,7 @@ const getSubscriptions = async (req, res, next) => {
     }
 
   } catch (e) {
-    res.status(400).send()
+    return res.status(400).send()
   }
 }
 
