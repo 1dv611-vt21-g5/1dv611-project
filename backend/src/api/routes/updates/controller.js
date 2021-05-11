@@ -8,6 +8,14 @@ const ZapierHook = require('../../../models/ZapierHook')
 
 const { routes: { getNode } } = require('yggio-connect')
 
+/**
+ * Get incoming updates from Yggio, process and send to Zapier.
+ * 
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @return {Object}
+ */
 const receiveData = async (req, res, next) => {
   try {
     // 1. request comes in, we grab yggio device id
@@ -23,10 +31,9 @@ const receiveData = async (req, res, next) => {
 
     matchNewDataWithNode(nodes, deviceId)
 
-    // Everything worked
     return res.status(200).send()
   } catch (e) {
-    res.status(400).send()
+    return res.status(400).send()
   }
 }
 
