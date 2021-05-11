@@ -15,33 +15,46 @@ export const ModalWindow = (props) => {
   let hasData = false
   if (props.item.value) { hasData = true }
 
+  const mapObject = (returnValue, value) => {
+    if (value) {
+      Object.entries(value).map(([key, data]) => (
+        returnValue.push(` ${getKey(key)} ${getData(data)}`)
+      ))
+    }
+    return returnValue
+  }
+
   const getValue = (value) => {
     if (value === true) { return 'true' }
     if (value === false) { return 'false' }
 
     const returnValue = []
-    if (typeof value === 'object') {
+    if (value && typeof value === 'object') {
       Object.entries(value).map(([key, data]) => (
-        // returnValue.push(`${key}: ${data}. `)
-        returnValue.push(`${checkIfObject(data)}`)
+        returnValue.push(` ${getKey(key)} ${getData(data)} `)
       ))
     } else {
-      returnValue.push(`${value}.`)
+      returnValue.push(`${value}`)
     }
-
     return returnValue
   }
 
-  const checkIfObject = (data) => {
-    const returnValue = []
-    if (typeof data === 'object') {
-      Object.entries(data).map(([key, value]) => (
-        returnValue.push(` ${key}: ${value}`)
-      ))
+  const getKey = (key) => {
+    if (isNaN(key) && key !== 'value') {
+      return `${key}: `
     } else {
-      returnValue.push(`${data}`)
+      return ''
     }
+  }
 
+  const getData = (value) => {
+    const returnValue = []
+    if (value && typeof value === 'object') {
+      const obj = mapObject(returnValue, value)
+      returnValue.push(obj)
+    } else {
+      returnValue.push(`${value}`)
+    }
     return returnValue
   }
 
@@ -58,7 +71,7 @@ export const ModalWindow = (props) => {
                   <ModalCloseButton />
                   <ModalBody>
                     {Object.entries(props.item.value).map(([key, value]) => (
-                      <div key={key}><span><p>{key}: {getValue(value)}</p></span></div>
+                      <p key={key}><span style={{ fontWeight: 'bold' }}>{key}: </span><span>{getValue(value)}</span></p>
                     ))}
                   </ModalBody>
                   <ModalFooter>
