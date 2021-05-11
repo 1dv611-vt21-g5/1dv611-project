@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { useState } from 'react'
 import useRequest from 'hooks/useRequest'
 import { Heading, Text, Container, Stack, Box, Spinner, Flex } from '@chakra-ui/react'
 import CopyButton from './CopyButton'
@@ -10,14 +9,12 @@ import { resetAPIkey } from 'actions/user'
 
 const User = () => {
   const userURI = '/api/user'
-  const { data: savedUser, mutate, error } = useRequest(userURI)
+  const { data: savedUser, mutate, error } = useRequest(userURI) // Get user info from db
 
-  const reset = async () => {
+  const reset = async () => { //Changes API-key and updates rendered value 
     await resetAPIkey()
     mutate(userURI, { })
-    // Update API key field
   }
-
 
   if (!savedUser && !error) { return <Spinner />}
   if (error) { 
