@@ -8,10 +8,12 @@ import { resetAPIkey } from 'actions/user'
 
 
 const User = () => {
-  const { data: savedUser, error } = useRequest('/api/user')
- 
-  const reset = async () => {
+  const userURI = '/api/user'
+  const { data: savedUser, mutate, error } = useRequest(userURI) // Get user info from db
+
+  const reset = async () => { //Changes API-key and updates rendered value 
     await resetAPIkey()
+    mutate(userURI, { })
   }
 
   if (!savedUser && !error) { return <Spinner />}
