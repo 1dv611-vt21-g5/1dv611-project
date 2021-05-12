@@ -4,5 +4,5 @@ const portalHost = 'https://yggio-beta.sensative.net/'
 export const statStr = {
   backendHost: 'http://localhost:9999',
   portalHost,
-  oauthURL: portalHost + '/oauth'
+  oauthURL: portalHost + 'oauth'
 }
