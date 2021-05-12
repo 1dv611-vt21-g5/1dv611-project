@@ -28,6 +28,7 @@ module.exports.connect = async () => {
     })
   })
 
+  const mongoURI = process.env.NODE_ENV === 'test' ? common.DB_CONNECTION_STRING : common.DB_CONNECTION_STRING //TODO: add test db
   // Connect to the server.
   return mongoose.connect(common.DB_CONNECTION_STRING, {
     useCreateIndex: true,

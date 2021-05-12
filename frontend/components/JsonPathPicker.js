@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 const ReactJson = dynamic(() => import('react-json-view'), { ssr: false }) // this module doesn't like being server-rendered
-import { Heading, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview, Tooltip, Divider } from '@chakra-ui/react'
+import { Heading, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview, Tooltip, Divider, Box } from '@chakra-ui/react'
 import { ImCross } from 'react-icons/im'
 import { useState } from 'react'
 
@@ -115,20 +115,22 @@ const JsonPathPicker = ({ jsonData, /* chosenDataPoints, setChosenDataPoints */ 
       <Heading as="h4" size="md" mb="0.2rem">Data Points</Heading>
       <Heading as="h5" size="sm" color="gray.600">Click to select which data points you wish to send to Zapier</Heading>
       <Divider mt="0.5rem" mb="1rem" />
-      <ReactJson
-        theme={'bright:inverted'}
-        style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent' }}
-        src={jsonData || dataSample} // TODO: remove dataSample
-        name={false}
-        iconStyle={'triangle'}
-        enableClipboard={false}
-        onSelect={handleSelect}
-        shouldCollapse={false}
-      />
+      <Flex maxH="30rem" overflow="scoll">
+        <ReactJson
+          theme={'bright:inverted'}
+          style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent', overflowY: 'scroll' }}
+          src={jsonData || dataSample} // TODO: remove dataSample
+          name={false}
+          iconStyle={'triangle'}
+          enableClipboard={false}
+          onSelect={handleSelect}
+          shouldCollapse={false}
+        />
+      </Flex>
       {chosenDataPoints.length >= 1 && (
         <>
           <Heading as="h4" size="md" mt="1rem">Selected</Heading>
-          <Wrap spacing="0.5rem" mt="0.5rem">
+          <Wrap spacing="0.5rem" mt="0.5rem" maxW="30rem">
             {chosenDataPoints.map((dataPoint, index) => (
               <DataPoint key={index} data={dataPoint} handleRemove={handleRemove} handleEdit={handleEdit} />
             ))}
