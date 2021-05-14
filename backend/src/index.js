@@ -8,7 +8,6 @@ const yggioConnect = require('yggio-connect')
 require('dotenv').config()
 
 const config = require('./config')
-const commonConfig = require('./config/common')
 const seedDb = require('../tools/seed-db')
 const { resetUsers, saveProviderOauthSecret } = require('./components/db')
 const { secret } = require('../db/oauth-info.json')
@@ -67,20 +66,9 @@ const setup = async () => {
   await initExpress()
 }
 
-const validateConfigurations = () => {
-  const errors = _.compact(_.map(commonConfig, (value, key) => {
-    return !value && key
-  }))
-  if (errors.length) {
-    const keys = _.join(errors, ', ')
-    throw new Error(`The configuration(s) ${keys} cannot be empty. Please provide it in config/common.js`)
-  }
-}
-
 const start = async () => {
   try {
     console.log('-- Starting Yggio Service Example backend --')
-    validateConfigurations()
     await setup()
     console.log('-- Yggio Service Example backend started successfully --')
   } catch (e) {

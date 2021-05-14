@@ -5,7 +5,6 @@ const MongoStore = require('connect-mongo')
 
 const mongoose = require('./mongoose')
 const config = require('../config')
-const common = require('../config/common')
 
 const apply = app => {
   // set up the session, required by OAuth2 framework
@@ -17,7 +16,7 @@ const apply = app => {
   const sessionMiddleware = session({
     ...sessionConfig,
     store: MongoStore.create({
-      mongoUrl: common.DB_CONNECTION_STRING
+      mongoUrl: process.env.DB_CONNECTION_STRING
     })
   })
 

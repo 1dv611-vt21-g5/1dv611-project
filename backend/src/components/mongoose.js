@@ -7,7 +7,6 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const common = require('../config/common')
 
 /**
 * Establishes a connection to the database.
@@ -28,9 +27,9 @@ module.exports.connect = async () => {
     })
   })
 
-  const mongoURI = process.env.NODE_ENV === 'test' ? common.DB_CONNECTION_STRING : common.DB_CONNECTION_STRING //TODO: add test db
+  const mongoURI = process.env.NODE_ENV === 'test' ? process.env.DB_CONNECTION_STRING : process.env.DB_CONNECTION_STRING //TODO: add test db
   // Connect to the server.
-  return mongoose.connect(common.DB_CONNECTION_STRING, {
+  return mongoose.connect(process.env.DB_CONNECTION_STRING, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,

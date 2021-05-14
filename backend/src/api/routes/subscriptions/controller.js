@@ -3,7 +3,6 @@
 const axios = require('axios')
 
 const Node = require('../../../models/Node')
-const common = require('../../../config/common')
 
 const {
   provider,
@@ -12,10 +11,9 @@ const {
 
 const { subscription } = require('../../../config')
 
-
 /**
  * Subscribe to a device.
- * 
+ *
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @param {Function} next - Express next middleware function
@@ -27,7 +25,7 @@ const subscribe = async (req, res, next) => {
     const { name, nodeId, protocol, data } = req.body
 
     // where we want yggio to send updates
-    const protocolData = { url: `${common.BACKEND_URI}/api/updates/${nodeId}` }
+    const protocolData = { url: `${process.env.BACKEND_URI}/api/updates/${nodeId}` }
     // just a name for the subscription, probably not important
     const subscriptionName = `${nodeId}/${user._id}`
 
@@ -72,7 +70,7 @@ const subscribe = async (req, res, next) => {
 
 /**
  * Unsubscribe a device.
- * 
+ *
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @param {Function} next - Express next middleware function
@@ -87,7 +85,7 @@ const unsubscribe = async (req, res, next) => {
     const node = await Node.findOne({ owner: user._id, yggioId: nodeId })
     console.log(node)
 
-    const url = common.YGGIO_API_URL + "/api/channels/" + node.subscriptionId
+    const url = process.env.YGGIO_API_URL + '/api/channels/' + node.subscriptionId
 
     // TODO: this fails due to permissions @ Yggio - intended?
     try {
@@ -110,10 +108,9 @@ const unsubscribe = async (req, res, next) => {
   }
 }
 
-
 /**
  * Get subscription of user.
- * 
+ *
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @param {Function} next - Express next middleware function
@@ -129,7 +126,6 @@ const getSubscriptions = async (req, res, next) => {
     } else {
       return res.json({ subscribed: false })
     }
-
   } catch (e) {
     return res.status(400).send()
   }
