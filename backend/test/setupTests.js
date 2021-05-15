@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-const express = require('express')
-
-=======
 const http = require('http')
 const express = require('express')
 const supertest = require('supertest')
 const session = require('express-session')
->>>>>>> 99b7e698aa696a8875a1683043ba9231c8cb9973
 const yggioConnect = require('yggio-connect')
 
 const config = require('../src/config')
