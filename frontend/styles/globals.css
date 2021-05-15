@@ -151,16 +151,19 @@ a {
   color: black;
 }
 
+.react-json-view {
+  width: auto;
+}
 .variable-value {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
 
-.variable-row:hover {
+.jsonPicker > .variable-row:hover {
   background: #ffba6036;
 }
 
-.variable-value:hover {
+.jsonPicker > .variable-value:hover {
   cursor: pointer;
   background: #ffba60ce;
   border-radius: 8px;
@@ -170,6 +173,15 @@ a {
   font-weight: 600;
 }
 
-.string-value:hover {
+.jsonPicker > .string-value:hover {
   cursor: pointer!important;
+}
+
+.enabledStar {
+  filter: drop-shadow(0 0 2px #48BB78)
+}
+
+.disabledStar {
+    filter: drop-shadow(0 0 2px #F56565)
+
 }

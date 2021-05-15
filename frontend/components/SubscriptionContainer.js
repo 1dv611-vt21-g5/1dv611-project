@@ -6,7 +6,7 @@ import SubscribeButton from './SubscribeButton'
 import useRequest from 'hooks/useRequest'
 import { subscribe, unsubscribe } from 'actions/subscriptions'
 
-export const SubscriptionButton = (props) => {
+export const SubscriptionContainer = (props) => {
   const subURI = `/api/subscriptions?iotnode=${props.item.item._id}`
   const { data: subStatus, mutate } = useRequest(subURI)
 
@@ -26,19 +26,19 @@ export const SubscriptionButton = (props) => {
 
   return subStatus?.subscribed
     ? (
-        <SubscribeButton
-          colorScheme='unsubscribe'
-          device={props.item.item}
-          method={unsub}>
-          Unsubscribe
-        </SubscribeButton>
-      )
+      <SubscribeButton
+        colorScheme='unsubscribe'
+        device={props.item.item}
+        method={unsub}>
+        Unsubscribe
+      </SubscribeButton>
+    )
     : (
-        <SubscribeButton
-          colorScheme="subscribe"
-          device={props.item.item}
-          method={sub}>
-          Subscribe
-        </SubscribeButton>
-      )
+      <SubscribeButton
+        colorScheme="subscribe"
+        device={props.item.item}
+        method={sub}>
+        Subscribe
+      </SubscribeButton>
+    )
 }
