@@ -1,5 +1,8 @@
 import { Container, Flex, Spinner } from '@chakra-ui/react'
 
+/**
+ * Simple "full screen" Loading component. Displays a spinner in the middle of the screen.
+ */
 const Loading = () => {
   return (
     <Container maxW="container.lg" my="10rem" centerContent>
