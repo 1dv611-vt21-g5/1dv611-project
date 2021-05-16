@@ -4,36 +4,6 @@ import { Text, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview,
 import { ImCross } from 'react-icons/im'
 import { useState } from 'react'
 
-// TODO: remove this later
-const dataSample = {
-  "_id": "5f579b486fd953000607d72a",
-  "nodeType": "SimpleDevice",
-  "__v": 0,
-  "category": "uncategorized",
-  "createdAt": "2020-09-08T14:55:04.585Z",
-  "description": "",
-  "deviceModelName": undefined,
-  "latlng": [],
-  "name": "Z-Wave Strips Guard 700 Meeting Room",
-  "rabbitRouting": {
-    "value": [
-      "rest-api-socket",
-      "publisher"
-    ]
-  },
-  "reportedAt": "2021-04-23T12:52:53.836Z",
-  "translatedFrom": "5f579b066fd953000607d6f2",
-  "updatedAt": "2021-04-23T12:52:53.877Z",
-  "value": {
-    "doorIsOpen": true,
-    "nested": {
-      "deeply": {
-        "very": "deeply"
-      }
-    }
-  },
-  "version": 17
-}
 
 /**
  * Renders a DataPoint badge for selected data points below the JSON tree, with options to edit the displayName or remove the datapoint entirely.
@@ -44,7 +14,7 @@ const DataPoint = ({ data, handleRemove, handleEdit }) => {
   return (
     <Flex shadow="md" alignItems="center" fontWeight="300" pl="0.5rem" textColor="white" bg="orange.400" rounded="lg">
       <Tooltip placement="bottom" hasArrow label={`Click to adjust the display name [${data.path.join('/')}]`}>
-        <Editable pr="0.5rem" onSubmit={(e) => handleEdit(e, data)} defaultValue={data.name}>
+        <Editable pr="0.5rem" onSubmit={(e) => handleEdit(e, data)} defaultValue={data.displayName || data.name}>
           <EditablePreview />
           <EditableInput />
         </Editable>
