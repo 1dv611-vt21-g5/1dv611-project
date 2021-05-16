@@ -5,13 +5,13 @@ import { statStr } from '../constants'
 export const subscribe = async device => {
   const payload = {
     name: device.name,
+    displayName: device.displayName,
     nodeId: device._id,
-    data: device?.value,
+    dataPaths: device.dataPoints,
     protocol: 'http'
   }
 
-  const { data } = await axios.post(statStr.backendHost + '/api/subscriptions', payload, { withCredentials: true })
-  return data
+  return await axios.post(statStr.backendHost + '/api/subscriptions', payload, { withCredentials: true })
 }
 
 export const unsubscribe = device => {

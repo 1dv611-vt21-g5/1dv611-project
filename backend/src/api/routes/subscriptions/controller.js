@@ -22,46 +22,29 @@ const { subscription } = require('../../../config')
 const subscribe = async (req, res, next) => {
   try {
     const { user } = req.session
-    const { name, nodeId, protocol, data } = req.body
+    const { name, displayName, nodeId, protocol, dataPaths } = req.body
 
     // where we want yggio to send updates
     const protocolData = { url: `${process.env.BACKEND_URI}/api/updates/${nodeId}` }
     // just a name for the subscription, probably not important
     const subscriptionName = `${nodeId}/${user._id}`
 
-    const subscriptionExists = await Node.findOne({ owner: user._id, name: name })
-
-    if (subscriptionExists) {
-      console.log('You already has a subscription on this device!')
-      return
-    }
     // create the sub at Yggio
     // TODO: fix to get correct return values 
+    // NOTE: This route seems to be idempotent, it wont create extra subscriptions if the input is the same, we thus dont have to check if one already exists.
     const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
-    console.log(sub)
 
-    // // For development and testing
-    // const sub = {
-    //   _id: "6080dbc105b64d15d3f3434"
-    // }
-
-    // create a corresponding Node here
-    const node = new Node({
+    const newNode = await Node.findOneAndUpdate({ owner: user._id, yggioId: nodeId }, {
       yggioId: nodeId,
       name: name,
+      displayName: displayName,
       subscriptionId: sub._id,
-      owner: user._id, // TODO : not same as in db
-      dataValues: {
-        // TODO: add these dynamically from frontend later
-        data: {
-          path: ['value']
-        }
-      },
+      owner: user._id, // TODO: not same as in db
+      dataValues: dataPaths,
       minInterval: undefined, // TODO: add from frontend later
       maxInterval: undefined // TODO: add from frontend later
-    })
-    console.log(node)
-    await node.save()
+    }, { new: true, upsert: true })
+
     return res.status(200).send()
   } catch (e) {
     return res.status(400).send()
@@ -83,7 +66,6 @@ const unsubscribe = async (req, res, next) => {
     const { user } = req.session
 
     const node = await Node.findOne({ owner: user._id, yggioId: nodeId })
-    console.log(node)
 
     const url = process.env.YGGIO_API_URL + '/api/channels/' + node.subscriptionId
 

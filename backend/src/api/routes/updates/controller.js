@@ -21,6 +21,9 @@ const receiveData = async (req, res, next) => {
     // 1. request comes in, we grab yggio device id
     const { deviceId } = req.params
 
+    //TODO: AFTER DEMO: We currently trust anyone who sends an update with a deviceId
+    // Maybe we should add some kind of check to make sure it's actually from Yggio
+
     // 2. we find all Nodes with this id
     const nodes = await Node.find({ yggioId: deviceId })
 
@@ -98,13 +101,13 @@ const matchNewDataWithNode = async (nodes, deviceId) => {
  * @returns {void}
  */
 const sendToZapier = async (node, data) => {
-     const zapierHook = await ZapierHook.findOne({ owner: node.owner })
-     //const zapierHook = await ZapierHook.find({owner: node.owner}) // Many possible webhooks?
-     console.log(zapierHook.target_url)
-     await axios.post(zapierHook.target_url, {
-       deviceName: node.name,
-       data
-     }) 
+  const zapierHook = await ZapierHook.findOne({ owner: node.owner })
+  //const zapierHook = await ZapierHook.find({owner: node.owner}) // Many possible webhooks?
+  console.log(zapierHook.target_url)
+  await axios.post(zapierHook.target_url, {
+    deviceName: node.name,
+    data
+  })
 }
 
 // Exports.

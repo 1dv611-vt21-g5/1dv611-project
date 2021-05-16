@@ -1,4 +1,4 @@
-import { Tooltip, Box, Icon } from '@chakra-ui/react'
+import { Tooltip, Flex, Icon } from '@chakra-ui/react'
 import { TiStarburst } from 'react-icons/ti'
 
 /**
@@ -6,19 +6,19 @@ import { TiStarburst } from 'react-icons/ti'
  * 
  * @param {boolean} subscribed Wether the device is subscriped to or not.
  */
-const SubStatusIcon = ({ subscribed }) => {
+const SubStatusIcon = ({ subscribed, placement }) => {
 
   return subscribed ? (
-    <Tooltip placement="left" hasArrow label="Device is sending data to Zapier.">
-      <Box>
+    <Tooltip placement={placement || 'left'} hasArrow label="Device is sending data to Zapier.">
+      <Flex>
         <Icon className="enabledStar" as={TiStarburst} mr="0.5rem" color="green.400" />
-      </Box>
+      </Flex>
     </Tooltip>
   ) : (
-    <Tooltip placement="left" hasArrow label="Device is not sending data to Zapier.">
-      <Box>
-        <Icon className="disabledStar" as={TiStarburst} mr="0.5rem" color="red.400" />
-      </Box>
+    <Tooltip placement={placement || 'left'} hasArrow label="Device is not sending data to Zapier.">
+      <Flex>
+        <Icon className="disabledStar" as={TiStarburst} mr="0.5rem" color="gray.300" />
+      </Flex>
     </Tooltip>
   )
 }
