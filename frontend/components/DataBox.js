@@ -1,34 +1,53 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
+const ReactJson = dynamic(() => import('react-json-view'), { ssr: false })
+import { Box, useOutsideClick, Collapse, ScaleFade, Flex, Icon, Text } from '@chakra-ui/react'
+import { useRef, useState } from 'react'
+import { TiDocumentText } from 'react-icons/ti'
 
-const DataBox = ({ setShowData, data }) => {
+const DataBox = ({ device }) => {
+  const [showData, setShowData] = useState(false)
+
+  const ref = useRef()
+  useOutsideClick({
+    ref: ref,
+    handler: () => setShowData(false)
+  })
+
   return (
-    <Box cursor='pointer' onClick={() => setShowData(false)}>
-      {Object.entries(data).map(([key, value]) => (
-        <DataItem key={key} dataKey={key} value={value} />
-      ))}
+    <Box>
+      {!showData && (
+        <ScaleFade initialScale={0.9} in={!showData}>
+          <Flex maxW="21.5rem" border="1px" borderRadius="md" px="0.4rem" py="0.1rem" onClick={() => setShowData(true)} alignItems="center" cursor="pointer">
+            <Icon as={TiDocumentText} mr="0.1rem" />
+            <Text fontSize="xs">Click to display the raw device info sent by this device.</Text>
+          </Flex>
+        </ScaleFade>
+      )}
+      <Collapse in={showData} animateOpacity>
+        <Box ref={ref}
+          border="1px"
+          borderColor="gray.200"
+          borderRadius="lg"
+          shadow="inner"
+          cursor='pointer'
+          maxH="45rem"
+          overflowY="scroll"
+          mt="1rem"
+          p="0.5rem"
+          width={{ base: "auto", md: "40rem", lg: "60.5rem" }} >
+          <ReactJson
+            theme={'bright:inverted'}
+            style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent' }}
+            src={device}
+            name={false}
+            iconStyle={'triangle'}
+            enableClipboard={false}
+            collapsed={2}
+          />
+        </Box >
+      </Collapse>
     </Box>
   )
-}
-
-const DataItem = ({ dataKey, value }) => {
-  return (
-    <Flex>
-      <Text fontSize='xs' mr='0.5rem' fontWeight='bold'>{dataKey}:</Text>
-      <Text fontSize='xs' textAlign='left' maxW='40rem' isTruncated>{parseData(value)}</Text>
-    </Flex>
-  )
-}
-
-const parseData = (data) => {
-  if (typeof data === 'object' && data !== null) {
-    if (Object.keys(data)?.length > 1) {
-      return JSON.stringify(data)
-    }
-
-    return JSON.stringify(data['value'])
-  }
-
-  return JSON.stringify(data)
 }
 
 // Exports.

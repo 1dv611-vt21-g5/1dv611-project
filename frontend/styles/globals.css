@@ -173,3 +173,12 @@ a {
 .string-value:hover {
   cursor: pointer!important;
 }
+
+.enabledStar {
+  filter: drop-shadow(0 0 2px #48BB78)
+}
+
+.disabledStar {
+    filter: drop-shadow(0 0 2px #CBD5E0)
+
+}

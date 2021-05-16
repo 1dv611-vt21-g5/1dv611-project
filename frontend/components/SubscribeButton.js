@@ -6,10 +6,9 @@ export default class SubscribeButton extends React.Component {
     this.props.method(this.props.device)
   }
 
-  render () {
+  render() {
     return (
       <Button
-        shadow='md'
         colorScheme={this.props.colorScheme || 'blue'}
         size='sm'
         m='1rem'

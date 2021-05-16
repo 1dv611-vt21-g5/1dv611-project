@@ -1,40 +1,41 @@
 import { useState } from 'react'
 import {
-  Text, Flex, Spacer, Icon, Box
+  Text, Flex, Spacer, Icon, Box, Spinner, Tooltip
 } from '@chakra-ui/react'
-import { TiStarburst } from 'react-icons/ti'
+import { VscSymbolNamespace } from 'react-icons/vsc'
+
 import DataBox from './DataBox'
 import { ModalWindow } from './ModalWindow'
+import SubStatusIcon from './SubStatusIcon'
+
+import useRequest from 'hooks/useRequest'
 
 const Device = ({ device }) => {
-  const [showData, setShowData] = useState(false)
+  const subURI = `/api/subscriptions?iotnode=${device._id}`
+  const { data: deviceDetails, mutate, isValidating } = useRequest(subURI, { revalidateOnFocus: false })
 
-  // TODO: Add a UI to allow users to select which data is sent to Zapier?
-  // Some of the sensors have many data values and not all of them are relevant
+  const hasDisplayName = deviceDetails?.data?.displayName
+  const largeSizing = { base: 'sm', sm: 'md', md: 'lg' }
+  const smallSizing = { base: 'xs', sm: 'xs', md: 'sm' }
 
   return (
-    <Flex bg="lime.white" flexDirection="column" borderWidth="0px" borderRadius="md" p="1.5" shadow="sm">
-      <Flex alignItems="center">
-        <Text p={3} fontSize="l" fontWeight="semibold">{device.name}</Text>
+    <Flex bg="lime.white" flexDirection="column" borderRadius="md" p="3" shadow="sm">
+      <Flex>
+        <Flex flexDirection="column">
+          {hasDisplayName && (
+            <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="bold" wordBreak="break-word">{deviceDetails.data.displayName}</Text>
+          )}
+          <Text fontSize={hasDisplayName ? smallSizing : largeSizing} fontWeight="semibold" color="gray.600" wordBreak="break-word">{device.name}</Text>
+        </Flex>
         <Spacer />
-        <Flex flexDirection="column" alignItems="start">
-          <ModalWindow item={device} />
+        <Flex alignItems="center">
+          {deviceDetails && <SubStatusIcon subscribed={deviceDetails.subscribed} />}
+          <ModalWindow rawDevice={device} deviceDetails={deviceDetails} isValidating={isValidating} mutate={mutate} />
         </Flex>
       </Flex>
-      <Flex flexDirection="column" alignItems="start">
-        {device.value && (
-          <Box pb={3} pl={3} >
-            {showData
-              ? (
-                <DataBox setShowData={setShowData} data={device.value} />
-                )
-              : (
-                <Flex alignItems="center" cursor="pointer">
-                  <Icon as={TiStarburst} mr="0.1rem" color="yellow.400" />
-                  <Text onClick={() => setShowData(true)} fontSize="xs">This device has reported data, click to show!</Text>
-                </Flex>
-                )}
-          </Box>
+      <Flex mt="0.5rem" flexDirection="column" alignItems="start">
+        {device && (
+          <DataBox device={device} />
         )}
       </Flex>
     </Flex>

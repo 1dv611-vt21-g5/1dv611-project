@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react'
 
 export default class CopyButton extends React.Component {
   copyCodeToClipboard = () => {
-    //TODO Is there a better solution?
+    //TODO Is there a better solution? Kanske: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard
     const el = document.createElement('textarea');
     el.value = this.props.apikey;
     document.body.appendChild(el);
@@ -12,7 +12,7 @@ export default class CopyButton extends React.Component {
     document.body.removeChild(el);
   }
 
-  render () {
+  render() {
     return (
       <Button
         shadow='md'

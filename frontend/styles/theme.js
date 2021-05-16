@@ -4,6 +4,16 @@ const brandGreen = '#74ad96'
 const brandOrange = '#e89b3f'
 
 const theme = extendTheme({
+  components: {
+    Button: {
+      sizes: {
+        xs: {
+          height: "30px",
+          width: "30px"
+        }
+      }
+    }
+  },
   fonts: {
     heading: 'Inter',
     body: 'Inter',

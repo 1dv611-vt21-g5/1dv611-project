@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 const ReactJson = dynamic(() => import('react-json-view'), { ssr: false }) // this module doesn't like being server-rendered
-import { Heading, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview, Tooltip, Divider, Box } from '@chakra-ui/react'
+import { Text, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview, Tooltip, Divider, Box } from '@chakra-ui/react'
 import { ImCross } from 'react-icons/im'
 import { useState } from 'react'
 
@@ -42,15 +42,15 @@ const dataSample = {
  */
 const DataPoint = ({ data, handleRemove, handleEdit }) => {
   return (
-    <Flex shadow="md" alignItems="center" fontWeight="500" fontFamily="mono" pl="0.25rem" pr="0.1rem" textColor="white" bg="orange.400" rounded="lg">
+    <Flex shadow="md" alignItems="center" fontWeight="300" pl="0.5rem" textColor="white" bg="orange.400" rounded="lg">
       <Tooltip placement="bottom" hasArrow label={`Click to adjust the display name [${data.path.join('/')}]`}>
-        <Editable onSubmit={(e) => handleEdit(e, data)} defaultValue={data.name}>
+        <Editable pr="0.5rem" onSubmit={(e) => handleEdit(e, data)} defaultValue={data.name}>
           <EditablePreview />
           <EditableInput />
         </Editable>
       </Tooltip>
       <Tooltip hasArrow label="Click to remove">
-        <IconButton shadow="sm" onClick={() => handleRemove(data)} ml="0.25rem" fontSize="10px" aria-label="Remove Datapoint" colorScheme="orange" size="xs" icon={<ImCross />} />
+        <IconButton shadow="sm" onClick={() => handleRemove(data)} fontSize="10px" aria-label="Remove Datapoint" colorScheme="orange" size="xs" icon={<ImCross />} />
       </Tooltip>
     </Flex>
   )
@@ -61,10 +61,7 @@ const DataPoint = ({ data, handleRemove, handleEdit }) => {
  * @param {object} props An object containing jsonData (NYI: also state/setState hooks for use in a larger form)
  * @returns JSX
  */
-const JsonPathPicker = ({ jsonData, /* chosenDataPoints, setChosenDataPoints */ }) => {
-
-  // TODO: this state should live in a parent form component
-  const [chosenDataPoints, setChosenDataPoints] = useState([])
+const JsonPathPicker = ({ jsonData, chosenDataPoints, setChosenDataPoints, isInvalid }) => {
 
   /**
    * Handles clicks on the JSON tree and adds the node to state
@@ -111,25 +108,38 @@ const JsonPathPicker = ({ jsonData, /* chosenDataPoints, setChosenDataPoints */ 
   }
 
   return (
-    <Flex flexDir="column" p="1rem" maxWidth="fit-content" bg="white" rounded="lg">
-      <Heading as="h4" size="md" mb="0.2rem">Data Points</Heading>
-      <Heading as="h5" size="sm" color="gray.600">Click to select which data points you wish to send to Zapier</Heading>
-      <Divider mt="0.5rem" mb="1rem" />
-      <Flex maxH="30rem" overflow="scoll">
-        <ReactJson
-          theme={'bright:inverted'}
-          style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent', overflowY: 'scroll' }}
-          src={jsonData || dataSample} // TODO: remove dataSample
-          name={false}
-          iconStyle={'triangle'}
-          enableClipboard={false}
-          onSelect={handleSelect}
-          shouldCollapse={false}
-        />
+    <Flex flexDir="column" maxWidth="fit-content" bg="white" rounded="lg">
+      <Text fontSize="lg" fontWeight="700" mb="0.2rem">Data Points</Text>
+      <Text fontSize="sm" fontWeight="400" color="gray.500">Click to select which data points you wish to send to Zapier</Text>
+      <Flex className="jsonPicker" maxH="30rem">
+        <Box border={isInvalid ? '2px' : '1px'}
+          borderColor={isInvalid ? 'red.500' : "gray.200"}
+          borderRadius="lg"
+          shadow="inner"
+          cursor='pointer'
+          maxH="45rem"
+          overflowY="scroll"
+          mt="1rem"
+          p="0.5rem"
+          width={{ base: "auto", md: "40rem", lg: "60.5rem" }} >
+          <ReactJson
+            theme={'bright:inverted'}
+            style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent' }}
+            src={jsonData || dataSample} // TODO: remove dataSample
+            name={false}
+            iconStyle={'triangle'}
+            enableClipboard={false}
+            onSelect={handleSelect}
+            shouldCollapse={false}
+            collapsed={2}
+          />
+        </Box>
       </Flex>
+      {isInvalid && <Text mt="0.5rem" fontSize="sm" color="red.500">You need to select at least one data point.</Text>}
       {chosenDataPoints.length >= 1 && (
         <>
-          <Heading as="h4" size="md" mt="1rem">Selected</Heading>
+          <Text fontSize="lg" fontWeight="700" mt="1rem">Selected</Text>
+          <Text fontSize="sm" fontWeight="400" color="gray.500">Click individual labels to adjust their display name.</Text>
           <Wrap spacing="0.5rem" mt="0.5rem" maxW="30rem">
             {chosenDataPoints.map((dataPoint, index) => (
               <DataPoint key={index} data={dataPoint} handleRemove={handleRemove} handleEdit={handleEdit} />
