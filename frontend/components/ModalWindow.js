@@ -130,8 +130,9 @@ export const ModalWindow = ({ rawDevice, deviceDetails, isValidating, mutate }) 
       }
 
       await sub(formData)
-      setHasSubmitted(false)
     }
+
+    setHasSubmitted(false)
   }
 
   if (!deviceDetails) return <Spinner color="gray.400" />
