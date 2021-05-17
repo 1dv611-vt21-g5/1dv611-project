@@ -31,7 +31,7 @@ const initExpress = () => {
 
   expressConfig.apply(app)
   return new Promise(resolve => {
-    server.listen(config.express.port, config.express.host, () => {
+    server.listen(process.env.PORT || config.express.port, config.express.host, () => {
       console.log('Express HTTP server - ready')
       resolve()
     })

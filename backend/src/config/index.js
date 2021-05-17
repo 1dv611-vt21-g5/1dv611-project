@@ -38,7 +38,7 @@ module.exports = {
       name: process.env.PROVIDER_NAME,
       info: 'Yggio integration for connecting to Zapier - Send your sensor data to Zapier and use it as a trigger for further actions',
       redirectUris: {
-        browser: `${process.env.FRONTEND_URL}:${process.env.FRONTEND_PORT}/oauth`,
+        browser: `${process.env.FRONTEND_URI}/oauth`,
         app: 'your-app://login' // should be changed, if used
       },
       logoPath: path.join(__dirname, '../../asset/your-company-logo.png')
