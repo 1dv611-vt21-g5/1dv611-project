@@ -8,7 +8,6 @@ const notifications = require('./notifications')
 const subscriptions = require('./subscriptions')
 const zapierHooks = require('./zapierHooks')
 const updates = require('./updates')
-const logout = require('./logout')
 const user = require('./user')
 
 router.use('/auth', authController)
@@ -17,7 +16,6 @@ router.use('/notifications', notifications)
 router.use('/subscriptions', auth.isUserAuthenticated, subscriptions)
 router.use('/zapier', auth.hasValidApiKey, zapierHooks)
 router.use('/updates', updates)
-router.use('/logout', logout)
 router.use('/user', auth.isUserAuthenticated, user)
 
 // Exports.
