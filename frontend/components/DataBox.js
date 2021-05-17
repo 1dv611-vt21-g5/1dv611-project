@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 const ReactJson = dynamic(() => import('react-json-view'), { ssr: false })
-import { Box, useOutsideClick, Collapse, ScaleFade, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, useOutsideClick, Collapse, Fade, Flex, Icon, Text } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 import { TiDocumentText } from 'react-icons/ti'
 
@@ -16,14 +16,14 @@ const DataBox = ({ device }) => {
   return (
     <Box>
       {!showData && (
-        <ScaleFade initialScale={0.9} in={!showData}>
+        <Fade initialScale={0.9} in={!showData}>
           <Flex maxW="21.5rem" border="1px" borderRadius="md" px="0.4rem" py="0.1rem" onClick={() => setShowData(true)} alignItems="center" cursor="pointer">
             <Icon as={TiDocumentText} mr="0.1rem" />
             <Text fontSize="xs">Click to display the raw device info sent by this device.</Text>
           </Flex>
-        </ScaleFade>
+        </Fade>
       )}
-      <Collapse in={showData} animateOpacity>
+      <Collapse in={showData} animateOpacity unmountOnExit>
         <Box ref={ref}
           border="1px"
           borderColor="gray.200"

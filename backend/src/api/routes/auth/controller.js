@@ -69,6 +69,15 @@ const code = async (req, res, next) => {
   }
 }
 
+const logout = (req, res, next) => {
+  try {
+    req.session.destroy()
+    return res.status(200).send()
+  } catch (e) {
+    return res.status(400).send()
+  }
+}
+
 // used by Zapier to confirm that a new user is valid
 const testApiKey = async (req, res, next) => {
   try {
@@ -97,6 +106,7 @@ const unsetProps = user => {
 
 // Exports.
 module.exports = {
+  logout,
   code,
   info,
   testApiKey

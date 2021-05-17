@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import Navbar from '../components/navbar/Navbar'
-import { Flex, Spacer } from '@chakra-ui/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import Navbar from '../components/Navbar'
+import { Flex, Spacer, Box } from '@chakra-ui/react'
 
 const Page = ({ children }) => {
-  // if (children.type.name === 'Devices') {
-  //   navbar = <Navbar />
-  // }
 
   return (
     <Flex flexDirection="column" className="App" bg="lime.background" minH="100vh">
@@ -13,7 +12,11 @@ const Page = ({ children }) => {
         <title>Ysocial - Connect Yggio and Zapier</title>
       </Head>
       <Flex className="App-header">
-        <a title="home" href="/"><img src="/img/logo.png" className="App-logo" alt="logo" /></a>
+        <Link href="/devices">
+          <Box cursor="pointer">
+            <Image priority={true} src="/img/logo.png" className="App-logo" alt="logo" layout="intrinsic" width={188} height={72} />
+          </Box>
+        </Link>
         <Spacer />
         <Navbar />
       </Flex>

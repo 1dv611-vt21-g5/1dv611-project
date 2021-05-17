@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import _ from 'lodash'
-import { Heading, Container, Stack, Flex, Skeleton } from '@chakra-ui/react'
+import { Heading, Container, Stack, Flex } from '@chakra-ui/react'
+
 import Device from './Device'
+import DeviceSkeletons from './DeviceSkeletons'
 import Error from './Error'
 import useRequest from 'hooks/useRequest'
 
@@ -17,12 +19,7 @@ const Devices = () => {
       </Flex>
       <Stack spacing="1rem">
         {!devices && (
-          <>
-            <Skeleton borderRadius="md" height="70px" />
-            <Skeleton borderRadius="md" height="70px" />
-            <Skeleton borderRadius="md" height="70px" />
-            <Skeleton borderRadius="md" height="70px" />
-          </>
+          <DeviceSkeletons />
         )}
         {devices && devices.map((device, index) => (
           <Device key={index} device={device} />
