@@ -38,6 +38,16 @@ const deleteZapierHook = async (req, res, next) => {
   }
 }
 
+const getUserSubscriptions = async (req, res, next) => {
+  // TODO: maybe implement this as a way for Zapier to ask for which devices a user is subscribed to
+  // we can then use this to allow the user to set up hooks for specific devices and provide their perform data
+  // Reading: https://platform.zapier.com/docs/input-designer
+
+  // const userApiKey = req.query.key || req.header('X-API-KEY')
+
+  // const user = await User.findOne({ api_key_zapier: userApiKey })
+}
+
 // Exports.
 module.exports = {
   createZapierHook,
