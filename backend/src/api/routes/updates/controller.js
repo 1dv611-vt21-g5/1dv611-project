@@ -51,6 +51,9 @@ const receiveData = async (req, res, next) => {
     // 3. We grab the updated device data from the request
     const updatedDevice = req.body.payload.iotnode
 
+    // TODO: With many nodes/users who have many Zaps, this function could take a long
+    // time to complete or fail with some but succeed with others.
+    // maybe change them to Promise.allSettled instead?
     matchNewDataWithNode(nodes, updatedDevice)
 
     return res.status(200).send()
