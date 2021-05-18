@@ -3,10 +3,8 @@
 const axios = require('axios')
 
 const Node = require('../../../models/Node')
-const User = require('../../../models/User')
 const ZapierHook = require('../../../models/ZapierHook')
 
-const { routes: { getNode } } = require('yggio-connect')
 
 /**
  * Iterates through a nested object step-by-step to return a value
@@ -47,7 +45,7 @@ const receiveData = async (req, res, next) => {
       return res.status(200).send()
     }
 
-    // 2. we find all Nodes with this id
+    // 2. we find all Nodes with this id (as each user can have their own settings)
     const nodes = await Node.find({ yggioId: deviceId })
 
     // 3. We grab the updated device data from the request
