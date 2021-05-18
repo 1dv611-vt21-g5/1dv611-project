@@ -45,7 +45,10 @@ const initExpress = () => {
 const setup = async () => {
   console.log('### ### ### ### YGGIO API - setup...')
 
-  const { updateUser } = require('./components/db')
+  // const { updateUser } = require('./components/db')
+  const updateUser = formattedUser => {
+    console.log('!!! This is config.yggio.refreshCallback, called with formattedUser: ', formattedUser)
+  }
   config.yggio.refreshCallback = updateUser // TODO: is this why refreshTokens fail? it seems thsi function might be called when we want to use a refreshtoken, if this doesnt update the db its useless
 
   const result = await yggioConnect.init(config.yggio, secret)

@@ -22,7 +22,7 @@ const { subscription } = require('../../../config')
 const subscribe = async (req, res, next) => {
   try {
     const { user } = req.session
-    const { name, displayName, nodeId, protocol, dataPaths } = req.body
+    const { name, displayName: rawDisplayName, nodeId, protocol, dataPaths } = req.body
 
     // where we want yggio to send updates
     const protocolData = { url: `${process.env.BACKEND_URI}/api/updates/${nodeId}` }
@@ -34,12 +34,14 @@ const subscribe = async (req, res, next) => {
     // NOTE: This route seems to be idempotent, it wont create extra subscriptions if the input is the same, we thus dont have to check if one already exists.
     const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
 
+    const displayName = rawDisplayName ?? name
+
     const newNode = await Node.findOneAndUpdate({ owner: user._id, yggioId: nodeId }, {
       yggioId: nodeId,
       name: name,
       displayName: displayName,
       subscriptionId: sub._id,
-      owner: user._id, // TODO: not same as in db
+      owner: user._id, // TODO: not same as in db // this user._id is yggioId in User schema
       dataValues: dataPaths,
       minInterval: undefined, // TODO: add from frontend later
       maxInterval: undefined // TODO: add from frontend later

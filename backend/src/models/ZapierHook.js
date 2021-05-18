@@ -18,6 +18,10 @@ const zapierHookSchema = new mongoose.Schema({
   target_url: {
     type: String,
     required: true
+  },
+  deviceId: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: false

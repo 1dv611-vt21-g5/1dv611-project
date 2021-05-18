@@ -16,7 +16,10 @@ const isUserAuthenticated = (req, res, next) => {
 
 const hasValidApiKey = async (req, res, next) => {
   try {
-    const { userApiKey } = req.body
+    const userApiKey = req.query.key || req.query.api_key
+      || req.header('X-API-KEY')
+      || req.body.userApiKey
+      || req.query.userApiKey
 
     const hasValidApiKey = await User.exists({ api_key_zapier: userApiKey })
 

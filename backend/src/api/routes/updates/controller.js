@@ -40,6 +40,13 @@ const receiveData = async (req, res, next) => {
     //TODO: AFTER DEMO: We currently trust anyone who sends an update with a deviceId
     // Maybe we should add some kind of check to make sure it's actually from Yggio
 
+    //1b. We check that there are actual Zaps using this device before doing more processing
+    const zapsExist = await ZapierHook.exists({ deviceId: deviceId })
+
+    if (!zapsExist) {
+      return res.status(200).send()
+    }
+
     // 2. we find all Nodes with this id
     const nodes = await Node.find({ yggioId: deviceId })
 
@@ -88,14 +95,11 @@ const matchNewDataWithNode = async (nodes, data) => {
  * @returns {void}
  */
 const sendToZapier = async (node, data) => {
-  const zapierHook = await ZapierHook.findOne({ owner: node.owner })
-  console.log(zapierHook.target_url)
+  const zapierHooks = await ZapierHook.find({ owner: node.owner, deviceId: node.yggioId })
 
-  // TODO: uncomment 
-  // await axios.post(zapierHook.target_url, {
-  //   deviceName: node.name,
-  //   data
-  // })
+  await Promise.all(zapierHooks.map(async (hook) => {
+    await axios.post(hook.target_url, data)
+  }))
 }
 
 // Exports.
