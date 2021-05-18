@@ -14,10 +14,10 @@ module.exports = {
   },
   session: {
     path: path.normalize(path.join(__dirname, '../sessions')),
-    secret: 'random-secret-session-key', // TODO: fix
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
-    name: 'your_session_name', // TODO: fix
+    name: 'ysocial_sess',
     cookie: {
       secure: process.env.NODE_ENV === 'production' ? true : false,
       maxAge: 1000 * 60 * 60 * 24 * 30 // one month
@@ -36,7 +36,7 @@ module.exports = {
     },
     provider: {
       name: process.env.PROVIDER_NAME,
-      info: 'Yggio integration for connecting to Zapier - Send your sensor data to Zapier and use it as a trigger for further actions',
+      info: 'Yggio integration for connecting to Zapier',
       redirectUris: {
         browser: `${process.env.FRONTEND_URI}/oauth`,
         app: 'your-app://login' // should be changed, if used

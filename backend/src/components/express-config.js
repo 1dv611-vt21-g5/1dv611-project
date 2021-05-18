@@ -29,6 +29,8 @@ const apply = app => {
   app.options('*', cors(config.cors))
   app.use(cors(config.cors))
 
+  app.set('trust proxy', 1)
+
   // Apply routes
   app.use('/api', sessionMiddleware, require('../api'))
 
