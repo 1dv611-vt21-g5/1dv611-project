@@ -5,6 +5,7 @@ import CopyButton from './CopyButton'
 import ResetApiKeyButton from './ResetApiKeyButton'
 import { resetAPIkey } from 'actions/user'
 import Loading from './Loading'
+import Error from './Error'
 
 
 const User = () => {
@@ -17,9 +18,7 @@ const User = () => {
   }
 
   if (!savedUser && !error) { return <Loading /> }
-  if (error) {
-    return <Heading size="md" as="h2">Something went wrong</Heading>
-  }
+  if (error) return <Error />
 
   return (
     <Container maxW="container.lg">

@@ -3,10 +3,8 @@
 const axios = require('axios')
 
 const Node = require('../../../models/Node')
-const User = require('../../../models/User')
 const ZapierHook = require('../../../models/ZapierHook')
 
-const { routes: { getNode } } = require('yggio-connect')
 
 /**
  * Iterates through a nested object step-by-step to return a value
@@ -40,12 +38,22 @@ const receiveData = async (req, res, next) => {
     //TODO: AFTER DEMO: We currently trust anyone who sends an update with a deviceId
     // Maybe we should add some kind of check to make sure it's actually from Yggio
 
-    // 2. we find all Nodes with this id
+    //1b. We check that there are actual Zaps using this device before doing more processing
+    const zapsExist = await ZapierHook.exists({ deviceId: deviceId })
+
+    if (!zapsExist) {
+      return res.status(200).send()
+    }
+
+    // 2. we find all Nodes with this id (as each user can have their own settings)
     const nodes = await Node.find({ yggioId: deviceId })
 
     // 3. We grab the updated device data from the request
     const updatedDevice = req.body.payload.iotnode
 
+    // TODO: With many nodes/users who have many Zaps, this function could take a long
+    // time to complete or fail with some but succeed with others.
+    // maybe change them to Promise.allSettled instead?
     matchNewDataWithNode(nodes, updatedDevice)
 
     return res.status(200).send()
@@ -88,14 +96,11 @@ const matchNewDataWithNode = async (nodes, data) => {
  * @returns {void}
  */
 const sendToZapier = async (node, data) => {
-  const zapierHook = await ZapierHook.findOne({ owner: node.owner })
-  console.log(zapierHook.target_url)
+  const zapierHooks = await ZapierHook.find({ owner: node.owner, deviceId: node.yggioId })
 
-  // TODO: uncomment 
-  // await axios.post(zapierHook.target_url, {
-  //   deviceName: node.name,
-  //   data
-  // })
+  await Promise.all(zapierHooks.map(async (hook) => {
+    await axios.post(hook.target_url, data)
+  }))
 }
 
 // Exports.

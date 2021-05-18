@@ -52,18 +52,18 @@ const code = async (req, res, next) => {
 
     await user.save() // kanske?
 
-    return req.sessionStore.regenerate(req, regenErr => {
-      if (regenErr) return next(regenErr)
+    return req.session.destroy(destroyErr => {
+      if (destroyErr) return next(destroyErr)
 
-      req.session.user = freshUser
-      const resUser = unsetProps(freshUser)
+      return req.sessionStore.regenerate(req, regenErr => {
+        if (regenErr) return next(regenErr)
 
-      return res.json(resUser)
+        req.session.user = freshUser
+        const resUser = unsetProps(freshUser)
+
+        return res.json(resUser)
+      })
     })
-
-    // return req.session.destroy(destroyErr => {
-    //   if (destroyErr) return next(destroyErr)
-    //   })
   } catch (e) {
     next(e)
   }
