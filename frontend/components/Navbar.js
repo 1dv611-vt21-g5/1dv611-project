@@ -37,8 +37,8 @@ const Navbar = () => {
           <Link href="/about">
             <a className="navLinks">About</a>
           </Link>
-          <Box cursor="pointer">
-            <a onClick={handleLogout} className="navLinks">Logout</a>
+          <Box className="navLinks" cursor="pointer">
+            <a onClick={handleLogout}>Logout</a>
           </Box >
         </>
       )}

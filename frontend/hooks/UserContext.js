@@ -4,7 +4,7 @@ import { statStr } from '../constants'
 
 let userSession = false
 
-axios.get(statStr.backendHost + '/api/user', {}, { withCredentials: true })
+axios.get(statStr.backendHost + '/api/user', { withCredentials: true })
   .then(function (response) {
     userSession = true
   })
