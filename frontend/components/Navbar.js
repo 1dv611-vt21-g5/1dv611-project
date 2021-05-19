@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
 import { logout } from 'actions/logout'
-import { useUser } from 'hooks/UserContext'
+import useUser from 'hooks/useUser'
 
 const Navbar = () => {
   const router = useRouter()
-  const user = useUser() // TODO USE THE HOOK AND SET VALUE
-
+  const user = useUser()
+  
   const handleLogout = async () => {
     await logout()
     router.push('/')
@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav className='navbarItems'>
       {/* TODO: Redirect from pages with no permission if no user  */}
-      {user? ( // Use variable "user"
+      {user.user ? ( // Use variable "user"
         <>
           <Link href="/devices">
             <a className="navLinks">Devices</a>
