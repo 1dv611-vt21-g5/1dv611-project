@@ -4,16 +4,16 @@ import { statStr } from '../constants'
 
 let userSession = false
 
-axios.get(statStr.backendHost + '/api/user', {}, { withCredentials: true })
+axios.get(statStr.backendHost + '/api/user', { withCredentials: true })
   .then(function (response) {
     userSession = true
   })
   .catch(function (error) {
-    console.log("Could not get user session details");
+    console.log(error.response.status);
+    console.log(error.response.statusText);
   })
-  .then(function () {
-    // always executed
-  });
+
+console.log(userSession);
 
 
 const UserContext = createContext()
