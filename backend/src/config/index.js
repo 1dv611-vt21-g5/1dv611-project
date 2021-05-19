@@ -19,7 +19,8 @@ module.exports = {
     resave: true,
     name: 'ysocial_sess',
     cookie: {
-      secure: process.env.NODE_ENV === 'production' ? true : false,
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 1000 * 60 * 60 * 24 * 30 // one month
     }
   },

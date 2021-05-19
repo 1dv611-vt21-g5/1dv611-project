@@ -2,11 +2,13 @@ import { useCode } from '../actions'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
+import Loading from './Loading'
+
 const WaitOauth = () => {
   const router = useRouter()
   const [message, setMessage] = useState({
     message: `
-        Please do hold...
+        Logging in..
       `,
     cls: 'oauth_wait'
   })
@@ -22,9 +24,7 @@ const WaitOauth = () => {
         message: 'OAuth login successful! Redirecting to devices...',
         cls: 'oauth_success'
       })
-      setTimeout(() => {
-        router.push('/devices')
-      }, 2000)
+      router.push('/devices')
     } catch (err) {
       console.log('Error:', err)
       setMessage({
@@ -62,7 +62,7 @@ const WaitOauth = () => {
 
   return (
     <div className="something">
-      <p className={message.cls}> {message.message} </p>
+      <Loading message={message.message} />
     </div>
   )
 }
