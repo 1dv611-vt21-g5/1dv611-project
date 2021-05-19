@@ -52,7 +52,7 @@ const WaitOauth = () => {
     if (isLoading) {
       setMessage({
         message: `
-        Please do hold...
+        Logging in..
       `,
         cls: 'oauth_wait'
       })

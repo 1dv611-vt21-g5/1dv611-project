@@ -30,7 +30,7 @@ const subscribe = async (req, res, next) => {
     const subscriptionName = `${nodeId}/${user._id}`
 
     // create the sub at Yggio
-    // TODO: fix to get correct return values 
+    // TODO: fix to get correct return values // ??? 
     // NOTE: This route seems to be idempotent, it wont create extra subscriptions if the input is the same, we thus dont have to check if one already exists.
     const sub = await provider.subscribe(user, nodeId, protocol, protocolData, subscriptionName)
 
