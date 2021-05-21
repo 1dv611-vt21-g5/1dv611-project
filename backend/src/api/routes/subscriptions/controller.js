@@ -69,22 +69,23 @@ const unsubscribe = async (req, res, next) => {
 
     const node = await Node.findOne({ owner: user._id, yggioId: nodeId })
 
-    const url = process.env.YGGIO_API_URL + '/api/channels/' + node.subscriptionId
 
-    // TODO: this fails due to permissions @ Yggio - intended?
-    try {
-      const response = await axios.delete(url, {
-        auth: { bearer: user.accessToken }
-      })
-      console.log(response.body)
-    } catch (e) {
-      console.log(e.message)
-    }
+    // // Remove channel from Yggio
+    // // TODO: this fails due to permissions @ Yggio - intended?
+    // // IMPORTANT NOTE: If this is enabled to work in the future, subscriptions must be changed to be 'per user and device' and not just 'per device' - 
+    // // we dont want one user unsubscribing causing all subscriptions to that device (from other users) to also be removed
+    // const url = process.env.YGGIO_API_URL + '/api/channels/' + node.subscriptionId
+    // try {
+    //   const response = await axios.delete(url, {
+    //     auth: { bearer: user.accessToken }
+    //   })
+    //   console.log(response.body)
+    // } catch (e) {
+    //   console.log(e.message)
+    // }
 
+    // 2. Delete from Ysocial database
     await Node.findByIdAndDelete(node._id)
-
-    // // 2. Delete from Ysocial database
-    // await Node.deleteMany({ yggioId: yggioId, owner: user._id })
 
     return res.status(200).send()
   } catch (error) {
