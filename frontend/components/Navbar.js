@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
@@ -7,7 +8,7 @@ import useUser from 'hooks/useUser'
 const Navbar = () => {
   const router = useRouter()
   const user = useUser()
-  
+
   const handleLogout = async () => {
     await logout()
     router.push('/')

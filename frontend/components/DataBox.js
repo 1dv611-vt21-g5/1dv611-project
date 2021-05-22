@@ -1,8 +1,9 @@
 import dynamic from 'next/dynamic'
-const ReactJson = dynamic(() => import('react-json-view'), { ssr: false })
 import { Box, useOutsideClick, Collapse, Fade, Flex, Icon, Text } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 import { TiDocumentText } from 'react-icons/ti'
+
+const ReactJson = dynamic(() => import('react-json-view'), { ssr: false })
 
 const DataBox = ({ device }) => {
   const [showData, setShowData] = useState(false)
@@ -34,7 +35,7 @@ const DataBox = ({ device }) => {
           overflowY="scroll"
           mt="1rem"
           p="0.5rem"
-          width={{ base: "auto", md: "40rem", lg: "60.5rem" }} >
+          width={{ base: 'auto', md: '40rem', lg: '60.5rem' }} >
           <ReactJson
             theme={'bright:inverted'}
             style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent' }}

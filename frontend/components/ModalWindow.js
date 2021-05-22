@@ -24,9 +24,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { MdClose } from 'react-icons/md'
 import { useState, useEffect } from 'react'
-
 import { subscribe, unsubscribe } from 'actions/subscriptions'
-
 import JsonPathPicker from './JsonPathPicker'
 import SubStatusIcon from './SubStatusIcon'
 

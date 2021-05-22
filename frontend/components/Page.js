@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar'
 import { Flex, Spacer, Box } from '@chakra-ui/react'
 
 const Page = ({ children }) => {
-
   return (
       <Flex flexDirection="column" className="App" bg="lime.background" minH="100vh">
         <Head>

@@ -1,9 +1,9 @@
+import React from 'react'
 import dynamic from 'next/dynamic'
-const ReactJson = dynamic(() => import('react-json-view'), { ssr: false }) // this module doesn't like being server-rendered
-import { Text, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview, Tooltip, Divider, Box } from '@chakra-ui/react'
+import { Text, Flex, Wrap, IconButton, Editable, EditableInput, EditablePreview, Tooltip, Box } from '@chakra-ui/react'
 import { ImCross } from 'react-icons/im'
-import { useState } from 'react'
 
+const ReactJson = dynamic(() => import('react-json-view'), { ssr: false }) // this module doesn't like being server-rendered
 
 /**
  * Renders a DataPoint badge for selected data points below the JSON tree, with options to edit the displayName or remove the datapoint entirely.
@@ -32,7 +32,6 @@ const DataPoint = ({ data, handleRemove, handleEdit }) => {
  * @returns JSX
  */
 const JsonPathPicker = ({ jsonData, chosenDataPoints, setChosenDataPoints, isInvalid }) => {
-
   /**
    * Handles clicks on the JSON tree and adds the node to state
    * @param {object} selection An object containing the name and path data - received from react-json-view
@@ -83,7 +82,7 @@ const JsonPathPicker = ({ jsonData, chosenDataPoints, setChosenDataPoints, isInv
       <Text fontSize="sm" fontWeight="400" color="gray.500">Click to select which data points you wish to send to Zapier</Text>
       <Flex className="jsonPicker" maxH="30rem">
         <Box border={isInvalid ? '2px' : '1px'}
-          borderColor={isInvalid ? 'red.500' : "gray.200"}
+          borderColor={isInvalid ? 'red.500' : 'gray.200'}
           borderRadius="lg"
           shadow="inner"
           cursor='pointer'
@@ -91,11 +90,12 @@ const JsonPathPicker = ({ jsonData, chosenDataPoints, setChosenDataPoints, isInv
           overflowY="scroll"
           mt="1rem"
           p="0.5rem"
-          width={{ base: "auto", md: "40rem", lg: "60.5rem" }} >
+          width={{ base: 'auto', md: '40rem', lg: '60.5rem' }} >
           <ReactJson
             theme={'bright:inverted'}
             style={{ fontFamily: 'Inconsolata, monospace', background: 'transparent' }}
             src={jsonData || dataSample} // TODO: remove dataSample
+            // src={ jsonData }
             name={false}
             iconStyle={'triangle'}
             enableClipboard={false}

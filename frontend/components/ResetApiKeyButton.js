@@ -3,11 +3,11 @@ import { Button } from '@chakra-ui/react'
 
 export default class ResetApiKeyButton extends React.Component {
     handleClick = () => {
-    this.props.method()
-  }
+      this.props.method()
+    }
 
-  render () {
-    return (
+    render () {
+      return (
       <Button
         shadow='md'
         colorScheme={this.props.colorScheme || 'blue'}
@@ -17,6 +17,6 @@ export default class ResetApiKeyButton extends React.Component {
         onClick={this.handleClick}>
         Reset API-Key
       </Button>
-    )
-  }
+      )
+    }
 }

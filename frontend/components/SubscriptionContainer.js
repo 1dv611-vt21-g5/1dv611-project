@@ -1,8 +1,5 @@
-import {
-  Spinner
-} from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react'
 import SubscribeButton from './SubscribeButton'
-
 import useRequest from 'hooks/useRequest'
 import { subscribe, unsubscribe } from 'actions/subscriptions'
 
@@ -32,7 +29,7 @@ export const SubscriptionContainer = (props) => {
         method={unsub}>
         Unsubscribe
       </SubscribeButton>
-    )
+      )
     : (
       <SubscribeButton
         colorScheme="subscribe"
@@ -40,5 +37,5 @@ export const SubscriptionContainer = (props) => {
         method={sub}>
         Subscribe
       </SubscribeButton>
-    )
+      )
 }
