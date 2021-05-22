@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react'
-import _ from 'lodash'
+import React from 'react'
 import { Heading, Container, Stack, Flex } from '@chakra-ui/react'
-
 import Device from './Device'
 import DeviceSkeletons from './DeviceSkeletons'
 import Error from './Error'

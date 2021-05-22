@@ -1,13 +1,8 @@
-import { useState } from 'react'
-import {
-  Text, Flex, Spacer, Icon, Box, Spinner, Tooltip
-} from '@chakra-ui/react'
-import { VscSymbolNamespace } from 'react-icons/vsc'
-
+import React from 'react'
+import { Text, Flex, Spacer } from '@chakra-ui/react'
 import DataBox from './DataBox'
 import { ModalWindow } from './ModalWindow'
 import SubStatusIcon from './SubStatusIcon'
-
 import useRequest from 'hooks/useRequest'
 
 const Device = ({ device }) => {

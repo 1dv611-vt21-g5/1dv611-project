@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import { Heading, Text, Container, Stack, Box, Link, Flex } from '@chakra-ui/react'
 
 const About = () => {
@@ -28,13 +26,13 @@ const About = () => {
           </Text>
           <Heading size="md" as="h2">Background</Heading>
           <Text color="lime.grey">
-            The project is carried out as part of the course 1dv611 (Mjukvaruutvecklingsprojekt i grupp) at Linnaeus University. In this course, students collaborate with real enterprises to develop an application or part of an application, depending on the vision of the company.        
+            The project is carried out as part of the course 1dv611 (Mjukvaruutvecklingsprojekt i grupp) at Linnaeus University. In this course, students collaborate with real enterprises to develop an application or part of an application, depending on the vision of the company.
           </Text>
           <Text color="lime.grey">
-            Sensative AB was interested in developing a new functionality for their existing platform Yggio. Yggio is a platform for IoT devices where different sensors of different types can be connected, regardless of protocol. You can get an overview of your IoT devices, their status and administrate them from the platform. The platform also has an API that developers can use to access data. 
+            Sensative AB was interested in developing a new functionality for their existing platform Yggio. Yggio is a platform for IoT devices where different sensors of different types can be connected, regardless of protocol. You can get an overview of your IoT devices, their status and administrate them from the platform. The platform also has an API that developers can use to access data.
           </Text>
           <Text color="lime.grey">
-            The functionality that Sensative AB was interested in was to make their users able to share sensor data via social media or another platform when something specific happened or at a certain time. The platform that Sensative AB expressed to be the most interested in was Zapier as you can share the data with many other platforms easily. 
+            The functionality that Sensative AB was interested in was to make their users able to share sensor data via social media or another platform when something specific happened or at a certain time. The platform that Sensative AB expressed to be the most interested in was Zapier as you can share the data with many other platforms easily.
           </Text>
           <Text color="lime.grey">
             We are 4 students who will work during 10 weeks to develop this service, part time.

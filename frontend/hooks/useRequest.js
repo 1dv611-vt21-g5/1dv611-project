@@ -1,6 +1,5 @@
 import useSWR from 'swr'
 import axios from 'axios'
-
 import { statStr } from '../constants'
 
 export default function useRequest (request, { initialData, ...config } = {}) {

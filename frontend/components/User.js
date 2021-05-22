@@ -1,18 +1,16 @@
 import useRequest from 'hooks/useRequest'
 import { Heading, Text, Container, Stack, Box, Flex } from '@chakra-ui/react'
-
 import CopyButton from './CopyButton'
 import ResetApiKeyButton from './ResetApiKeyButton'
 import { resetAPIkey } from 'actions/user'
 import Loading from './Loading'
 import Error from './Error'
 
-
 const User = () => {
   const userURI = '/api/user'
   const { data: savedUser, mutate, error } = useRequest(userURI) // Get user info from db
 
-  const reset = async () => { //Changes API-key and updates rendered value 
+  const reset = async () => { // Changes API-key and updates rendered value
     await resetAPIkey()
     mutate(userURI, {})
   }
@@ -35,7 +33,6 @@ const User = () => {
           <Text color="lime.grey">This is your API-key for authentication on Zapier:</Text>
           <Text fontWeight="600" color="teal.500"> {savedUser.api_key_zapier}</Text>
         </Stack>
-
 
         <CopyButton colorScheme='subscribe' apikey={savedUser.api_key_zapier}>
         </CopyButton>
