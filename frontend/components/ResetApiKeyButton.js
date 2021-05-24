@@ -2,13 +2,14 @@ import React from 'react'
 import { Button } from '@chakra-ui/react'
 
 export default class ResetApiKeyButton extends React.Component {
-    handleClick = () => {
-      this.props.method()
-    }
+  handleClick = () => {
+    this.props.method()
+  }
 
-    render () {
-      return (
+  render() {
+    return (
       <Button
+        isLoading={this.props.isLoading}
         shadow='md'
         colorScheme={this.props.colorScheme || 'blue'}
         size='sm'
@@ -17,6 +18,6 @@ export default class ResetApiKeyButton extends React.Component {
         onClick={this.handleClick}>
         Reset API-Key
       </Button>
-      )
-    }
+    )
+  }
 }
