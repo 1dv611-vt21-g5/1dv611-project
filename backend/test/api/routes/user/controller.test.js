@@ -4,7 +4,7 @@ const supertest = require('supertest')
 const createServer = require('../../../setupTests')
 const mongoose = require('../../../../src/components/mongoose')
 
-const { getUser } = require('../../../../src/api/routes/user/controller')
+const { getUser, resetApiKey } = require('../../../../src/api/routes/user/controller')
 const jestConfig = require('../../../../jest.config')
 
 let request
@@ -76,7 +76,6 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
 
     expect(user.code).toBe(200)
     expect(user.data.username).toBe('ak222ye@student.lnu.se')
-    done()
   })
 })
 
