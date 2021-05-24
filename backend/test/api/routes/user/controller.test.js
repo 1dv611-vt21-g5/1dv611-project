@@ -44,8 +44,8 @@ afterAll(async () => {
   await app.close()
 })
 
-describe('[routes/user/controller] - getUser - gets correct user', () => {
-  it('shitty end-to-end test', async done => {
+describe('getUser', () => {
+  it('1. Check if username is correct', async done => {
     const res = await request.get('/api/user')
 
     expect(res.body.username).toBe('ak222ye@student.lnu.se')
@@ -53,7 +53,7 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
     done()
   })
 
-  it('unit test', async () => {
+  it('2. Check if response is 200 and data is correct ', async () => {
     const req = {
       session: {
         user: {
@@ -80,11 +80,11 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
 })
 
 describe('resetApiKey', () => {
-  it('test', async done => {
+  it('3. Update API- key', async done => {
     const res = await request.put('/api/user')
     done()
   })
-  it('test', async () => {
+  it('4. Update API- key', async () => {
     const req = {
       session: {
         user: {

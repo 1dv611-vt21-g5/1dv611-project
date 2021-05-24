@@ -6,71 +6,50 @@
 	},
 	"item": [
 		{
-			"name": "Test updates route",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "Simulate incoming sensor update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
 					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"iotnode\": \"5ee221e49c329100064c9783\",\n\t\"diff\": {\n\t\t\"data\": \"FFFF09010A09\"\n\t},\n\t\"event\": {\n\t    \"data\" : \"FFFF09010A09\"\n\t}\n}"
-				},
-				"url": {
-					"raw": "http://localhost:9999/api/updates/5e32967fed6e0e0006e5a64f",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9999",
-					"path": [
-						"api",
-						"updates",
-						"5e32967fed6e0e0006e5a64f"
-					]
-				},
-				"description": "iotnode = is the iotnode entity that has been updated.\n\ndiff = contains the attributes that was changed in the update.\n\nevent = contains the attributes that triggered the update.\n\n\nhttps://docs.ygg.io/publisher/#publisher\n\n\nTesting on \"LoRa_Strips_2_Raw\" with id 5e32967fed6e0e0006e5a64f"
-			},
-			"response": []
-		},
-		{
-			"name": "Test updates route 2",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"iotnode\": \"5fd2371db1fe2a0006b78ae0\",\n\t\"diff\": {\n\t\t\"data\": \"FFFF09010A09\"\n\t},\n\t\"event\": {\n\t    \"data\" : \"FFFF09010A09\"\n\t}\n}"
-				},
-				"url": {
-					"raw": "http://localhost:9999/api/updates/5fd2371db1fe2a0006b78ae0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9999",
-					"path": [
-						"api",
-						"updates",
-						"5fd2371db1fe2a0006b78ae0"
-					]
 				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"payload\": {\n    \"iotnode\": {\n      \"_id\": \"60892972c07cb300069e4691\",\n      \"nodeType\": \"SimpleDevice\",\n      \"__v\": 0,\n      \"category\": \"uncategorized\",\n      \"createdAt\": \"2021-01-14T13:44:21.057Z\",\n      \"description\": \"The device was successfully included, but we couldn't match the product information with a device name.\",\n      \"deviceModelName\": \"N/A\",\n      \"latlng\": [],\n      \"name\": \"lux_2_6142341_Raw-translated (fiware-device)\",\n      \"rabbitRouting\": {},\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\",\n      \"translatedFrom\": \"60004a913f93fa0006b57280\",\n      \"updatedAt\": \"2021-05-16T22:16:25.202Z\",\n      \"value\": { \"luminance\": 0.54, \"temperature\": 45.6, \"temperatureUnit\": \"celsius\" },\n      \"luminance\": 0.54,\n      \"temperature\": 22.5,\n      \"version\": 17\n    },\n    \"diff\": {\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\",\n      \"updatedAt\": \"2021-05-16T22:16:25.202Z\",\n      \"value\": { \"luminance\": 1, \"temperature\": 22.6, \"temperatureUnit\": \"celsius\" }\n    },\n    \"event\": {\n      \"value\": { \"luminance\": 1, \"temperature\": 22.6, \"temperatureUnit\": \"celsius\" },\n      \"lastActive\": 1621203385195,\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9999/api/updates/60892972c07cb300069e4691",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api",
+						"updates",
+						"60892972c07cb300069e4691"
+					]
+				},
+				"description": "This requests simulates an incoming update from Yggio of a sensor. To make sure it works all the way to a Zap, create a subscription for the device \"lux_2_6142341_Raw-translated (fiware-device)\"."
 			},
 			"response": []
 		}
