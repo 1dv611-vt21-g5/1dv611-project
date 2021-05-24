@@ -12,9 +12,10 @@ export default class CopyButton extends React.Component {
     document.body.removeChild(el)
   }
 
-  render () {
+  render() {
     return (
       <Button
+        isLoading={this.props.isLoading}
         shadow='md'
         colorScheme={this.props.colorScheme || 'blue'}
         size='sm'

@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import useRequest from 'hooks/useRequest'
-import { Heading, Text, Container, Stack, Box, Flex } from '@chakra-ui/react'
+import { Heading, Text, Container, Stack, Box, Flex, useToast } from '@chakra-ui/react'
 import CopyButton from './CopyButton'
 import ResetApiKeyButton from './ResetApiKeyButton'
 import { resetAPIkey } from 'actions/user'
@@ -7,12 +8,22 @@ import Loading from './Loading'
 import Error from './Error'
 
 const User = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const toast = useToast()
+
   const userURI = '/api/user'
-  const { data: savedUser, mutate, error } = useRequest(userURI) // Get user info from db
+  const { data: savedUser, mutate, error, isValidating } = useRequest(userURI) // Get user info from db
 
   const reset = async () => { // Changes API-key and updates rendered value
+    setIsLoading(true)
     await resetAPIkey()
     mutate(userURI, {})
+    toast({
+      title: 'API key reset!',
+      description: 'Your API key has been reset.',
+      status: 'success'
+    })
+    setIsLoading(false)
   }
 
   if (!savedUser && !error) { return <Loading /> }
@@ -34,7 +45,7 @@ const User = () => {
           <Text fontWeight="600" color="teal.500"> {savedUser.api_key_zapier}</Text>
         </Stack>
 
-        <CopyButton colorScheme='subscribe' apikey={savedUser.api_key_zapier}>
+        <CopyButton isLoading={isLoading || isValidating} colorScheme='subscribe' apikey={savedUser.api_key_zapier}>
         </CopyButton>
 
         <Stack mt='2rem' spacing="1rem">
@@ -42,7 +53,7 @@ const User = () => {
           <Text color="lime.grey">If you wish to reset your API-KEY, make sure to update the API-KEY on Zapier aswell.</Text>
         </Stack>
 
-        <ResetApiKeyButton method={reset} colorScheme='red'></ResetApiKeyButton>
+        <ResetApiKeyButton isLoading={isLoading || isValidating} method={reset} colorScheme='red'></ResetApiKeyButton>
 
       </Box>
     </Container>
