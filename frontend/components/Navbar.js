@@ -15,14 +15,6 @@ const Navbar = () => {
     router.push('/')
   }
 
-  // const userNoPermission = () => {
-  //   const route = router.route
-  //   // TODO wait for update??? mutate???
-  //   if (route == '/devices' && !user || route == '/user' && !user) {
-  //     router.push('/')
-  //   }
-  // }
-
   return (
     <nav className='navbarItems'>
       {/* TODO: Redirect from pages with no permission if no user  */}
