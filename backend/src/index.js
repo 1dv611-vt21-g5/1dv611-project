@@ -10,7 +10,9 @@ require('dotenv').config()
 const config = require('./config')
 const seedDb = require('../tools/seed-db')
 const { resetUsers, saveProviderOauthSecret } = require('./components/db')
-const { secret } = require('../db/oauth-info.json')
+
+const { secret } = require('../db/oauth-info.json') // TODO: what is this
+
 const mongoose = require('./components/mongoose')
 
 let server
@@ -54,7 +56,7 @@ const setup = async () => {
   const result = await yggioConnect.init(config.yggio, secret)
 
   // Saves the OAuth secret
-  saveProviderOauthSecret(result.provider.secret)
+  saveProviderOauthSecret(result.provider.secret) // TODO: OAuth secret is received AGAIN from the API and should be saved ?? 
 
   console.log('### ### ### ### YGGIO API - ready')
 
