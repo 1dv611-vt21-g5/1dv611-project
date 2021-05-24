@@ -1,5 +1,7 @@
 # Zapier Integration for Ysocial
 
+Web UI version: https://developer.zapier.com/app/131910/version/1.0.0
+
 This is the CLI version of our Zapier integration with Yggio. It was originally built in the Web UI but has been exported here for inclusion in the git repo.
 
 Contents of this folder: 
@@ -26,5 +28,6 @@ Then:
   3. Make potential changes to the source code, see: https://platform.zapier.com/cli_docs/docs for documentation.
   4. `zapier push` to upload changes to Zapier.
 
-NOTE: Once an application has been pushed via CLI to Zapier it is converted from a "Web UI Integration" to a "CLI Integration" permanently. All future changes must be made in the source code. If this is not what you want skip the above steps and edit the integration via the Web UI: https://developer.zapier.com/app/131910/version/1.0.0
-We will add Sensative/Yggio team members to the integration team @ Zapier and hand over ownership in connection with our handover.
+> IMPORTANT NOTE: Once an application has been pushed via CLI to Zapier it is converted from a "Web UI Integration" to a "CLI Integration" permanently. All future changes must be made in the source code. If this is not what you want skip the above steps and edit the integration via the Web UI: https://developer.zapier.com/app/131910/version/1.0.0
+
+>We will add Sensative/Yggio team members to the integration team @ Zapier and hand over ownership in connection with our handover.
