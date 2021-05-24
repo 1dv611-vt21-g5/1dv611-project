@@ -44,7 +44,7 @@ afterAll(async () => {
   await app.close()
 })
 
-describe('[routes/user/controller] - getUser - gets correct user', () => {
+describe('getUser', () => {
   it('1. Check if username is correct', async done => {
     const res = await request.get('/api/user')
 
@@ -80,11 +80,11 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
 })
 
 describe('resetApiKey', () => {
-  it('1. Update API- key', async done => {
+  it('3. Update API- key', async done => {
     const res = await request.put('/api/user')
     done()
   })
-  it('2. Update API- key', async () => {
+  it('4. Update API- key', async () => {
     const req = {
       session: {
         user: {

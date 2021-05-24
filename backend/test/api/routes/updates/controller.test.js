@@ -25,7 +25,7 @@ afterAll(async () => {
   // await app.close()
 })
 
-it('should correctly parse nested values', () => {
+it('5. should correctly parse nested values', () => {
   const nestedObject = {
     a: {
       b: {
