@@ -22,7 +22,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await db.disconnect()
-  await app.close()
+  // await app.close()
 })
 
 it('should correctly parse nested values', () => {
