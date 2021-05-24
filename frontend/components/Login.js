@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@chakra-ui/react'
 import { redir } from '../actions'
+import { useRouter } from 'next/router'
+
+import useUser from 'hooks/useUser'
+
 
 const Login = () => {
+  const router = useRouter()
+  const { user, loading } = useUser()
+
   const redirToYggio = () => {
     redir()
   }
+
+  useEffect(() => {
+    if (user) {
+      router.push('/devices')
+    }
+  }, [user, loading])
 
   return (
     <div className="something">
