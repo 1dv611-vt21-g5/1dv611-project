@@ -7,7 +7,9 @@ const useUser = () => {
   return {
     loading,
     user,
-    mutate
+    mutate,
+    error
   }
 }
+
 export default useUser

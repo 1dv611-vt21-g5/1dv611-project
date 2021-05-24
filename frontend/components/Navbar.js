@@ -5,19 +5,28 @@ import { Box } from '@chakra-ui/react'
 import { logout } from 'actions/logout'
 import useUser from 'hooks/useUser'
 
+
 const Navbar = () => {
   const router = useRouter()
-  const user = useUser()
+  const {user, mutate, error} = useUser()
 
   const handleLogout = async () => {
     await logout()
     router.push('/')
   }
 
+  // const userNoPermission = () => {
+  //   const route = router.route
+  //   // TODO wait for update??? mutate???
+  //   if (route == '/devices' && !user || route == '/user' && !user) {
+  //     router.push('/')
+  //   }
+  // }
+
   return (
     <nav className='navbarItems'>
       {/* TODO: Redirect from pages with no permission if no user  */}
-      {user.user ? ( // Use variable "user"
+      {!error ? ( // Use variable "user" instead?
         <>
           <Link href="/devices">
             <a className="navLinks">Devices</a>
@@ -33,7 +42,7 @@ const Navbar = () => {
           </Box >
         </>
       ) : (
-        <>
+        <> 
         <Link href="/about">
           <a className="navLinks">About</a>
         </Link>
