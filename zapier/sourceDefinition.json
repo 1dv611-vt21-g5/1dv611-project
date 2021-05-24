@@ -1,0 +1,173 @@
+{
+  "version": "1.0.0",
+  "platformVersion": "9.4.2",
+  "authentication": {
+    "type": "custom",
+    "test": {
+      "url": "{{process.env.BACKEND_URL}}/api/auth/apikey",
+      "method": "GET",
+      "params": {
+        "key": "{{bundle.authData.api_key}}"
+      },
+      "headers": {
+        "X-API-KEY": "{{bundle.authData.api_key}}"
+      },
+      "body": {},
+      "removeMissingValuesFrom": {}
+    },
+    "fields": [
+      {
+        "computed": false,
+        "key": "api_key",
+        "required": true,
+        "label": "Yggio-to-Zapier API Key",
+        "type": "password",
+        "helpText": "Can be found when logged in to Yggio-to-Zapier."
+      }
+    ],
+    "customConfig": {},
+    "connectionLabel": "{{bundle.inputData.username}}"
+  },
+  "triggers": {
+    "new_data": {
+      "operation": {
+        "perform": {
+          "source": "return [bundle.cleanedRequest];"
+        },
+        "type": "hook",
+        "performSubscribe": {
+          "url": "{{process.env.BACKEND_URL}}/api/zapier",
+          "method": "POST",
+          "params": {
+            "api_key": "{{bundle.authData.api_key}}"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-API-KEY": "{{bundle.authData.api_key}}"
+          },
+          "body": {
+            "hookUrl": "{{bundle.targetUrl}}",
+            "userApiKey": "{{bundle.authData.api_key}}",
+            "yggioDeviceId": "{{bundle.inputData.device}}"
+          },
+          "removeMissingValuesFrom": {}
+        },
+        "performUnsubscribe": {
+          "url": "{{process.env.BACKEND_URL}}/api/zapier",
+          "method": "DELETE",
+          "params": {},
+          "headers": {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          "body": {
+            "hookUrl": "{{bundle.targetUrl}}",
+            "userApiKey": "{{bundle.authData.api_key}}",
+            "yggioDeviceId": "{{bundle.inputData.device}}"
+          },
+          "removeMissingValuesFrom": {}
+        },
+        "sample": {
+          "id": "12345abcd",
+          "name": "Cool IoT Thermometer"
+        },
+        "outputFields": [
+          {
+            "key": "id",
+            "label": "Yggio ID"
+          },
+          {
+            "key": "name",
+            "label": "Name"
+          }
+        ],
+        "inputFields": [
+          {
+            "key": "device",
+            "type": "string",
+            "dynamic": "fetch_devices.yggioId.name",
+            "label": "Device",
+            "helpText": "Which of your subscriced devices do you want to use in this Zap?",
+            "required": true,
+            "list": false,
+            "altersDynamicFields": false
+          }
+        ],
+        "performList": {
+          "url": "{{process.env.BACKEND_URL}}/api/zapier/device",
+          "method": "GET",
+          "params": {
+            "userApiKey": "{{bundle.authData.api_key}}",
+            "yggioDeviceId": "{{bundle.inputData.device}}"
+          },
+          "headers": {
+            "Accept": "application/json"
+          },
+          "body": {},
+          "removeMissingValuesFrom": {}
+        }
+      },
+      "key": "new_data",
+      "noun": "Sensor Data",
+      "display": {
+        "label": "Sensor data received from Yggio",
+        "description": "Triggers when data from an IoT device connected to Yggio is pushed to Zapier.",
+        "directions": "You must first activate and enable a sensor in our dashboard before it will send any data.",
+        "hidden": false,
+        "important": true
+      }
+    },
+    "fetch_devices": {
+      "operation": {
+        "perform": {
+          "source": "const options = {\n  url: `${process.env.BACKEND_URL}/api/zapier/devices`,\n  method: 'GET',\n  headers: {\n    'Accept': 'application/json',\n    'X-API-KEY': bundle.authData.api_key\n  },\n  params: {\n    'api_key': bundle.authData.api_key\n  }\n}\n\nreturn z.request(options)\n  .then((response) => {\n    response.throwForStatus();\n    const results = response.json;\n\n    // You can do any parsing you need for results here before returning them\n\n    return results.map(function(node) {\n      const temp = node.name\n      node.name = node.displayName\n      node.rawName = temp\n      node.id = node._id\n      delete node._id\n      return node\n    });\n  });"
+        },
+        "sample": {
+          "yggioId": "6000519e3f93fa0006b64583",
+          "name": "lux_Comfort500_CS_EU Translated",
+          "subscriptionId": "609511e2ff2f0a00067503e0",
+          "owner": "6076b42ec054220006cebbff",
+          "dataValues": [
+            {
+              "path": [],
+              "data": {
+                "path": [
+                  "value"
+                ],
+                "_id": "609519a9d51b69084c38bb3f"
+              }
+            }
+          ],
+          "createdAt": "2021-05-07T10:42:49.435Z",
+          "updatedAt": "2021-05-07T10:42:49.435Z",
+          "__v": 0,
+          "id": "609519a9d51b69084c38bb3e"
+        },
+        "outputFields": [
+          {
+            "key": "yggioId",
+            "label": "Yggio ID"
+          },
+          {
+            "key": "name",
+            "label": "Name"
+          },
+          {
+            "key": "rawName",
+            "label": "Raw Name",
+            "type": "string"
+          }
+        ]
+      },
+      "key": "fetch_devices",
+      "noun": "Devices",
+      "display": {
+        "label": "Get Subscribed Devices",
+        "description": "Fetches a users subscribed devices",
+        "hidden": true,
+        "important": false
+      }
+    }
+  }
+}
