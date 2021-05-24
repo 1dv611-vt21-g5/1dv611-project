@@ -22,14 +22,11 @@ let app
 // Ett alternativ vore kanske att bygga upp någon sorts globalSetup(och teardown) https://jestjs.io/docs/configuration#globalsetup-string
 // som startar och gör all config, sen använda Nock https://www.npmjs.com/package/nock för att fejka varenda externt API-anrop
 
-
-
 beforeAll(async () => {
   jest.spyOn(global.console, 'log').mockImplementation(() => jest.fn())
   jest.spyOn(global.console, 'warn').mockImplementation(() => jest.fn())
   jest.spyOn(global.console, 'error').mockImplementation(() => jest.fn())
   jest.spyOn(global.console, 'info').mockImplementation(() => jest.fn())
-
 
   app = http.createServer(await createServer())
   request = supertest(app)
@@ -60,7 +57,7 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
     const req = {
       session: {
         user: {
-          _id: "6076b42ec054220006cebbff"
+          _id: '6076b42ec054220006cebbff'
         }
       }
     }
@@ -82,4 +79,30 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
   })
 })
 
-
+describe('resetApiKey', () => {
+  it('test', async done => {
+    const res = await request.put('/api/user')
+    done()
+  })
+  it('test', async () => {
+    const req = {
+      session: {
+        user: {
+          _id: '6076b42ec054220006cebbff'
+        }
+      }
+    }
+    const res = {
+      status: function (code) {
+        this.code = code
+        return this
+      },
+      send: function (data) {
+        this.data = data
+        return this
+      }
+    }
+    const user = await resetApiKey(req, res)
+    expect(user.code).toBe(200)
+  })
+})
