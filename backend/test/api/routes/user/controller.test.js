@@ -40,7 +40,7 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
-  await db.disconnect()
+  // await db.disconnect()
   await app.close()
 })
 
@@ -76,6 +76,7 @@ describe('[routes/user/controller] - getUser - gets correct user', () => {
 
     expect(user.code).toBe(200)
     expect(user.data.username).toBe('ak222ye@student.lnu.se')
+    done()
   })
 })
 
