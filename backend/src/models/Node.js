@@ -53,14 +53,10 @@ const nodeSchema = new mongoose.Schema({
   },
   // min interval in minutes (if any)
   minInterval: {
-    type: Number
+    type: Number // NYI
   },
   maxInterval: {
-    type: Number
-  },
-  // latest time this device sent data
-  lastSend: {
-    type: Date
+    type: Number // NYI
   }
 }, {
   timestamps: true

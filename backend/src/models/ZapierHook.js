@@ -22,6 +22,10 @@ const zapierHookSchema = new mongoose.Schema({
   deviceId: {
     type: String,
     required: true
+  },
+  // latest time this hook sent data
+  lastSend: {
+    type: Date
   }
 }, {
   timestamps: false
