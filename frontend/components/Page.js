@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
-import { Flex, Spacer, Box } from '@chakra-ui/react'
+import { Text, Flex, Spacer, Box } from '@chakra-ui/react'
 
 const Page = ({ children }) => {
   return (
@@ -22,7 +22,7 @@ const Page = ({ children }) => {
         {children}
         <Spacer />
         <footer className="App-footer">
-          <p>A project in course 1dv611 at Linneaus university. </p>
+          <Text color="lime.grey">A project in course 1dv611 at Linneaus university. </Text>
         </footer>
       </Flex>
   )
