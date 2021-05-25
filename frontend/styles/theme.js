@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
 
-const brandGreen = '#74ad96'
-const brandOrange = '#e89b3f'
+const brandGreen = '#49796C'
+const brandOrange = '#D37809'
 
 const theme = extendTheme({
   components: {
@@ -23,15 +23,18 @@ const theme = extendTheme({
     lime: {
       background: '#f0f3f7',
       white: '#fff',
-      grey: '#878c91'
+      grey: '#696B6D'
     },
     subscribe: {
       500: brandGreen,
-      600: '#8dc4ae'
+      600: '#456E67'
     },
     unsubscribe: {
       500: brandOrange,
-      600: '#eda958'
+      600: '#B4690E'
+    },
+    teal: {
+      500: brandGreen,
     }
   }
 })
