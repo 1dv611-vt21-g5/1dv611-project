@@ -32,17 +32,37 @@ const getNestedValue = (object, pathsArray) => {
  */
 const receiveData = async (req, res, next) => {
   try {
+
+
+    // 0. In production, only accept device updates from the Yggio API URL set in .env - No spoofers!
+    //TODO: Implement - currently there seems to be no way to add a "secret" to Yggio subscriptions, since they only send iotnode, diff, event
+    // Using req.hostname or similar is also a challenge if we are deployed behind many proxies, such as on Heroku
+    // Perhaps a solution involving the route for this API call, it is currently /api/updates/:deviceId, but maybe if it was /updates/:deviceId/:secret
+    // that would require some reworking of this controller however
+
     // 1. request comes in, we grab yggio device id
     const { deviceId } = req.params
 
-    //TODO: AFTER DEMO: We currently trust anyone who sends an update with a deviceId
-    // Maybe we should add some kind of check to make sure it's actually from Yggio
+
 
     //1b. We check that there are actual Zaps using this device before doing more processing
-    const zapsExist = await ZapierHook.exists({ deviceId: deviceId })
+    const zapsExist = await ZapierHook.findOne({ deviceId: deviceId })
 
     if (!zapsExist) {
       return res.status(200).send()
+    }
+
+    // 1c. Throttle if too many requests
+    if (zapsExist?.lastSend) {
+      // get the miliseconds since epoch for both the last transmit to Zapier and the time now
+      const latest = new Date(zapsExist.lastSend).getTime()
+      const now = new Date().getTime()
+
+      // If less than 1000 ms have passed, discard the request with status 429 'Too Many Requests'
+      if (now - latest <= 1000) {
+        console.log('mega fail!!!!!!')
+        return res.status(429).set('Retry-After', '1').send()
+      }
     }
 
     // 2. we find all Nodes with this id (as each user can have their own settings)
@@ -51,9 +71,6 @@ const receiveData = async (req, res, next) => {
     // 3. We grab the updated device data from the request
     const updatedDevice = req.body.payload.iotnode
 
-    // TODO: With many nodes/users who have many Zaps, this function could take a long
-    // time to complete or fail with some but succeed with others.
-    // maybe change them to Promise.allSettled instead?
     matchNewDataWithNode(nodes, updatedDevice)
 
     return res.status(200).send()
@@ -72,7 +89,9 @@ const receiveData = async (req, res, next) => {
  */
 const matchNewDataWithNode = async (nodes, data) => {
   // 4. Iterate through all found nodes and parse them according to the saved Node schema
-  await Promise.all(nodes.map(async (node) => {
+
+  // We dont want to stop processing if there is an error with some Node, so we use allSettled here
+  const nodeSends = await Promise.allSettled(nodes.map(async (node) => {
     // id and name added to allow for differentiation in Zapier
     const update = {
       id: node.yggioId,
@@ -80,16 +99,25 @@ const matchNewDataWithNode = async (nodes, data) => {
       data: {}
     }
 
-    node.dataValues.forEach(dataValue => {
-      update.data[dataValue.name] = { displayName: dataValue.displayName, value: getNestedValue(data, dataValue.path) }
+    node.dataValues.forEach((dataValue, index) => {
+      update.data[`${dataValue.name}-${index}`] = { displayName: dataValue.displayName, value: getNestedValue(data, dataValue.path) }
     })
 
     sendToZapier(node, update)
   }))
+
+  const errors = nodeSends.filter(send => send.status === 'rejected')
+
+  if (errors.length >= 1) {
+    console.log('Unable to parse all Node objects:')
+    errors.forEach(error => {
+      console.log(`Error when parsing Node: ${error.value}`)
+    })
+  }
 }
 
 /**
- * Gets zapier hook and sends to Zapier
+ * Gets zapier hook and sends to Zapier, saves the timestamp of this transmission on the Node
  *
  * @param {object} node The node device 
  * @param {object} data New data to send to Zapier
@@ -98,9 +126,22 @@ const matchNewDataWithNode = async (nodes, data) => {
 const sendToZapier = async (node, data) => {
   const zapierHooks = await ZapierHook.find({ owner: node.owner, deviceId: node.yggioId })
 
-  await Promise.all(zapierHooks.map(async (hook) => {
+  const zapierSends = await Promise.allSettled(zapierHooks.map(async (hook) => {
     await axios.post(hook.target_url, data)
+
+    // update the hooks with the current timestamp
+    hook.lastSend = new Date().toISOString()
+    await hook.save()
   }))
+
+  const errors = zapierSends.filter(send => send.status === 'rejected')
+
+  if (errors.length >= 1) {
+    console.log('Unable to transmit to all found Zapier Webhooks:')
+    errors.forEach(error => {
+      console.log(`Error when transmitting Zapier webhook: ${error.value}`)
+    })
+  }
 }
 
 // Exports.

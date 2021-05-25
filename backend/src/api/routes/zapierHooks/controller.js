@@ -8,7 +8,6 @@ const Node = require('../../../models/Node')
 // sen kan man filtrera och sortera i Zapier via https://zapier.com/help/create/customize/add-branching-logic-to-zaps-with-paths
 const createZapierHook = async (req, res, next) => {
   try {
-    console.log(req.body)
     const { hookUrl, userApiKey, yggioDeviceId } = req.body
     const user = await User.findOne({ api_key_zapier: userApiKey })
 
@@ -25,7 +24,6 @@ const createZapierHook = async (req, res, next) => {
 
 const deleteZapierHook = async (req, res, next) => {
   try {
-    console.log(req.body)
     const { userApiKey, yggioDeviceId, hookUrl } = req.body
     const user = await User.findOne({ api_key_zapier: userApiKey })
 
@@ -46,7 +44,6 @@ const getUserSubscriptions = async (req, res, next) => {
     // find all subscribed nodes by this user
     const nodes = await Node.find({ owner: user.yggioId })
 
-    console.log(nodes)
     res.json(nodes)
   } catch (e) {
     console.log(e)
@@ -58,8 +55,6 @@ const generateSampleData = async (req, res, next) => {
   try {
     const { userApiKey, yggioDeviceId } = req.query
 
-    console.log(userApiKey)
-    console.log(yggioDeviceId)
     const user = await User.findOne({ api_key_zapier: userApiKey })
     const node = await Node.findOne({ yggioId: yggioDeviceId, owner: user.yggioId })
 
@@ -69,8 +64,8 @@ const generateSampleData = async (req, res, next) => {
       data: {}
     }
 
-    node.dataValues.forEach(dataValue => {
-      update.data[dataValue.name] = { displayName: dataValue.displayName, value: 'SAMPLE' }
+    node.dataValues.forEach((dataValue, index) => {
+      update.data[`${dataValue.name}-${index}`] = { displayName: dataValue.displayName, value: 'SAMPLE' }
     })
 
 
