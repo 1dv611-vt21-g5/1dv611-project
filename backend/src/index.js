@@ -11,7 +11,7 @@ const config = require('./config')
 const seedDb = require('../tools/seed-db')
 const { resetUsers, saveProviderOauthSecret } = require('./components/db')
 
-const { secret } = require('../db/oauth-info.json') // TODO: what is this
+const { secret } = require('../db/oauth-info.json') // TODO: change this to use DB, see comment further down
 
 const mongoose = require('./components/mongoose')
 
@@ -53,10 +53,14 @@ const setup = async () => {
   }
   config.yggio.refreshCallback = updateUser // TODO: is this why refreshTokens fail? it seems thsi function might be called when we want to use a refreshtoken, if this doesnt update the db its useless
 
+  // TODO: IMPORTANT! Currently the OAuth secret is saved in a plain readable JSON file on first activation (../db/oauth-info.json), this is horrible
+  // Ideally this should be a .env variable, but the way we acquire it currently makes this problematic (Heroku file systems are ephemeral, we would have to init our provider locally then save and add the secret manually)
+  // a compromise could be to add a model for this code and save it to the DB - this would require initializing the mongoose connection earlier however.
+
   const result = await yggioConnect.init(config.yggio, secret)
 
   // Saves the OAuth secret
-  saveProviderOauthSecret(result.provider.secret) // TODO: OAuth secret is received AGAIN from the API and should be saved ?? 
+  saveProviderOauthSecret(result.provider.secret)
 
   console.log('### ### ### ### YGGIO API - ready')
 
