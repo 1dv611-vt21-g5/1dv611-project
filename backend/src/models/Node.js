@@ -42,7 +42,6 @@ const nodeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  // user id TODO: is this needed?
   owner: {
     type: mongoose.Types.ObjectId,
     required: true
@@ -51,12 +50,8 @@ const nodeSchema = new mongoose.Schema({
     type: [dataValueSchema],
     required: true
   },
-  // min interval in minutes (if any)
-  minInterval: {
-    type: Number // NYI
-  },
-  maxInterval: {
-    type: Number // NYI
+  checksum: {
+    type: String
   }
 }, {
   timestamps: true

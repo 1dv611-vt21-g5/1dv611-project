@@ -1,8 +1,10 @@
 'use strict'
 
 const axios = require('axios')
+const { nanoid } = require('nanoid')
 
 const Node = require('../../../models/Node')
+
 
 const {
   provider,
@@ -22,10 +24,13 @@ const { subscription } = require('../../../config')
 const subscribe = async (req, res, next) => {
   try {
     const { user } = req.session
-    const { name, displayName: rawDisplayName, nodeId, protocol, dataPaths } = req.body
+    const { name, displayName: rawDisplayName, nodeId, protocol, dataPaths } = req.body // TODO: some validation?
+
+    // checksum to verify requests actually come from Yggio
+    const checksum = nanoid()
 
     // where we want yggio to send updates
-    const protocolData = { url: `${process.env.BACKEND_URI}/api/updates/${nodeId}` }
+    const protocolData = { url: `${process.env.BACKEND_URI}/api/updates/${nodeId}?checksum=${checksum}` }
     // just a name for the subscription, probably not important
     const subscriptionName = `${nodeId}/${user._id}`
 
@@ -41,10 +46,9 @@ const subscribe = async (req, res, next) => {
       name: name,
       displayName: displayName,
       subscriptionId: sub._id,
-      owner: user._id, // TODO: not same as in db // this user._id is yggioId in User schema
+      owner: user._id, // this user._id is yggioId in User schema
       dataValues: dataPaths,
-      minInterval: undefined, // TODO: add from frontend later
-      maxInterval: undefined // TODO: add from frontend later
+      checksum: checksum
     }, { new: true, upsert: true })
 
     return res.status(200).send()

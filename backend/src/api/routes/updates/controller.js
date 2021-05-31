@@ -32,18 +32,11 @@ const getNestedValue = (object, pathsArray) => {
  */
 const receiveData = async (req, res, next) => {
   try {
-
-
-    // 0. In production, only accept device updates from the Yggio API URL set in .env - No spoofers!
-    //TODO: Implement - currently there seems to be no way to add a "secret" to Yggio subscriptions, since they only send iotnode, diff, event
-    // Using req.hostname or similar is also a challenge if we are deployed behind many proxies, such as on Heroku
-    // Perhaps a solution involving the route for this API call, it is currently /api/updates/:deviceId, but maybe if it was /updates/:deviceId/:secret
-    // that would require some reworking of this controller however
+    // 0. Grab checksum from Yggio request
+    const { checksum } = req.query
 
     // 1. request comes in, we grab yggio device id
     const { deviceId } = req.params
-
-
 
     //1b. We check that there are actual Zaps using this device before doing more processing
     const zapsExist = await ZapierHook.findOne({ deviceId: deviceId })
@@ -60,20 +53,24 @@ const receiveData = async (req, res, next) => {
 
       // If less than 1000 ms have passed, discard the request with status 429 'Too Many Requests'
       if (now - latest <= 1000) {
-        console.log('mega fail!!!!!!')
         return res.status(429).set('Retry-After', '1').send()
       }
     }
 
-    // 2. we find all Nodes with this id (as each user can have their own settings)
-    const nodes = await Node.find({ yggioId: deviceId })
+    // 2. we find all Nodes with this id (as each user can have their own settings) and checksum
+    const nodes = await Node.find({ yggioId: deviceId, checksum: checksum })
 
-    // 3. We grab the updated device data from the request
-    const updatedDevice = req.body.payload.iotnode
+    if (nodes.length >= 1) {
+      console.log('Update received, checksum OK')
+      // 3. We grab the updated device data from the request
+      const updatedDevice = req.body.payload.iotnode
 
-    matchNewDataWithNode(nodes, updatedDevice)
-
-    return res.status(200).send()
+      matchNewDataWithNode(nodes, updatedDevice)
+      return res.status(200).send()
+    } else {
+      console.log('Update received but checksum wrong/not included')
+      return res.status(400).send()
+    }
   } catch (e) {
     console.log(e)
     return res.status(400).send()
@@ -139,7 +136,7 @@ const sendToZapier = async (node, data) => {
   if (errors.length >= 1) {
     console.log('Unable to transmit to all found Zapier Webhooks:')
     errors.forEach(error => {
-      console.log(`Error when transmitting Zapier webhook: ${error.value}`)
+      console.log(`Error when transmitting Zapier webhook: ${error.reason}`)
     })
   }
 }

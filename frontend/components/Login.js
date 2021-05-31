@@ -8,14 +8,14 @@ import useUser from 'hooks/useUser'
 
 const Login = () => {
   const router = useRouter()
-  const { user, loading } = useUser()
+  const { user, loading, error } = useUser()
 
   const redirToYggio = () => {
     redir()
   }
 
   useEffect(() => {
-    if (user) {
+    if (user && !error) {
       router.push('/devices')
     }
   }, [user, loading])
