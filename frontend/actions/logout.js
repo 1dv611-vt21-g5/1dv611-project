@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { statStr } from '../constants'
+
 export const logout = async () => {
-  await axios.post('http://localhost:9999/api/auth/logout', {}, { withCredentials: true })
+  await axios.post(`${statStr.backendHost}/api/auth/logout`, {}, { withCredentials: true })
 }
