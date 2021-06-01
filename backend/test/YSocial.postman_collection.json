@@ -34,10 +34,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"payload\": {\n    \"iotnode\": {\n      \"_id\": \"60892972c07cb300069e4691\",\n      \"nodeType\": \"SimpleDevice\",\n      \"__v\": 0,\n      \"category\": \"uncategorized\",\n      \"createdAt\": \"2021-01-14T13:44:21.057Z\",\n      \"description\": \"The device was successfully included, but we couldn't match the product information with a device name.\",\n      \"deviceModelName\": \"N/A\",\n      \"latlng\": [],\n      \"name\": \"lux_2_6142341_Raw-translated (fiware-device)\",\n      \"rabbitRouting\": {},\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\",\n      \"translatedFrom\": \"60004a913f93fa0006b57280\",\n      \"updatedAt\": \"2021-05-16T22:16:25.202Z\",\n      \"value\": { \"luminance\": 0.54, \"temperature\": 45.6, \"temperatureUnit\": \"celsius\" },\n      \"luminance\": 0.54,\n      \"temperature\": 22.5,\n      \"version\": 17\n    },\n    \"diff\": {\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\",\n      \"updatedAt\": \"2021-05-16T22:16:25.202Z\",\n      \"value\": { \"luminance\": 1, \"temperature\": 22.6, \"temperatureUnit\": \"celsius\" }\n    },\n    \"event\": {\n      \"value\": { \"luminance\": 1, \"temperature\": 22.6, \"temperatureUnit\": \"celsius\" },\n      \"lastActive\": 1621203385195,\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\"\n    }\n  }\n}"
+					"raw": "{\n  \"payload\": {\n    \"iotnode\": {\n      \"_id\": \"60892972c07cb300069e4691\",\n      \"nodeType\": \"SimpleDevice\",\n      \"__v\": 0,\n      \"category\": \"uncategorized\",\n      \"createdAt\": \"2021-01-14T13:44:21.057Z\",\n      \"description\": \"The device was successfully included, but we couldn't match the product information with a device name.\",\n      \"deviceModelName\": \"N/A\",\n      \"latlng\": [],\n      \"name\": \"lux_2_6142341_Raw-translated (fiware-device)\",\n      \"rabbitRouting\": {},\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\",\n      \"translatedFrom\": \"60004a913f93fa0006b57280\",\n      \"updatedAt\": \"2021-05-16T22:16:25.202Z\",\n      \"value\": { \"luminance\": 0.54, \"temperature\": { \"value\": 45.6 }, \"temperatureUnit\": \"celsius\" },\n      \"luminance\": 141.54,\n      \"temperature\": 25.5,\n      \"version\": 17\n    },\n    \"diff\": {\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\",\n      \"updatedAt\": \"2021-05-16T22:16:25.202Z\",\n      \"value\": { \"luminance\": 1, \"temperature\": 22.6, \"temperatureUnit\": \"celsius\" }\n    },\n    \"event\": {\n      \"value\": { \"luminance\": 1, \"temperature\": 22.6, \"temperatureUnit\": \"celsius\" },\n      \"lastActive\": 1621203385195,\n      \"reportedAt\": \"2021-05-16T22:16:25.178Z\"\n    }\n  }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:9999/api/updates/60892972c07cb300069e4691",
+					"raw": "http://localhost:9999/api/updates/5e7b54f27e1b990006c7bba0?checksum=UatZCfj14uLU6cdAwTU-L",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -46,7 +46,13 @@
 					"path": [
 						"api",
 						"updates",
-						"60892972c07cb300069e4691"
+						"5e7b54f27e1b990006c7bba0"
+					],
+					"query": [
+						{
+							"key": "checksum",
+							"value": "UatZCfj14uLU6cdAwTU-L"
+						}
 					]
 				},
 				"description": "This requests simulates an incoming update from Yggio of a sensor. To make sure it works all the way to a Zap, create a subscription for the device \"lux_2_6142341_Raw-translated (fiware-device)\"."
