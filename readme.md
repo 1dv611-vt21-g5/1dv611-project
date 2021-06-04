@@ -62,12 +62,13 @@ Sedan:
 Förbered en `.env.local`-fil (notera att det måste vara `.env.local`) i roten av `/frontend`.
 
 ```
-# The URL of the Yggio you want to use (note: not API url as in backend)
+# The URL of the Yggio you want to use
+# Should be the same as in backend/.env
 # https://yggio-sandbox.sensative.net is a suitable test server and is set as default
-YGGIO_API_URL=https://yggio-beta.sensative.net
+NEXT_PUBLIC_YGGIO_API_URL=https://yggio-beta.sensative.net
 
 # The adress of the backend API - For development can be set to http://localhost:9999 (even if the backend is set to use ngrok)
-BACKEND_URI=http://localhost:9999
+NEXT_PUBLIC_BACKEND_URI=http://localhost:9999
 ```
 
 Sedan:
